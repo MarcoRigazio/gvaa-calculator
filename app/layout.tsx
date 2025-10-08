@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs"; // ✅ added
 import "./globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -16,25 +17,27 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* Global Header */}
-        <header className="border-b border-[var(--line)] bg-[var(--bg)]">
-          <div className="mx-auto max-w-5xl px-6 h-14 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Image src="/icon.svg" alt="MyVOBiz" width={28} height={28} priority />
-              <span className="font-semibold text-[var(--ink)]">MyVOBiz</span>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          {/* Global Header */}
+          <header className="border-b border-[var(--line)] bg-[var(--bg)]">
+            <div className="mx-auto max-w-5xl px-6 h-14 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Image src="/icon.svg" alt="MyVOBiz" width={28} height={28} priority />
+                <span className="font-semibold text-[var(--ink)]">MyVOBiz</span>
+              </div>
+              <nav className="text-sm">
+                <a href="/account" className="text-[var(--accent)] hover:opacity-80">
+                  Manage billing
+                </a>
+              </nav>
             </div>
-            <nav className="text-sm">
-              <a href="/account" className="text-[var(--accent)] hover:opacity-80">
-                Manage billing
-              </a>
-            </nav>
-          </div>
-        </header>
+          </header>
 
-        {children}
-      </body>
-    </html>
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
