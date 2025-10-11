@@ -2045,7 +2045,7 @@ export default function GVAACalculator() {
   const noteText = useMemo(() => {
     if (!fs.platform || !fs.usage || (budgetParsed.low <= 0 && budgetParsed.high <= 0) || anchor <= 0) return "";
     
-    const lines = [];
+    const lines: string[] = [];
     const isSingle = budgetParsed.isSingle;
     const feePct = Math.round((netInfoLow.feePct || 0) * 100);
     
