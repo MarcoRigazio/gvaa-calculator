@@ -26,7 +26,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
 
     return res.status(200).json({ ok: true, url: session.url });
-  } catch (err: any) {
-    return res.status(500).json({ error: err?.message ?? "Unknown error" });
-  }
+ } catch (err) {
+  const message = err instanceof Error ? err.message : "Unknown error";
+  return res.status(500).json({ error: message });
+}
 }
