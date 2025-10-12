@@ -730,7 +730,7 @@ function anchorGVAAHigh(usage: string | undefined, fs: typeof DEFAULT_STATE) {
     else if (fs.cinemaTerm === 3) termKey = "threeMonths";
     else if (fs.cinemaTerm === 6) termKey = "sixMonths";
     
-    const rate = GVAA_CINEMA[tier][termKey];
+    const rate = GVAA_CINEMA[tier as keyof typeof GVAA_CINEMA][termKey as keyof typeof GVAA_CINEMA.small];
     return typeof rate === "number" ? rate : rate.high;
   }
   
