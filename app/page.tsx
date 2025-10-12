@@ -961,7 +961,7 @@ function anchorGVAAHigh(usage: string | undefined, fs: typeof DEFAULT_STATE) {
       if (term <= 1) termKey = "oneMonth";
       else if (term <= 3) termKey = "threeMonths";
       
-      return GVAA_TV[tier]?.[termKey]?.high || 0;
+      return GVAA_TV[tier as keyof typeof GVAA_TV]?.[termKey as keyof typeof GVAA_TV.local]?.high || 0;
     }
     case "E-learning": {
       if (!fs.elearningModel) return 0;
