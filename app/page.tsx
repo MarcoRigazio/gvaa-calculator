@@ -782,7 +782,7 @@ function anchorGVAAHigh(usage: string | undefined, fs: typeof DEFAULT_STATE) {
     if (fs.paidSocialTerm === 1) termKey = "oneMonth";
     else if (fs.paidSocialTerm === 3) termKey = "threeMonths";
     
-    return GVAA_PAID_SOCIAL[termKey]?.high || 0;
+    return GVAA_PAID_SOCIAL[termKey as keyof typeof GVAA_PAID_SOCIAL]?.high || 0;
   }
   
   // Online Pre-Roll/OLV
