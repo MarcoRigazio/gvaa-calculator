@@ -399,7 +399,7 @@ const TERRITORIES = [
 // -----------------------------
 type CalculatorState = {
   platform: string | undefined;
-  currency: string;
+  currency: "USD" | "EUR" | "GBP" | "CAD" | "AUD";
   usage: string | undefined;
   budgetInput: string;
   safePayment: boolean;
