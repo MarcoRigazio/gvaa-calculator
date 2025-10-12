@@ -499,7 +499,7 @@ const parseMoney = (s: string) => {
 };
 
 function computePlatformNet(grossClient: number, platform: string | undefined, safePayment: boolean) {
-  let feePct = platform ? PLATFORM_FEES[platform]?.feePct ?? 0 : 0;
+  let feePct = platform ? PLATFORM_FEES[platform as keyof typeof PLATFORM_FEES]?.feePct ?? 0 : 0;
   if (platform === "Voice123" && safePayment) feePct = 0.05;
   const net = grossClient * (1 - feePct);
   return { feePct, net };
