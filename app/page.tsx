@@ -999,7 +999,7 @@ function anchorGVAAHigh(usage: string | undefined, fs: typeof DEFAULT_STATE) {
 }
 
 // Usage Fields Component - moved outside to prevent re-creation
-function UsageFieldsComponent({ fs, setFs }) {
+function UsageFieldsComponent({ fs, setFs }: { fs: typeof DEFAULT_STATE; setFs: (state: typeof DEFAULT_STATE) => void }) {
   if (!fs.usage) return null;
 
   switch (fs.usage) {
