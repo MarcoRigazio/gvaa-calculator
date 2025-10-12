@@ -771,7 +771,7 @@ function anchorGVAAHigh(usage: string | undefined, fs: typeof DEFAULT_STATE) {
     else if (fs.nonPaidWebTerm === 36) termKey = "threeYears";
     else if (fs.nonPaidWebTerm === 60) termKey = "fiveYears";
     
-    return GVAA_NONPAID_WEB[termKey]?.high || 0;
+    return GVAA_NONPAID_WEB[termKey as keyof typeof GVAA_NONPAID_WEB]?.high || 0;
   }
   
   // Paid Social
