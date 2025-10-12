@@ -465,10 +465,10 @@ const DEFAULT_STATE = {
 // -----------------------------
 // Utilities
 // -----------------------------
-const fmt = (n, currency = "USD") => new Intl.NumberFormat(undefined, { style: "currency", currency }).format(n);
-const toPct = (v) => `${Math.round(v * 100)}%`;
+const fmt = (n: number, currency: "USD" | "EUR" | "GBP" | "CAD" | "AUD" = "USD") => new Intl.NumberFormat(undefined, { style: "currency", currency }).format(n);
+const toPct = (v: number) => `${Math.round(v * 100)}%`;
 
-const parseMoney = (s) => {
+const parseMoney = (s: string) => {
   if (!s) return { low: 0, high: 0, isSingle: true };
   
   // First check if it's a range (contains dash, "to", or multiple numbers)
