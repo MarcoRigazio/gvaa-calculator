@@ -9,6 +9,63 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Download, FileText, RefreshCw, Info } from "lucide-react";
+// Password Gate Component
+const BETA_PASSWORD = "beta2025";
+
+function PasswordGate({ children }: { children: React.ReactNode }) {
+  const [password, setPassword] = useState('');
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === BETA_PASSWORD) {
+      setIsUnlocked(true);
+      setError('');
+    } else {
+      setError('Invalid password. Please try again.');
+      setPassword('');
+    }
+  };
+
+  if (isUnlocked) {
+    return <>{children}</>;
+  }
+
+  return (
+    <div className="min-h-screen w-full bg-white flex items-center justify-center p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>MyVoBiz Calculator - Beta Access</CardTitle>
+          <CardDescription>
+            This calculator is currently in private beta. Enter your access code to continue.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="password">Access Code</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter beta access code"
+                autoFocus
+              />
+            </div>
+            {error && (
+              <p className="text-sm text-red-600">{error}</p>
+            )}
+            <Button type="submit" className="w-full">
+              Access Calculator
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
 
 // -----------------------------
 // Config: Platforms & Fees
@@ -2032,7 +2089,7 @@ function UsageFieldsComponent({ fs, setFs }) {
   }
 }
 
-export default function GVAACalculator() {
+function GVAACalculator() {
   const [fs, setFs] = usePersistentState(LS_KEY, DEFAULT_STATE);
 
   const budgetParsed = useMemo(() => parseMoney(fs.budgetInput), [fs.budgetInput]);
@@ -2344,5 +2401,13 @@ export default function GVAACalculator() {
         </div>
       </div>
     </div>
+  );
+}
+// Main export with password gate
+export default function Page() {
+  return (
+    <PasswordGate>
+      <GVAACalculator />
+    </PasswordGate>
   );
 }
