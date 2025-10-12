@@ -509,7 +509,7 @@ function anchorGVAAHigh(usage: string | undefined, fs: typeof DEFAULT_STATE) {
   if (!usage) return 0;
   
   // Helper to safely parse numeric strings
-  const parseNum = (val) => {
+  const parseNum = (val: string | number | undefined | null) => {
     if (val === "" || val === undefined || val === null) return 0;
     const num = Number(val);
     return isFinite(num) ? num : 0;
