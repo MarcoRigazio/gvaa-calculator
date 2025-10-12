@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!priceId) return res.status(400).json({ error: "Missing priceId" });
 
     const session = await stripe.checkout.sessions.create({
-      mode: "subscription", // change to "payment" for one-time Prices
+      mode: "payment", // change to "payment" for one-time Prices
       line_items: [{ price: priceId, quantity }],
       allow_promotion_codes: true,
       automatic_tax: { enabled: false },
