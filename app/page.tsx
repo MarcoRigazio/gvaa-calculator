@@ -2392,7 +2392,7 @@ function GVAACalculator() {
                 </div>
                 <div className="space-y-1">
                   <Label htmlFor="currency">Currency</Label>
-                  <Select value={fs.currency} onValueChange={(v) => setFs({ ...fs, currency: v })}>
+                  <Select value={fs.currency} onValueChange={(v) => setFs({ ...fs, currency: v as "USD" | "EUR" | "GBP" | "CAD" | "AUD" })}>
                     <SelectTrigger className="w-full"><SelectValue placeholder="USD" /></SelectTrigger>
                     <SelectContent>
                       {["USD","EUR","GBP","CAD","AUD"].map((c) => (
