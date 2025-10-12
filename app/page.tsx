@@ -804,7 +804,7 @@ function anchorGVAAHigh(usage: string | undefined, fs: typeof DEFAULT_STATE) {
     if (fs.ottTerm === 1) termKey = "oneMonth";
     else if (fs.ottTerm === 3) termKey = "threeMonths";
 
-    return GVAA_OTT[termKey]?.high || 0;
+    return GVAA_OTT[termKey as keyof typeof GVAA_OTT]?.high || 0;
   }
 
   // In-Show/Documentary
