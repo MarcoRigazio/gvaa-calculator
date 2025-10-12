@@ -995,7 +995,7 @@ function anchorGVAAHigh(usage: string | undefined, fs: typeof DEFAULT_STATE) {
       switch (fs.gamesModel) {
         case "Mobile Character – Per Game":
           const basePerGame = GVAA_GAMES.mobileCharacter.perGame.high;
-          const extraVoices = fs.gameExtraVoices || 0;
+          const extraVoices = Number(fs.gameExtraVoices) || 0;
           return basePerGame + (extraVoices * GVAA_GAMES.extraVoiceFee.high);
         case "Mobile Character – Hourly":
           return GVAA_GAMES.mobileCharacter.hourly.high * GVAA_GAMES.mobileCharacter.sessionMinHours;
