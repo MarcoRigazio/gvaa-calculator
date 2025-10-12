@@ -397,7 +397,71 @@ const TERRITORIES = [
 // -----------------------------
 // Defaults
 // -----------------------------
-const DEFAULT_STATE: Record<string, any> = {
+type CalculatorState = {
+  platform: string | undefined;
+  currency: string;
+  usage: string | undefined;
+  budgetInput: string;
+  safePayment: boolean;
+  liveDirection: boolean;
+  liveDirectionMinutes: string | undefined;
+  fileSplits: string;
+  commercialSale: boolean;
+  ivrModel: string | undefined;
+  ivrPromptCount: string | undefined;
+  gamesModel: string | undefined;
+  gameExtraVoices: string | undefined;
+  promoMarket: string | undefined;
+  radioPromoMarket: string | undefined;
+  trailerMarket: string | undefined;
+  infomercialMarket: string | undefined;
+  inshowLength: string | undefined;
+  termMonths: number | undefined;
+  territory: string;
+  spotLengthSeconds: number | undefined;
+  explainerModel: string | undefined;
+  videoCount: number | undefined;
+  avgWords: string;
+  wordCount: string;
+  minutes: string;
+  finishedHours: string;
+  elearningModel: string | undefined;
+  elearningWordType: string;
+  internalModel: string | undefined;
+  recordingHours: string;
+  audiobookModel: string | undefined;
+  audiobookHours: string;
+  kioskHours: string;
+  museumModel: string | undefined;
+  museumHours: string;
+  airportCount: string;
+  podcastRole: string | undefined;
+  youtubeType: string | undefined;
+  medicalModel: string | undefined;
+  medicalMinutes: string;
+  medicalWords: string;
+  lobbyType: string | undefined;
+  lobbyHours: string;
+  radioMarket: string | undefined;
+  radioTerm: number | undefined;
+  animationLength: string | undefined;
+  dubbingType: string | undefined;
+  dubbingHours: string;
+  toysModel: string | undefined;
+  toysHours: string;
+  cinemaStates: string | undefined;
+  cinemaTerm: number | undefined;
+  eventType: string | undefined;
+  eventHours: string;
+  tradeshowType: string | undefined;
+  tradeshowHours: string;
+  nonPaidWebTerm: number | undefined;
+  paidSocialTerm: number | undefined;
+  olvTerm: number | undefined;
+  ottTerm: number | undefined;
+  notes: string;
+};
+const DEFAULT_STATE: CalculatorState = {
   platform: undefined,
   currency: "USD",
   usage: undefined,
