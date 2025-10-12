@@ -397,7 +397,7 @@ const TERRITORIES = [
 // -----------------------------
 // Defaults
 // -----------------------------
-const DEFAULT_STATE = {
+const DEFAULT_STATE: Record<string, any> = {
   platform: undefined,
   currency: "USD",
   usage: undefined,
