@@ -505,7 +505,7 @@ function computePlatformNet(grossClient: number, platform: string | undefined, s
   return { feePct, net };
 }
 
-function anchorGVAAHigh(usage, fs) {
+function anchorGVAAHigh(usage: string | undefined, fs: any) {
   if (!usage) return 0;
   
   // Helper to safely parse numeric strings
