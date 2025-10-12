@@ -306,7 +306,7 @@ const GVAA_INSHOW = {
 // -----------------------------
 const LS_KEY = "gvaa_calc_state_v3";
 
-function usePersistentState(key, initial) {
+function usePersistentState<T>(key: string, initial: T): [T, React.Dispatch<React.SetStateAction<T>>] {
   const [state, setState] = useState(() => {
     try {
       const raw = localStorage.getItem(key);
