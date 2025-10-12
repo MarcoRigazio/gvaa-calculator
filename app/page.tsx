@@ -1000,6 +1000,7 @@ function anchorGVAAHigh(usage: string | undefined, fs: typeof DEFAULT_STATE) {
 
 // Usage Fields Component - moved outside to prevent re-creation
 function UsageFieldsComponent({ fs, setFs }: { fs: typeof DEFAULT_STATE; setFs: (state: typeof DEFAULT_STATE) => void }) {
+  const updateFs = (updates: Partial<typeof DEFAULT_STATE>) => setFs({ ...fs, ...updates });
   if (!fs.usage) return null;
 
   switch (fs.usage) {
@@ -1010,7 +1011,7 @@ function UsageFieldsComponent({ fs, setFs }: { fs: typeof DEFAULT_STATE; setFs: 
             <Label>IVR model</Label>
             <Select
               value={fs.ivrModel}
-              onValueChange={(v) => setFs({ ...fs, ivrModel: v })}
+              onValueChange={(v) => updateFs({ ivrModel: v })}
             >
               <SelectTrigger className="w-full"><SelectValue placeholder="Select" /></SelectTrigger>
               <SelectContent>
