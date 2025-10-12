@@ -670,7 +670,7 @@ function anchorGVAAHigh(usage: string | undefined, fs: typeof DEFAULT_STATE) {
     if (fs.radioTerm === 1) termKey = "oneMonth";
     else if (fs.radioTerm === 3) termKey = "threeMonths";
     
-    return GVAA_RADIO[tier]?.[termKey]?.high || 0;
+    return GVAA_RADIO[tier as keyof typeof GVAA_RADIO]?.[termKey as keyof typeof GVAA_RADIO.local]?.high || 0;
   }
   
   // Animation
