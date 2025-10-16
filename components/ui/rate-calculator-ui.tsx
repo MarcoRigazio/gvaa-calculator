@@ -21,12 +21,13 @@ export function RateCalculatorUI() {
               <Label htmlFor="project-name">Project Name</Label>
               <Input
                 id="project-name"
-                placeholder="e.g., 'Regional TV Commercial'"
+                // FIXED: Replaced single quotes with &apos;
+                placeholder="e.g., &apos;Regional TV Commercial&apos;"
               />
             </div>
 
             <div className="grid gap-2">
-              <Label htmlFor="budget">Client's Budget ($)</Label>
+              <Label htmlFor="budget">Client&apos;s Budget ($)</Label>
               <Input id="budget" type="number" placeholder="e.g., 1500" />
             </div>
 
@@ -44,8 +45,9 @@ export function RateCalculatorUI() {
             <div className="p-4 bg-slate-100 dark:bg-slate-800 rounded-lg">
               <h3 className="font-semibold mb-2">Calculated Rate:</h3>
               <p className="text-3xl font-bold">$2,500.00</p>
+              {/* FIXED: Replaced apostrophe in client's with &apos; */}
               <p className="text-sm text-green-600 dark:text-green-400 mt-1">
-                This is 167% of the client's budget.
+                This is 167% of the client&apos;s budget.
               </p>
             </div>
 
