@@ -20,7 +20,20 @@ const categories = [
     "Automotive"
   ] 
 },
-  { id: "radio", name: "Radio", subTypes: [] },
+  { 
+  id: "radio", 
+  name: "Radio", 
+  subTypes: [
+    "Local – Regional (Terrestrial)",
+    "National (Terrestrial)",
+    "Digital Radio",
+    "Value Menu – Terrestrial + Digital (Local/Regional)",
+    "Value Menu – Terrestrial + Digital (National)",
+    "Automotive (Radio)",
+    "Radio/Podcast Dramas",
+    "PSA – Public Service Announcement"
+  ] 
+},
   { id: "tv", name: "TV", subTypes: [] },
   { id: "non_broadcast", name: "Non-Broadcast", subTypes: [] },
   { 
