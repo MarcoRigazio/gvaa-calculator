@@ -88,10 +88,18 @@ const categories = [
   ] 
 },
   { 
-    id: "video_games_toys", 
-    name: "Video Games / Toys & Games", 
-    subTypes: ["Indie", "AAA Game"] // Kept your old sub-types, you can adjust
-  },
+  id: "video_games_toys", 
+  name: "Video Games / Toys & Games", 
+  subTypes: [
+    "Video Games (Non-Union)",
+    "Video Games (Union)",
+    "Toys & Games",
+    "Toys & Games (Demo/Scratch)",
+    "Mobile Game Apps (Non-Union Character)",
+    "Mobile Game Apps (Union Character)",
+    "Mobile Game Apps (E-Learning/Educational)"
+  ] 
+},
   { id: "promo_imaging", name: "Promo & Imaging", subTypes: [] },
   { 
     id: "audiobooks", 
