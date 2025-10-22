@@ -1,72 +1,88 @@
-import { Button } from "@/components/ui/button";
+import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Lightbulb } from "lucide-react"; // A nice icon for the tip
+import { cn } from "@/lib/utils"; // Import cn utility if you haven't already
+
+// Define the main categories
+const categories = [
+  { id: "commercial", name: "Commercial", subTypes: ["Local Radio", "Regional TV", "National Web"] },
+  { id: "videogame", name: "Video Game", subTypes: ["Indie", "AAA Character"] },
+  { id: "audiobook", name: "Audiobook", subTypes: ["Fiction", "Non-Fiction"] },
+  { id: "elearning", name: "E-Learning", subTypes: ["Corporate Training", "Educational Content"] },
+  { id: "ivr", name: "IVR / Telephony" }, // Example with no subtypes
+  { id: "promo", name: "Promo / Trailer" },
+];
 
 export function RateCalculatorUI() {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedSubType, setSelectedSubType] = useState<string | null>(null);
+
+  const handleCategorySelect = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    setSelectedSubType(null); // Reset subtype when category changes
+  };
+
+  const currentCategory = categories.find(cat => cat.id === selectedCategory);
+
   return (
-    <div className="flex justify-center items-center min-h-screen bg-slate-50 dark:bg-slate-900 p-4">
+    <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
       <Card className="w-full max-w-2xl">
         <CardHeader>
           <CardTitle className="text-2xl font-semibold">
-            VO Rate Calculator
+            Select Voice Over Genre
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid gap-6">
-            {/* --- Input Section --- */}
-            <div className="grid gap-2">
-              <Label htmlFor="project-name">Project Name</Label>
-              <Input
-                id="project-name"
-                // FIXED: Replaced single quotes with &apos;
-                placeholder="e.g., &apos;Regional TV Commercial&apos;"
-              />
+            {/* --- Category Card Selection --- */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => handleCategorySelect(category.id)}
+                  className={cn(
+                    "p-4 border rounded-lg text-center cursor-pointer transition-all duration-150 ease-in-out",
+                    "hover:border-blue-500 hover:shadow-md",
+                    selectedCategory === category.id
+                      ? "border-blue-600 bg-blue-50 dark:bg-blue-900/30 ring-2 ring-blue-500"
+                      : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800"
+                  )}
+                >
+                  <span className="font-medium text-slate-800 dark:text-slate-100">{category.name}</span>
+                </button>
+              ))}
             </div>
 
-            <div className="grid gap-2">
-              <Label htmlFor="budget">Client&apos;s Budget ($)</Label>
-              <Input id="budget" type="number" placeholder="e.g., 1500" />
-            </div>
+            {/* --- Conditional SubType Radio Buttons --- */}
+            {currentCategory && currentCategory.subTypes && (
+              <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+                <Label className="text-base font-medium mb-3 block">Select Sub-Type for {currentCategory.name}:</Label>
+                <RadioGroup
+                  value={selectedSubType ?? ""}
+                  onValueChange={setSelectedSubType}
+                  className="grid gap-2"
+                >
+                  {currentCategory.subTypes.map((subType) => (
+                    <div key={subType} className="flex items-center space-x-2 p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-700">
+                      <RadioGroupItem value={subType} id={subType} />
+                      <Label htmlFor={subType} className="cursor-pointer flex-1">{subType}</Label>
+                    </div>
+                  ))}
+                </RadioGroup>
+              </div>
+            )}
 
-            {/* --- Informational Alert --- */}
-            <Alert className="border-yellow-500/50 text-yellow-700 dark:border-yellow-500/60 dark:text-yellow-300 [&>svg]:text-yellow-600 dark:[&>svg]:text-yellow-400">
-              <Lightbulb className="h-4 w-4" />
-              <AlertTitle>Pro Tip</AlertTitle>
-              <AlertDescription>
-                Upgrade to save your quote history and access pro negotiation
-                templates!
-              </AlertDescription>
-            </Alert>
-
-            {/* --- Results Section (Placeholder) --- */}
-            <div className="p-4 bg-slate-100 dark:bg-slate-800 rounded-lg">
-              <h3 className="font-semibold mb-2">Calculated Rate:</h3>
-              <p className="text-3xl font-bold">$2,500.00</p>
-              {/* FIXED: Replaced apostrophe in client's with &apos; */}
-              <p className="text-sm text-green-600 dark:text-green-400 mt-1">
-                This is 167% of the client&apos;s budget.
-              </p>
-            </div>
-
-            {/* --- Action Buttons --- */}
-            <div className="flex flex-col sm:flex-row gap-2">
-              <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                Calculate Quote
-              </Button>
-              <Button variant="outline" className="w-full">
-                Clear Fields
-              </Button>
-            </div>
-
-            {/* --- Premium Feature Teaser --- */}
-            <div className="text-center">
-              <Button variant="link" className="text-blue-600 dark:text-blue-400">
-                Upgrade to Generate Pro Template
-              </Button>
-            </div>
+            {/* --- Placeholder for Input Fields --- */}
+            {selectedCategory && (
+              <div className="mt-6 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg text-center">
+                <p className="text-slate-600 dark:text-slate-400">
+                  Input fields for{" "}
+                  <span className="font-semibold">{selectedSubType ? selectedSubType : currentCategory?.name}</span>
+                  {" "}will appear here.
+                </p>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
