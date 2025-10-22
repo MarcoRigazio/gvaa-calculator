@@ -113,10 +113,13 @@ const categories = [
   ] 
 },
   { 
-    id: "ivr_message_on_hold", 
-    name: "IVR / Message-on-Hold", 
-    subTypes: ["Example"] // Kept your old sub-types
-  },
+  id: "ivr_message_on_hold", 
+  name: "IVR / Message-on-Hold", 
+  subTypes: [
+    "Direct Quote",
+    "Roster Talent"
+  ] 
+},
   { id: "cinema_events", name: "Cinema / Events", subTypes: [] },
   { id: "fees_pickups_editing", name: "Fees / Pick-Ups / Editing", subTypes: [] },
 ];
