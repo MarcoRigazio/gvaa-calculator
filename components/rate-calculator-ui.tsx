@@ -68,10 +68,16 @@ const categories = [
   ] 
 },
   { 
-    id: "elearning", 
-    name: "E-Learning", 
-    subTypes: ["Corporate Training", "Educational Content"] 
-  },
+  id: "elearning", 
+  name: "E-Learning", 
+  subTypes: [
+    "Per Word",
+    "Per Finished Minute",
+    "Per Raw Hour",
+    "Per Finished Hour",
+    "Directed Sessions"
+  ] 
+},
   { id: "animation_dubbing", name: "Animation / Dubbing", subTypes: [] },
   { 
     id: "video_games_toys", 
