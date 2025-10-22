@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -165,6 +166,16 @@ export function RateCalculatorUI() {
   };
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
+  useEffect(() => {
+  // Calculator for: Digital Visual -> Non-Paid Web
+  if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
+    const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
+    setCalculatedRate(rate || null);
+  } else {
+    // Reset rate if sub-type or term changes
+    setCalculatedRate(null);
+  }
+}, [selectedSubType, selectedTerm]);
 
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
