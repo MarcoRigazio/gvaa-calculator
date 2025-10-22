@@ -149,6 +149,7 @@ const categories = [
 ];
 
 export function RateCalculatorUI() {
+  const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedSubType, setSelectedSubType] = useState<string | null>(null);
 
@@ -207,14 +208,41 @@ export function RateCalculatorUI() {
               </div>
             )}
 
-            {/* --- Placeholder for Input Fields --- */}
-            {selectedCategory && (
-              <div className="mt-6 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg text-center">
-                <p className="text-slate-600 dark:text-slate-400">
-                  Input fields for{" "}
-                  <span className="font-semibold">{selectedSubType ? selectedSubType : currentCategory?.name}</span>
-                  {" "}will appear here.
-                </p>
+            {/* --- Dynamic Input Fields --- */}
+            {selectedSubType && (
+              <div className="pt-6 mt-6 border-t border-slate-200 dark:border-slate-700">
+                
+                {/* --- Form for: Digital Visual -> Non-Paid Web --- */}
+                {selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && (
+                  <div className="grid gap-4">
+                    <Label className="text-base font-medium">Select Term:</Label>
+                    <RadioGroup
+                      value={selectedTerm ?? ""}
+                      onValueChange={setSelectedTerm}
+                      className="grid gap-2"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="3 Months" id="term-3m" />
+                        <Label htmlFor="term-3m" className="cursor-pointer">3 Months</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="1 Year" id="term-1y" />
+                        <Label htmlFor="term-1y" className="cursor-pointer">1 Year</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="3 Years" id="term-3y" />
+                        <Label htmlFor="term-3y" className="cursor-pointer">3 Years</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="5 Years" id="term-5y" />
+                        <Label htmlFor="term-5y" className="cursor-pointer">5 Years</Label>
+                      </div>
+                    </RadioGroup>
+                  </div>
+                )}
+
+                {/* --- TODO: Add other sub-type forms here --- */}
+
               </div>
             )}
           </div>
