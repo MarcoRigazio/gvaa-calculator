@@ -100,16 +100,13 @@ const categories = [
     "Mobile Game Apps (E-Learning/Educational)"
   ] 
 },
-  { id: "promo_imaging", name: "Promo & Imaging", subTypes: [] },
   { 
-  id: "audiobooks", 
-  name: "Audiobooks", 
+  id: "promo_imaging", 
+  name: "Promo & Imaging", 
   subTypes: [
-    "Union Scale – PFH",
-    "Non-Union – PFH",
-    "Per RAW Hour",
-    "Production Add-On",
-    "Hybrid Agreement"
+    "TV",
+    "Radio",
+    "Trailers"
   ] 
 },
   { 
