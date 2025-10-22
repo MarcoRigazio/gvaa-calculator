@@ -8,7 +8,18 @@ import { cn } from "@/lib/utils"; // Import cn utility if you haven't already
 
 // Define the main categories
 const categories = [
-  { id: "digital_visual", name: "Digital Visual", subTypes: [] },
+  { 
+  id: "digital_visual", 
+  name: "Digital Visual", 
+  subTypes: [
+    "Non-Paid Web (Owned Social or Client Site)",
+    "Paid Social",
+    "Online Pre-Roll / OLV",
+    "OTT/CTV",
+    "Digital Tags",
+    "Automotive"
+  ] 
+},
   { id: "radio", name: "Radio", subTypes: [] },
   { id: "tv", name: "TV", subTypes: [] },
   { id: "non_broadcast", name: "Non-Broadcast", subTypes: [] },
