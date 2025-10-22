@@ -120,7 +120,16 @@ const categories = [
     "Roster Talent"
   ] 
 },
-  { id: "cinema_events", name: "Cinema / Events", subTypes: [] },
+  { 
+  id: "cinema_events", 
+  name: "Cinema / Events", 
+  subTypes: [
+    "Cinema Usage – Term (1–3 States)",
+    "Cinema Usage – Term (4+ States)",
+    "Event Video",
+    "Trade Shows / Sporting Events"
+  ] 
+},
   { id: "fees_pickups_editing", name: "Fees / Pick-Ups / Editing", subTypes: [] },
 ];
 
