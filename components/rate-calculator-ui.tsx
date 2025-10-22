@@ -8,12 +8,34 @@ import { cn } from "@/lib/utils"; // Import cn utility if you haven't already
 
 // Define the main categories
 const categories = [
-  { id: "commercial", name: "Commercial", subTypes: ["Local Radio", "Regional TV", "National Web"] },
-  { id: "videogame", name: "Video Game", subTypes: ["Indie", "AAA Character"] },
-  { id: "audiobook", name: "Audiobook", subTypes: ["Fiction", "Non-Fiction"] },
-  { id: "elearning", name: "E-Learning", subTypes: ["Corporate Training", "Educational Content"] },
-  { id: "ivr", name: "IVR / Telephony" }, // Example with no subtypes
-  { id: "promo", name: "Promo / Trailer" },
+  { id: "digital_visual", name: "Digital Visual", subTypes: [] },
+  { id: "radio", name: "Radio", subTypes: [] },
+  { id: "tv", name: "TV", subTypes: [] },
+  { id: "non_broadcast", name: "Non-Broadcast", subTypes: [] },
+  { 
+    id: "elearning", 
+    name: "E-Learning", 
+    subTypes: ["Corporate Training", "Educational Content"] 
+  },
+  { id: "animation_dubbing", name: "Animation / Dubbing", subTypes: [] },
+  { 
+    id: "video_games_toys", 
+    name: "Video Games / Toys & Games", 
+    subTypes: ["Indie", "AAA Game"] // Kept your old sub-types, you can adjust
+  },
+  { id: "promo_imaging", name: "Promo & Imaging", subTypes: [] },
+  { 
+    id: "audiobooks", 
+    name: "Audiobooks", 
+    subTypes: ["Fiction", "Non-Fiction"] // Kept your old sub-types
+  },
+  { 
+    id: "ivr_message_on_hold", 
+    name: "IVR / Message-on-Hold", 
+    subTypes: ["Example"] // Kept your old sub-types
+  },
+  { id: "cinema_events", name: "Cinema / Events", subTypes: [] },
+  { id: "fees_pickups_editing", name: "Fees / Pick-Ups / Editing", subTypes: [] },
 ];
 
 export function RateCalculatorUI() {
