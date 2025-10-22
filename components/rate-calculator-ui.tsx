@@ -127,7 +127,14 @@ const categories = [
     "Trade Shows / Sporting Events"
   ] 
 },
-  { id: "fees_pickups_editing", name: "Fees / Pick-Ups / Editing", subTypes: [] },
+  { 
+  id: "fees_pickups_editing", 
+  name: "Fees / Pick-Ups / Editing", 
+  subTypes: [
+    "Studio Fees & Editing",
+    "Pickups"
+  ] 
+},
 ];
 
 export function RateCalculatorUI() {
