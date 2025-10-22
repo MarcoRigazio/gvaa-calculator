@@ -164,6 +164,14 @@ export function RateCalculatorUI() {
     setSelectedCategory(categoryId);
     setSelectedSubType(null); // Reset subtype when category changes
   };
+  const handleSubTypeSelect = (subType: string) => {
+  setSelectedSubType(subType);
+
+  // Reset all form inputs
+  setSelectedTerm(null); 
+  setCalculatedRate(null);
+  // We will add more resets here as we add more forms
+};
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
   useEffect(() => {
