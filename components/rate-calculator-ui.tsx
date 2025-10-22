@@ -34,7 +34,22 @@ const categories = [
     "PSA – Public Service Announcement"
   ] 
 },
-  { id: "tv", name: "TV", subTypes: [] },
+  { 
+  id: "tv", 
+  name: "TV", 
+  subTypes: [
+    "Local / Regional",
+    "National",
+    "TV + Digital Visual – Paid Social",
+    "TV + Digital Visual – Online Pre-Roll (Includes Paid Social)",
+    "TV + Digital Visual – OTT/CTV (Includes Pre-Roll & Paid Social)",
+    "Automotive (TV)",
+    "In-Show / Documentary Narration",
+    "Infomercial / DRTV",
+    "Mnemonics",
+    "Point of Sale (POS)"
+  ] 
+},
   { id: "non_broadcast", name: "Non-Broadcast", subTypes: [] },
   { 
     id: "elearning", 
