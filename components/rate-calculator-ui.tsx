@@ -102,10 +102,16 @@ const categories = [
 },
   { id: "promo_imaging", name: "Promo & Imaging", subTypes: [] },
   { 
-    id: "audiobooks", 
-    name: "Audiobooks", 
-    subTypes: ["Fiction", "Non-Fiction"] // Kept your old sub-types
-  },
+  id: "audiobooks", 
+  name: "Audiobooks", 
+  subTypes: [
+    "Union Scale – PFH",
+    "Non-Union – PFH",
+    "Per RAW Hour",
+    "Production Add-On",
+    "Hybrid Agreement"
+  ] 
+},
   { 
     id: "ivr_message_on_hold", 
     name: "IVR / Message-on-Hold", 
