@@ -78,7 +78,15 @@ const categories = [
     "Directed Sessions"
   ] 
 },
-  { id: "animation_dubbing", name: "Animation / Dubbing", subTypes: [] },
+  { 
+  id: "animation_dubbing", 
+  name: "Animation / Dubbing", 
+  subTypes: [
+    "Non-Union Original Animation – 22 Minute Episode",
+    "Non-Union Original Animation – 11 Minute Episode or Less",
+    "Dubbing (Film/TV/Animation)"
+  ] 
+},
   { 
     id: "video_games_toys", 
     name: "Video Games / Toys & Games", 
