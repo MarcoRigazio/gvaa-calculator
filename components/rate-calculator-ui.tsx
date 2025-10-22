@@ -50,7 +50,23 @@ const categories = [
     "Point of Sale (POS)"
   ] 
 },
-  { id: "non_broadcast", name: "Non-Broadcast", subTypes: [] },
+  { 
+  id: "non_broadcast", 
+  name: "Non-Broadcast", 
+  subTypes: [
+    "Corporate & Industrial Narration – Finished Minute Scale",
+    "Corporate & Industrial Narration – Recording Time Scale",
+    "Explainer Videos",
+    "Museum Tours – Educational",
+    "Podcasts",
+    "Medical / Technical Narration",
+    "Digital Greeting Cards",
+    "YouTube Content",
+    "Kiosk Use (Non-Retail)",
+    "Lobby Viewing",
+    "Airport Announcements"
+  ] 
+},
   { 
     id: "elearning", 
     name: "E-Learning", 
