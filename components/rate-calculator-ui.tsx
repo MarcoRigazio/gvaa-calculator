@@ -417,6 +417,30 @@ useEffect(() => {
     )}
   </div>
 )}
+                {/* --- Form for: Digital Visual -> Digital Tags --- */}
+{selectedSubType === "Digital Tags" && (
+  <div className="grid gap-4">
+    <Label htmlFor="tags-number" className="text-base font-medium">Number of Tags:</Label>
+    <Input
+      id="tags-number"
+      type="number"
+      value={numberOfTags}
+      onChange={(e) => setNumberOfTags(Number(e.target.value) || 1)}
+      min="1"
+      className="max-w-[150px]"
+    />
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
               </div>
             )}
           </div>
