@@ -220,7 +220,7 @@ export function RateCalculatorUI() {
                 <Label className="text-base font-medium mb-3 block">Select Sub-Type for {currentCategory.name}:</Label>
                 <RadioGroup
                   value={selectedSubType ?? ""}
-                  onValueChange={setSelectedSubType}
+                  onValueChange={handleSubTypeSelect}
                   className="grid gap-2"
                 >
                   {currentCategory.subTypes.map((subType) => (
