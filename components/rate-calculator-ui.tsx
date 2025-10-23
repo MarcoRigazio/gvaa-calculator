@@ -216,48 +216,53 @@ export function RateCalculatorUI() {
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
   
   useEffect(() => {
-    // Calculator for: Digital Visual -> Non-Paid Web
-    if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
-      const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
-      setCalculatedRate(rate || null);
-    } 
-    // Calculator for: Digital Visual -> Paid Social
-    else if (selectedSubType === "Paid Social" && selectedTerm) {
-      const rate = paidSocialRates[selectedTerm as keyof typeof paidSocialRates];
-      setCalculatedRate(rate || null);
-    }
-    // Calculator for: Digital Visual -> Online Pre-Roll
-    else if (selectedSubType === "Online Pre-Roll / OLV" && selectedTerm) {
-      const rate = onlinePreRollRates[selectedTerm as keyof typeof onlinePreRollRates];
-      setCalculatedRate(rate || null);
-    }
-    // Calculator for: Digital Visual -> OTT/CTV
-    else if (selectedSubType === "OTT/CTV (Includes Social & Pre-Roll)" && selectedTerm) {
-      const rate = ottRates[selectedTerm as keyof typeof ottRates];
-      setCalculatedRate(rate || null);
-    }
-    // Calculator for: Digital Visual -> Digital Tags
-    else if (selectedSubType === "Digital Tags") {
-      const lowRate = 175 * numberOfTags;
-      const highRate = 225 * numberOfTags;
+  // Calculator for: Digital Visual -> Non-Paid Web
+  if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
+    const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
+    setCalculatedRate(rate || null);
+  } 
+  // Calculator for: Digital Visual -> Paid Social
+  else if (selectedSubType === "Paid Social" && selectedTerm) {
+    const rate = paidSocialRates[selectedTerm as keyof typeof paidSocialRates];
+    setCalculatedRate(rate || null);
+  }
+  // Calculator for: Digital Visual -> Online Pre-Roll
+  else if (selectedSubType === "Online Pre-Roll / OLV" && selectedTerm) {
+    const rate = onlinePreRollRates[selectedTerm as keyof typeof onlinePreRollRates];
+    setCalculatedRate(rate || null);
+  }
+  // Calculator for: Digital Visual -> OTT/CTV
+  else if (selectedSubType === "OTT/CTV (Includes Social & Pre-Roll)" && selectedTerm) {
+    const rate = ottRates[selectedTerm as keyof typeof ottRates];
+    setCalculatedRate(rate || null);
+  }
+  // Calculator for: Digital Visual -> Digital Tags
+  else if (selectedSubType === "Digital Tags") {
+    const lowRate = 175 * numberOfTags;
+    const highRate = 225 * numberOfTags;
+    setCalculatedRate(`$${lowRate}–$${highRate}`);
+  }
+  // Calculator for: Digital Visual -> Automotive
+  else if (selectedSubType === "Automotive" && selectedTier) {
+    const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
+    if (typeof rates === 'string') { // "Union Rate"
+      setCalculatedRate(rates);
+    } else if (Array.isArray(rates)) { // Tier 2 or 3
+      const lowRate = rates[0] * numberOfSpots;
+      const highRate = rates[1] * numberOfSpots;
       setCalculatedRate(`$${lowRate}–$${highRate}`);
     }
-    // Calculator for: Digital Visual -> Automotive
-    else if (selectedSubType === "Automotive" && selectedTier) {
-      const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
-      if (typeof rates === 'string') { // "Union Rate"
-        setCalculatedRate(rates);
-      } else if (Array.isArray(rates)) { // Tier 2 or 3
-        const lowRate = rates[0] * numberOfSpots;
-        const highRate = rates[1] * numberOfSpots;
-        setCalculatedRate(`$${lowRate}–$${highRate}`);
-      }
-    }
-    // Reset rate if sub-type or term changes
-    else {
-      setCalculatedRate(null);
-    }
-  }, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots]);
+  }
+  // Calculator for: Radio -> Local - Regional
+  else if (selectedSubType === "Local – Regional (Terrestrial)" && selectedTerm) {
+    const rate = radioLocalRates[selectedTerm as keyof typeof radioLocalRates];
+    setCalculatedRate(rate || null);
+  }
+  // Reset rate if sub-type or term changes
+  else {
+    setCalculatedRate(null);
+  }
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots]);
 
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
