@@ -263,6 +263,11 @@ export function RateCalculatorUI() {
     const rate = radioLocalRates[selectedTerm as keyof typeof radioLocalRates];
     setCalculatedRate(rate || null);
   }
+  // Calculator for: Radio -> National (Terrestrial)
+  else if (selectedSubType === "National (Terrestrial)" && selectedTerm) {
+    const rate = radioNationalRates[selectedTerm as keyof typeof radioNationalRates];
+    setCalculatedRate(rate || null);
+  }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
