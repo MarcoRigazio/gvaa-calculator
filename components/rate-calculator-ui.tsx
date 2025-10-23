@@ -185,16 +185,8 @@ export function RateCalculatorUI() {
   const [selectedTier, setSelectedTier] = useState<string | null>(null);
   const [numberOfSpots, setNumberOfSpots] = useState<number>(1);
 
-  const handleCategorySelect = (categoryId: string) => {
-    setSelectedCategory(categoryId);
-    setSelectedSubType(null); // Reset subtype when category changes
-  };
   const handleSubTypeSelect = (subType: string) => {
   setSelectedSubType(subType);
-  const handleTierSelect = (tier: string) => {
-  setSelectedTier(tier);
-  setNumberOfSpots(1);
-  };
 
   // Reset all form inputs
   setSelectedTerm(null); 
@@ -203,6 +195,11 @@ export function RateCalculatorUI() {
   setNumberOfSpots(1);
   setCalculatedRate(null);
   // We will add more resets here as we add more forms
+};
+
+const handleTierSelect = (tier: string) => {
+  setSelectedTier(tier);
+  setNumberOfSpots(1);
 };
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
