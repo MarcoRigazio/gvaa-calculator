@@ -184,8 +184,14 @@ export function RateCalculatorUI() {
   if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
     const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
     setCalculatedRate(rate || null);
-  } else {
-    // Reset rate if sub-type or term changes
+  } 
+  // Calculator for: Digital Visual -> Paid Social
+  else if (selectedSubType === "Paid Social" && selectedTerm) {
+    const rate = paidSocialRates[selectedTerm as keyof typeof paidSocialRates];
+    setCalculatedRate(rate || null);
+  }
+  // Reset rate if sub-type or term changes
+  else {
     setCalculatedRate(null);
   }
 }, [selectedSubType, selectedTerm]);
