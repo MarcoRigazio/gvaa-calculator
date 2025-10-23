@@ -195,6 +195,11 @@ export function RateCalculatorUI() {
     const rate = paidSocialRates[selectedTerm as keyof typeof paidSocialRates];
     setCalculatedRate(rate || null);
   }
+  // Calculator for: Digital Visual -> Online Pre-Roll
+  else if (selectedSubType === "Online Pre-Roll / OLV" && selectedTerm) {
+    const rate = onlinePreRollRates[selectedTerm as keyof typeof onlinePreRollRates];
+    setCalculatedRate(rate || null);
+  }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
