@@ -158,6 +158,11 @@ const paidSocialRates = {
   "3 Months": "$400–$750",
   "1 Year": "$1,000–$1,500",
 };
+const onlinePreRollRates = {
+  "1 Month": "$650–$800",
+  "3 Months": "$750–$1,100",
+  "1 Year": "$2,250–$3,000",
+};
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
