@@ -163,6 +163,11 @@ const onlinePreRollRates = {
   "3 Months": "$750–$1,100",
   "1 Year": "$2,250–$3,000",
 };
+const ottRates = {
+  "1 Month": "$1,250–$1,750",
+  "3 Months": "$1,500–$2,250",
+  "1 Year": "$4,000–$6,000",
+};
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
