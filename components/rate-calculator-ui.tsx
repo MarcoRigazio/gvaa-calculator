@@ -233,11 +233,22 @@ useEffect(() => {
     const highRate = 225 * numberOfTags;
     setCalculatedRate(`$${lowRate}–$${highRate}`);
   }
+  // Calculator for: Digital Visual -> Automotive
+  else if (selectedSubType === "Automotive" && selectedTier) {
+    const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
+    if (typeof rates === 'string') { // "Union Rate"
+      setCalculatedRate(rates);
+    } else if (Array.isArray(rates)) { // Tier 2 or 3
+      const lowRate = rates[0] * numberOfSpots;
+      const highRate = rates[1] * numberOfSpots;
+      setCalculatedRate(`$${lowRate}–$${highRate}`);
+    }
+  }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm, numberOfTags]); // <-- NOTE: numberOfTags is added here
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots]);
 
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
