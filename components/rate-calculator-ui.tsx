@@ -175,6 +175,11 @@ const automotiveRates = {
   "Tier 3 (:30/:60)": [150, 200],
   "Tier 3 (:15/:10/:6)": [75, 100],
 };
+const radioLocalRates = {
+  "1 Month": "$275–$400",
+  "3 Months": "$350–$600",
+  "1 Year": "$900–$1,500",
+};
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
