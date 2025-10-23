@@ -189,7 +189,7 @@ export function RateCalculatorUI() {
 };
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
-  useEffect(() => {
+ useEffect(() => {
   // Calculator for: Digital Visual -> Non-Paid Web
   if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
     const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
@@ -203,6 +203,11 @@ export function RateCalculatorUI() {
   // Calculator for: Digital Visual -> Online Pre-Roll
   else if (selectedSubType === "Online Pre-Roll / OLV" && selectedTerm) {
     const rate = onlinePreRollRates[selectedTerm as keyof typeof onlinePreRollRates];
+    setCalculatedRate(rate || null);
+  }
+  // Calculator for: Digital Visual -> OTT/CTV
+  else if (selectedSubType === "OTT/CTV (Includes Social & Pre-Roll)" && selectedTerm) {
+    const rate = ottRates[selectedTerm as keyof typeof ottRates];
     setCalculatedRate(rate || null);
   }
   // Reset rate if sub-type or term changes
