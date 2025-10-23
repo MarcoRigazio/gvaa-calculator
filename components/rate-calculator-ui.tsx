@@ -191,6 +191,10 @@ export function RateCalculatorUI() {
   };
   const handleSubTypeSelect = (subType: string) => {
   setSelectedSubType(subType);
+  const handleTierSelect = (tier: string) => {
+  setSelectedTier(tier);
+  setNumberOfSpots(1);
+  };
 
   // Reset all form inputs
   setSelectedTerm(null); 
