@@ -15,7 +15,7 @@ const categories = [
     "Non-Paid Web (Owned Social or Client Site)",
     "Paid Social",
     "Online Pre-Roll / OLV",
-    "OTT/CTV",
+    "OTT/CTV (Includes Social & Pre-Roll)",
     "Digital Tags",
     "Automotive"
   ] 
