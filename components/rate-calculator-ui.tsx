@@ -192,7 +192,7 @@ export function RateCalculatorUI() {
 };
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
- useEffect(() => {
+useEffect(() => {
   // Calculator for: Digital Visual -> Non-Paid Web
   if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
     const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
@@ -213,11 +213,17 @@ export function RateCalculatorUI() {
     const rate = ottRates[selectedTerm as keyof typeof ottRates];
     setCalculatedRate(rate || null);
   }
+  // Calculator for: Digital Visual -> Digital Tags
+  else if (selectedSubType === "Digital Tags") {
+    const lowRate = 175 * numberOfTags;
+    const highRate = 225 * numberOfTags;
+    setCalculatedRate(`$${lowRate}–$${highRate}`);
+  }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm]);
+}, [selectedSubType, selectedTerm, numberOfTags]); // <-- NOTE: numberOfTags is added here
 
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
