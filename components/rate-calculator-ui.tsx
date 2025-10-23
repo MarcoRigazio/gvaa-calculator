@@ -169,6 +169,12 @@ const ottRates = {
   "3 Months": "$1,500–$2,250",
   "1 Year": "$4,000–$6,000",
 };
+const automotiveRates = {
+  "Tier 1": "Union Rate",
+  "Tier 2": [75, 200],
+  "Tier 3 (:30/:60)": [150, 200],
+  "Tier 3 (:15/:10/:6)": [75, 100],
+};
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
