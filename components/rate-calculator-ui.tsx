@@ -187,6 +187,7 @@ export function RateCalculatorUI() {
   // Reset all form inputs
   setSelectedTerm(null); 
   setCalculatedRate(null);
+  setNumberOfTags(1);
   // We will add more resets here as we add more forms
 };
 
