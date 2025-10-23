@@ -153,6 +153,11 @@ const nonPaidWebRates = {
   "3 Years": "$900–$1,100",
   "5 Years": "$1,300–$1,500",
 };
+const paidSocialRates = {
+  "1 Month": "$300–$450",
+  "3 Months": "$400–$750",
+  "1 Year": "$1,000–$1,500",
+};
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
