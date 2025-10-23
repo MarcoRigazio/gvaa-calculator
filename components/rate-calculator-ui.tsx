@@ -176,6 +176,8 @@ export function RateCalculatorUI() {
   const [selectedSubType, setSelectedSubType] = useState<string | null>(null);
   const [calculatedRate, setCalculatedRate] = useState<string | null>(null);
   const [numberOfTags, setNumberOfTags] = useState<number>(1);
+  const [selectedTier, setSelectedTier] = useState<string | null>(null);
+  const [numberOfSpots, setNumberOfSpots] = useState<number>(1);
 
   const handleCategorySelect = (categoryId: string) => {
     setSelectedCategory(categoryId);
