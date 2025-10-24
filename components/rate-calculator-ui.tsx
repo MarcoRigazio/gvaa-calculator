@@ -200,6 +200,10 @@ const radioValueNationalRates = {
   "3 Months": "$1,250–$1,500",
   "1 Year": "$2,500–$3,250",
 };
+const radioDramaRates = {
+  "Principal Actors": "$800–$1,000 (up to 4 hrs)",
+  "Non-Principal Actors": "$400–$500 (up to 4 hrs)",
+};
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
