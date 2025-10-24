@@ -824,6 +824,37 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: Radio -> Radio/Podcast Dramas --- */}
+{selectedSubType === "Radio/Podcast Dramas" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Role:</Label>
+    <RadioGroup
+      value={selectedRole ?? ""}
+      onValueChange={setSelectedRole} // Simple state update, no reset needed here
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="Principal Actors" id="role-principal" />
+        <Label htmlFor="role-principal" className="cursor-pointer">Principal Actors</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="Non-Principal Actors" id="role-non-principal" />
+        <Label htmlFor="role-non-principal" className="cursor-pointer">Non-Principal Actors</Label>
+      </div>
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(up to 4 hours)</p>
+      </div>
+    )}
+  </div>
+)}
               </div>
             )}
           </div>
