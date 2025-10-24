@@ -235,7 +235,7 @@ export function RateCalculatorUI() {
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
   
-  useEffect(() => {
+ useEffect(() => {
   // Calculator for: Digital Visual -> Non-Paid Web
   if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
     const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
@@ -293,12 +293,17 @@ export function RateCalculatorUI() {
     const rate = radioValueLocalRates[selectedTerm as keyof typeof radioValueLocalRates];
     setCalculatedRate(rate || null);
   }
+  // Calculator for: Radio -> Value Menu (National)
+  else if (selectedSubType === "Value Menu – Terrestrial + Digital (National)" && selectedTerm) {
+    const rate = radioValueNationalRates[selectedTerm as keyof typeof radioValueNationalRates];
+    setCalculatedRate(rate || null);
+  }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
   }
 }, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots]);
-
+  
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
       <Card className="w-full max-w-2xl">
