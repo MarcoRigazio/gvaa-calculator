@@ -204,6 +204,11 @@ const radioDramaRates = {
   "Principal Actors": "$800–$1,000 (up to 4 hrs)",
   "Non-Principal Actors": "$400–$500 (up to 4 hrs)",
 };
+const tvLocalRates = {
+  "1 Month": "$400–$750",
+  "3 Months": "$650–$1,000",
+  "1 Year": "$1,250–$2,250",
+};
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
