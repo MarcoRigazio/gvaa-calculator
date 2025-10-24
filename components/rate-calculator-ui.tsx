@@ -304,7 +304,7 @@ export function RateCalculatorUI() {
     const rate = radioValueNationalRates[selectedTerm as keyof typeof radioValueNationalRates];
     setCalculatedRate(rate || null);
   }
-  // Calculator for: Radio -> Automotive (Radio) - USES EXISTING automotiveRates
+  // Calculator for: Radio -> Automotive (Radio)
   else if (selectedSubType === "Automotive (Radio)" && selectedTier) {
      const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
      if (typeof rates === 'string') { // "Union Rate"
@@ -315,11 +315,16 @@ export function RateCalculatorUI() {
        setCalculatedRate(`$${lowRate}–$${highRate}`);
      }
    }
+   // Calculator for: Radio -> Radio/Podcast Dramas
+   else if (selectedSubType === "Radio/Podcast Dramas" && selectedRole) {
+     const rate = radioDramaRates[selectedRole as keyof typeof radioDramaRates];
+     setCalculatedRate(rate || null);
+   }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots]);
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole]); // <-- Added selectedRole
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
