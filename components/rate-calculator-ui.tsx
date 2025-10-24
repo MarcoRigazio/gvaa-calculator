@@ -859,6 +859,23 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: Radio -> PSA – Public Service Announcement --- */}
+{selectedSubType === "PSA – Public Service Announcement" && (
+  <div className="grid gap-4">
+    {/* No inputs needed for PSA, rate is fixed */}
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(:60 or less)</p>
+      </div>
+    )}
+  </div>
+)}
               </div>
             )}
           </div>
