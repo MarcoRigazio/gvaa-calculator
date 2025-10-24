@@ -757,7 +757,7 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
-                {/* --- Form for: Radio -> Automotive (Radio) --- */}
+               {/* --- Form for: Radio -> Automotive (Radio) --- */}
 {selectedSubType === "Automotive (Radio)" && (
   <div className="grid gap-6">
     {/* Tier Selection */}
@@ -790,9 +790,9 @@ export function RateCalculatorUI() {
     {/* Number of Spots Input (Conditional) */}
     {selectedTier && selectedTier !== "Tier 1" && (
       <div className="grid gap-4">
-        <Label htmlFor="spots-number-radio" className="text-base font-medium">Number of Spots:</Label> {/* Changed ID */}
+        <Label htmlFor="spots-number-radio" className="text-base font-medium">Number of Spots:</Label> 
         <Input
-          id="spots-number-radio" {/* Changed ID */}
+          id="spots-number-radio" 
           type="number"
           value={numberOfSpots}
           onChange={(e) => setNumberOfSpots(Number(e.target.value) || 1)}
@@ -801,7 +801,7 @@ export function RateCalculatorUI() {
         />
       </div>
     )}
-
+    
     {/* --- Rate Display --- */}
     {calculatedRate && (
       <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
