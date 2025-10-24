@@ -195,6 +195,11 @@ const radioValueLocalRates = {
   "3 Months": "$500–$900",
   "1 Year": "$1,250–$2,250",
 };
+const radioValueNationalRates = {
+  "1 Month": "$800–$1,000",
+  "3 Months": "$1,250–$1,500",
+  "1 Year": "$2,500–$3,250",
+};
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
