@@ -298,6 +298,17 @@ export function RateCalculatorUI() {
     const rate = radioValueNationalRates[selectedTerm as keyof typeof radioValueNationalRates];
     setCalculatedRate(rate || null);
   }
+  // Calculator for: Radio -> Automotive (Radio) - USES EXISTING automotiveRates
+  else if (selectedSubType === "Automotive (Radio)" && selectedTier) {
+     const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
+     if (typeof rates === 'string') { // "Union Rate"
+       setCalculatedRate(rates);
+     } else if (Array.isArray(rates)) { // Tier 2 or 3
+       const lowRate = rates[0] * numberOfSpots;
+       const highRate = rates[1] * numberOfSpots;
+       setCalculatedRate(`$${lowRate}–$${highRate}`);
+     }
+   }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
