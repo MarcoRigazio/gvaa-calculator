@@ -668,6 +668,40 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: Radio -> Value Menu – Terrestrial + Digital (Local/Regional) --- */}
+{selectedSubType === "Value Menu – Terrestrial + Digital (Local/Regional)" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Term:</Label>
+    <RadioGroup
+      value={selectedTerm ?? ""}
+      onValueChange={setSelectedTerm}
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Month" id="term-1m-rvl" />
+        <Label htmlFor="term-1m-rvl" className="cursor-pointer">1 Month</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="3 Months" id="term-3m-rvl" />
+        <Label htmlFor="term-3m-rvl" className="cursor-pointer">3 Months</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Year" id="term-1y-rvl" />
+        <Label htmlFor="term-1y-rvl" className="cursor-pointer">1 Year</Label>
+      </div>
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
               </div>
             )}
           </div>
