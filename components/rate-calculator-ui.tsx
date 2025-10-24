@@ -209,6 +209,7 @@ export function RateCalculatorUI() {
   const [numberOfTags, setNumberOfTags] = useState<number>(1);
   const [selectedTier, setSelectedTier] = useState<string | null>(null);
   const [numberOfSpots, setNumberOfSpots] = useState<number>(1);
+  const [selectedRole, setSelectedRole] = useState<string | null>(null);
 
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
