@@ -222,16 +222,17 @@ export function RateCalculatorUI() {
   };
 
   const handleSubTypeSelect = (subType: string) => {
-    setSelectedSubType(subType);
+  setSelectedSubType(subType);
 
-    // Reset all form inputs
-    setSelectedTerm(null); 
-    setNumberOfTags(1);
-    setSelectedTier(null);
-    setNumberOfSpots(1);
-    setCalculatedRate(null);
-    // We will add more resets here as we add more forms
-  };
+  // Reset all form inputs
+  setSelectedTerm(null); 
+  setNumberOfTags(1);
+  setSelectedTier(null);
+  setNumberOfSpots(1);   
+  setSelectedRole(null); // <-- ADDED
+  setCalculatedRate(null);
+  // We will add more resets here as we add more forms
+};
 
   const handleTierSelect = (tier: string) => {
     setSelectedTier(tier);
