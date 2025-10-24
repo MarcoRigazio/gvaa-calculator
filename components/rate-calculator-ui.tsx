@@ -757,6 +757,62 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: Radio -> Automotive (Radio) --- */}
+{selectedSubType === "Automotive (Radio)" && (
+  <div className="grid gap-6">
+    {/* Tier Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Tier:</Label>
+      <RadioGroup
+        value={selectedTier ?? ""}
+        onValueChange={handleTierSelect}
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 1" id="tier-1-radio" /> {/* Changed ID */}
+          <Label htmlFor="tier-1-radio" className="cursor-pointer">Tier 1 – National Brand Spots</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 2" id="tier-2-radio" /> {/* Changed ID */}
+          <Label htmlFor="tier-2-radio" className="cursor-pointer">Tier 2 – Regional Tags</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 3 (:30/:60)" id="tier-3-30-radio" /> {/* Changed ID */}
+          <Label htmlFor="tier-3-30-radio" className="cursor-pointer">Tier 3 – Local Dealer :30/:60</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 3 (:15/:10/:6)" id="tier-3-15-radio" /> {/* Changed ID */}
+          <Label htmlFor="tier-3-15-radio" className="cursor-pointer">Tier 3 – Local Dealer :15/:10/:6</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* Number of Spots Input (Conditional) */}
+    {selectedTier && selectedTier !== "Tier 1" && (
+      <div className="grid gap-4">
+        <Label htmlFor="spots-number-radio" className="text-base font-medium">Number of Spots:</Label> {/* Changed ID */}
+        <Input
+          id="spots-number-radio" {/* Changed ID */}
+          type="number"
+          value={numberOfSpots}
+          onChange={(e) => setNumberOfSpots(Number(e.target.value) || 1)}
+          min="1"
+          className="max-w-[150px]"
+        />
+      </div>
+    )}
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
               </div>
             )}
           </div>
