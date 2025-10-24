@@ -246,7 +246,7 @@ export function RateCalculatorUI() {
   if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
     const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
     setCalculatedRate(rate || null);
-  } 
+  }
   // Calculator for: Digital Visual -> Paid Social
   else if (selectedSubType === "Paid Social" && selectedTerm) {
     const rate = paidSocialRates[selectedTerm as keyof typeof paidSocialRates];
@@ -320,11 +320,15 @@ export function RateCalculatorUI() {
      const rate = radioDramaRates[selectedRole as keyof typeof radioDramaRates];
      setCalculatedRate(rate || null);
    }
+   // Calculator for: Radio -> PSA
+   else if (selectedSubType === "PSA – Public Service Announcement") {
+     setCalculatedRate("$500–$600+ (:60 or less)"); // Direct rate set
+   }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole]); // <-- Added selectedRole
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole]);
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
