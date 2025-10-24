@@ -273,6 +273,11 @@ export function RateCalculatorUI() {
     const rate = radioNationalRates[selectedTerm as keyof typeof radioNationalRates];
     setCalculatedRate(rate || null);
   }
+  // Calculator for: Radio -> Digital Radio
+  else if (selectedSubType === "Digital Radio" && selectedTerm) {
+    const rate = radioDigitalRates[selectedTerm as keyof typeof radioDigitalRates];
+    setCalculatedRate(rate || null);
+  }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
