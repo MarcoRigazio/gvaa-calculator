@@ -334,10 +334,15 @@ export function RateCalculatorUI() {
    else if (selectedSubType === "PSA – Public Service Announcement") {
      setCalculatedRate("$500–$600+ (:60 or less)"); // Direct rate set
    }
-   // Calculator for: TV -> Local / Regional
+  // Calculator for: TV -> Local / Regional
    else if (selectedSubType === "Local / Regional" && selectedTerm) {
       const rate = tvLocalRates[selectedTerm as keyof typeof tvLocalRates];
       setCalculatedRate(rate || null);
+   }
+   // Calculator for: TV -> National
+   else if (selectedSubType === "National" && selectedTerm) {
+     const rate = tvNationalRates[selectedTerm as keyof typeof tvNationalRates];
+     setCalculatedRate(rate || null);
    }
   // Reset rate if sub-type or term changes
   else {
