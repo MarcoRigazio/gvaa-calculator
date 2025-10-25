@@ -261,6 +261,7 @@ export function RateCalculatorUI() {
   const [selectedProgramLength, setSelectedProgramLength] = useState<string | null>(null);
   const [selectedInfomercialMarket, setSelectedInfomercialMarket] = useState<string | null>(null);
   const [selectedDuration, setSelectedDuration] = useState<string | null>(null);
+  const [numberOfHours, setNumberOfHours] = useState<number>(1);
 
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
@@ -280,7 +281,8 @@ export function RateCalculatorUI() {
   setSelectedMarket(null); 
   setSelectedProgramLength(null); 
   setSelectedInfomercialMarket(null); 
-  setSelectedDuration(null); // <-- ADDED
+  setSelectedDuration(null);
+  setNumberOfHours(1); // <-- ADDED
   setCalculatedRate(null);
   // We will add more resets here as we add more forms
 };
