@@ -434,16 +434,16 @@ export function RateCalculatorUI() {
     else if (selectedSubType === "Point of Sale (POS)") {
        setCalculatedRate("Refer to TV Local/Regional or National rates based on scope.");
     }
+   // Calculator for: Non-Broadcast -> Corporate Minute Scale
+   else if (selectedSubType === "Corporate & Industrial Narration – Finished Minute Scale" && selectedDuration) {
+     const rate = corporateMinuteRates[selectedDuration as keyof typeof corporateMinuteRates];
+     setCalculatedRate(rate || null);
+   }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
   }
-   // Calculator for: Non-Broadcast -> Corporate Minute Scale
-       else if (selectedSubType === "Corporate & Industrial Narration – Finished Minute Scale" && selectedDuration) {
-         const rate = corporateMinuteRates[selectedDuration as keyof typeof corporateMinuteRates];
-         setCalculatedRate(rate || null);
-       }
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration]); // Dependency array includes all relevant state variableswas accidentally added
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration]); // Added selectedDuration
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
