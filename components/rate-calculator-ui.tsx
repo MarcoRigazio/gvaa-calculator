@@ -401,7 +401,7 @@ export function RateCalculatorUI() {
        setCalculatedRate(null);
      }
    }
-   // Calculator for: TV -> Automotive (TV) - USES EXISTING automotiveRates
+   // Calculator for: TV -> Automotive (TV)
    else if (selectedSubType === "Automotive (TV)" && selectedTier) {
       const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
       if (typeof rates === 'string') { // "Union Rate"
@@ -412,11 +412,16 @@ export function RateCalculatorUI() {
         setCalculatedRate(`$${lowRate}–$${highRate}`);
       }
     }
+    // Calculator for: TV -> In-Show / Documentary Narration
+    else if (selectedSubType === "In-Show / Documentary Narration" && selectedProgramLength) {
+       const rate = inShowNarrationRates[selectedProgramLength as keyof typeof inShowNarrationRates];
+       setCalculatedRate(rate || null);
+    }
   // Reset rate if sub-type or term changes
   else {
-    setCalculatedRate(null); // <-- THIS IS THE MISSING RESET
+    setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket]); // <-- THIS IS THE MISSING DEPENDENCY ARRAY AND CLOSING
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength]); // Added selectedProgramLength
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
