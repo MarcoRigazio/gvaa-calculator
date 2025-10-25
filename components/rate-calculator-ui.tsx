@@ -286,6 +286,7 @@ export function RateCalculatorUI() {
   const [selectedPodcastType, setSelectedPodcastType] = useState<string | null>(null);
   const [medTechCalcMethod, setMedTechCalcMethod] = useState<string | null>(null); // 'minute' or 'word'
   const [wordCount, setWordCount] = useState<number>(0); // Default to 0 words
+  const [explainerCalcMethod, setExplainerCalcMethod] = useState<string | null>(null); // 'single' or 'bulk'
 
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
