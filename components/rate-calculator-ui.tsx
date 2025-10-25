@@ -463,11 +463,23 @@ export function RateCalculatorUI() {
    else if (selectedSubType === "Explainer Videos") {
       setCalculatedRate("$300–$525 (Single Video, up to 90s)"); // Direct rate set
    }
+   // Calculator for: Non-Broadcast -> Museum Tours
+   else if (selectedSubType === "Museum Tours – Educational" && selectedMuseumCategory && museumRecordingHours > 0) {
+       const rates = selectedMuseumCategory === "CAT1" ? museumCat1Rate : museumCat2Rate;
+       let totalRate = rates.firstHour;
+       if (museumRecordingHours > 1) {
+         // Calculate number of additional half-hour increments AFTER the first hour
+         const additionalHalfHours = Math.ceil((museumRecordingHours - 1) * 2); 
+         totalRate += additionalHalfHours * rates.additionalHalfHour;
+       }
+       const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+       setCalculatedRate(formattedRate);
+   }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours]); // Keep dependency array updated]); // Added numberOfHours
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours]); // Added museum states dependency array updated]); // Added numberOfHours
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
