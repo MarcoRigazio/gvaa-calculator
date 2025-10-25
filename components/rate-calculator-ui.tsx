@@ -497,11 +497,34 @@ export function RateCalculatorUI() {
        const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
        setCalculatedRate(formattedRate);
    }
-  // Reset rate if sub-type or term changes
+   // Calculator for: Non-Broadcast -> Podcasts
+   else if (selectedSubType === "Podcasts" && selectedPodcastType) {
+       const rate = podcastRates[selectedPodcastType as keyof typeof podcastRates];
+       setCalculatedRate(rate || null);
+   }
+   // Calculator for: Non-Broadcast -> Medical / Technical Narration
+   else if (selectedSubType === "Medical / Technical Narration") {
+     if (medTechCalcMethod === 'minute' && selectedDuration) {
+       // Calculate by minute
+       const rate = medicalMinuteRates[selectedDuration as keyof typeof medicalMinuteRates];
+       setCalculatedRate(rate || null);
+     } else if (medTechCalcMethod === 'word' && wordCount > 0) {
+       // Calculate by word count
+       const lowTotal = wordCount * medicalPerWordRateLow;
+       const highTotal = wordCount * medicalPerWordRateHigh;
+       const formattedLow = lowTotal.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+       const formattedHigh = highTotal.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+       setCalculatedRate(`$${formattedLow}–$${formattedHigh}`);
+     } else {
+       // If method isn't selected or valid input not provided, reset rate
+       setCalculatedRate(null);
+     }
+   }
+  // Reset rate if sub-type or term changes, or if required inputs for a calculation are missing
   else {
     setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours]); // Added museum states, museumRecordingHours, selectedPodcastType]); // Added selectedPodcastType, museumRecordingHours]); // Added museum states dependency array updated]); // Added numberOfHours
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount]); // Added medTech states, selectedMuseumCategory, museumRecordingHours]); // Added museum states, museumRecordingHours, selectedPodcastType]); // Added selectedPodcastType, museumRecordingHours]); // Added museum states dependency array updated]); // Added numberOfHours
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
