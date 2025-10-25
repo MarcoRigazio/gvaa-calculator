@@ -254,6 +254,8 @@ const podcastRates = {
   "Audio Drama – Principal": "$800–$1,000 (up to 4 hrs)",
   "Intro/Outro": "$300–$400",
 };
+const medicalPerWordRateLow = 0.25; // $0.25/word average
+const medicalPerWordRateHigh = 0.50; // $0.50/word technical
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
@@ -272,6 +274,8 @@ export function RateCalculatorUI() {
   const [selectedMuseumCategory, setSelectedMuseumCategory] = useState<string | null>(null);
   const [museumRecordingHours, setMuseumRecordingHours] = useState<number>(1); // Default to 1 hour
   const [selectedPodcastType, setSelectedPodcastType] = useState<string | null>(null);
+  const [medTechCalcMethod, setMedTechCalcMethod] = useState<string | null>(null); // 'minute' or 'word'
+  const [wordCount, setWordCount] = useState<number>(0); // Default to 0 words
 
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
@@ -282,7 +286,7 @@ export function RateCalculatorUI() {
   const handleSubTypeSelect = (subType: string) => {
   setSelectedSubType(subType);
 
-  // Reset all form inputs
+  // Reset ALL form inputs used across different sub-types
   setSelectedTerm(null); 
   setNumberOfTags(1);
   setSelectedTier(null);
@@ -291,13 +295,15 @@ export function RateCalculatorUI() {
   setSelectedMarket(null); 
   setSelectedProgramLength(null); 
   setSelectedInfomercialMarket(null); 
-  setSelectedDuration(null);
-  setNumberOfHours(1); 
+  setSelectedDuration(null); // Used by Corp Minute & Med/Tech Minute
+  setNumberOfHours(1); // Used by Corp Time
   setSelectedMuseumCategory(null);
   setMuseumRecordingHours(1);      
-  setSelectedPodcastType(null); // <-- ADDED
+  setSelectedPodcastType(null);
+  setMedTechCalcMethod(null); // <-- ADDED
+  setWordCount(0);            // <-- ADDED
   setCalculatedRate(null);
-  // We will add more resets here as we add more forms
+  // Add future state resets here
 };
   const handleTierSelect = (tier: string) => {
     setSelectedTier(tier);
