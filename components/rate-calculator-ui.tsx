@@ -484,22 +484,66 @@ export function RateCalculatorUI() {
        setCalculatedRate(null);
      }
    }
-   // Calculator for: Non-Broadcast -> Explainer Videos
-   else if (selectedSubType === "Explainer Videos") {
-     if (explainerCalcMethod === 'single') {
-       setCalculatedRate("$300–$525"); // The single video rate 
-     } else if (explainerCalcMethod === 'bulk' && wordCount > 0) {
-       const baseRate = 250; // 
-       if (wordCount <= 175) {
-         setCalculatedRate(`$${baseRate}`);
-       } else {
-         const additionalWords = wordCount - 175;
-         const additionalBlocks = Math.ceil(additionalWords / 100);
-         const additionalCharge = additionalBlocks * 50; // 
-         const totalRate = baseRate + additionalCharge;
-         const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-         setCalculatedRate(formattedRate);
-       }
+   {/* --- Form for: Non-Broadcast -> Explainer Videos --- */}
+{selectedSubType === "Explainer Videos" && (
+  <div className="grid gap-6">
+    {/* Calculation Method Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Calculation Method:</Label>
+      <RadioGroup
+        value={explainerCalcMethod ?? ""}
+        onValueChange={(value) => {
+          setExplainerCalcMethod(value);
+          setWordCount(0); // Reset word count when method changes
+          setSelectedDuration(null); // Also reset duration just in case
+        }}
+        className="grid grid-cols-2 gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="single" id="explainer-method-single" />
+          <Label htmlFor="explainer-method-single" className="cursor-pointer">Single Video (≤ 90s)</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="bulk" id="explainer-method-bulk" />
+          <Label htmlFor="explainer-method-bulk" className="cursor-pointer">Bulk Rate (by Word Count)</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* Conditional Inputs: Word Count for Bulk */}
+    {explainerCalcMethod === 'bulk' && (
+      <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+        <Label htmlFor="explainer-wordcount" className="text-base font-medium">Enter Word Count:</Label>
+        <Input
+          id="explainer-wordcount"
+          type="number"
+          value={wordCount > 0 ? wordCount : ''}
+          onChange={(e) => setWordCount(Math.max(0, Number(e.target.value) || 0))}
+          min="0"
+          step="1"
+          className="max-w-[150px]"
+          placeholder="e.g., 250"
+        />
+      </div>
+    )}
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate / Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+          {explainerCalcMethod === 'single'
+            ? "(Public-facing on owned web/YouTube/social. Not paid placement.)" // 
+            : `(Based on $250 ≤175 words, +$50/add'l 100 words)` // 
+          }
+        </p>
+      </div>
+    )}
+  </div>
+)}
      } else {
        setCalculatedRate(null); // Reset if no method or 0 words in bulk
      }
