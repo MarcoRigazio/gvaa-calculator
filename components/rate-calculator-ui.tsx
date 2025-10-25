@@ -1329,6 +1329,22 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: TV -> Mnemonics --- */}
+{selectedSubType === "Mnemonics" && (
+  <div className="grid gap-4">
+    {/* No inputs needed, rate is informational */}
+
+    {/* --- Rate Display (Informational) --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Guidance:</p>
+        <p className="text-lg font-medium text-blue-700 dark:text-blue-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
               </div>
             )}
           </div>
