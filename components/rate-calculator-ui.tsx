@@ -1129,6 +1129,63 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: TV -> TV + Digital Visual – OTT/CTV --- */}
+{selectedSubType === "TV + Digital Visual – OTT/CTV (Includes Pre-Roll & Paid Social)" && (
+  <div className="grid gap-6"> 
+    {/* Term Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Term:</Label>
+      <RadioGroup
+        value={selectedTerm ?? ""}
+        onValueChange={setSelectedTerm} // Simple update
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="1 Month" id="term-1m-tvott" />
+          <Label htmlFor="term-1m-tvott" className="cursor-pointer">1 Month</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="3 Months" id="term-3m-tvott" />
+          <Label htmlFor="term-3m-tvott" className="cursor-pointer">3 Months</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="1 Year" id="term-1y-tvott" />
+          <Label htmlFor="term-1y-tvott" className="cursor-pointer">1 Year</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* Market Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Market:</Label>
+      <RadioGroup
+        value={selectedMarket ?? ""}
+        onValueChange={setSelectedMarket} // Simple update
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Local/Regional" id="market-lr-tvott" />
+          <Label htmlFor="market-lr-tvott" className="cursor-pointer">Local / Regional</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="National" id="market-nat-tvott" />
+          <Label htmlFor="market-nat-tvott" className="cursor-pointer">National</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(TV + OTT/CTV Combined Usage)</p>
+      </div>
+    )}
+  </div>
+)}
               </div>
             )}
           </div>
