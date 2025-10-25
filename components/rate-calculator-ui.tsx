@@ -249,6 +249,11 @@ const corporateMinuteRates = {
 };
 const museumCat1Rate = { firstHour: 505, additionalHalfHour: 148 };
 const museumCat2Rate = { firstHour: 563, additionalHalfHour: 148 };
+const podcastRates = {
+  "Audio Drama – Non-Principal": "$400–$500 (up to 4 hrs)",
+  "Audio Drama – Principal": "$800–$1,000 (up to 4 hrs)",
+  "Intro/Outro": "$300–$400",
+};
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
@@ -266,6 +271,7 @@ export function RateCalculatorUI() {
   const [numberOfHours, setNumberOfHours] = useState<number>(1);
   const [selectedMuseumCategory, setSelectedMuseumCategory] = useState<string | null>(null);
   const [museumRecordingHours, setMuseumRecordingHours] = useState<number>(1); // Default to 1 hour
+  const [selectedPodcastType, setSelectedPodcastType] = useState<string | null>(null);
 
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
@@ -287,8 +293,9 @@ export function RateCalculatorUI() {
   setSelectedInfomercialMarket(null); 
   setSelectedDuration(null);
   setNumberOfHours(1); 
-  setSelectedMuseumCategory(null); // <-- ADDED
-  setMuseumRecordingHours(1);      // <-- ADDED
+  setSelectedMuseumCategory(null);
+  setMuseumRecordingHours(1);      
+  setSelectedPodcastType(null); // <-- ADDED
   setCalculatedRate(null);
   // We will add more resets here as we add more forms
 };
