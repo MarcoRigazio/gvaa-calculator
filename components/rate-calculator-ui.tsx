@@ -219,6 +219,11 @@ const tvPaidSocialRates = {
   "3 Months": "$780–$1,300 / $1,610–$2,440",
   "1 Year": "$1,680–$2,800 / $3,750–$7,125",
 };
+const tvOnlinePreRollRates = {
+  "1 Month": "$790–$1,170 / $1,240–$1,725",
+  "3 Months": "$1,050–$1,575 / $1,875–$2,700",
+  "1 Year": "$2,625–$3,940 / $4,700–$8,250",
+};
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
