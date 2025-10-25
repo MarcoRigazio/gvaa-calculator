@@ -1489,6 +1489,57 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: Non-Broadcast -> Museum Tours – Educational --- */}
+{selectedSubType === "Museum Tours – Educational" && (
+  <div className="grid gap-6"> 
+    {/* Category Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Category:</Label>
+      <RadioGroup
+        value={selectedMuseumCategory ?? ""}
+        onValueChange={setSelectedMuseumCategory} // Simple update
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="CAT1" id="museum-cat1" />
+          <Label htmlFor="museum-cat1" className="cursor-pointer">Principal Voice, Audio Tour (Industrial CAT 1)</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="CAT2" id="museum-cat2" />
+          <Label htmlFor="museum-cat2" className="cursor-pointer">Talking Statues, Exhibition Voices (Industrial CAT 2)</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* Recording Hours Input */}
+    <div className="grid gap-4">
+      <Label htmlFor="museum-hours" className="text-base font-medium">Total Recording Hours:</Label>
+      <Input
+        id="museum-hours"
+        type="number"
+        value={museumRecordingHours}
+        // Use Math.max to prevent values less than 1, allow decimals for calculation
+        onChange={(e) => setMuseumRecordingHours(Math.max(1, Number(e.target.value) || 1))} 
+        min="1" 
+        step="0.5" // Allow half-hour increments in input
+        className="max-w-[150px]"
+      />
+    </div>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate (Union Scale Reference):</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+          {selectedMuseumCategory === 'CAT1' ? `($${museumCat1Rate.firstHour}/1st hr, $${museumCat1Rate.additionalHalfHour}/add'l 30 min)` : `($${museumCat2Rate.firstHour}/1st hr, $${museumCat2Rate.additionalHalfHour}/add'l 30 min)`}
+         </p>
+      </div>
+    )}
+  </div>
+)}
               </div>
             )}
           </div>
