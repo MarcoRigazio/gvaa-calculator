@@ -1294,6 +1294,37 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: TV -> Infomercial / DRTV --- */}
+{selectedSubType === "Infomercial / DRTV" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Market / Term:</Label>
+    <RadioGroup
+      value={selectedInfomercialMarket ?? ""}
+      onValueChange={setSelectedInfomercialMarket} // Simple update
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="National – 1 Year" id="infomercial-nat" />
+        <Label htmlFor="infomercial-nat" className="cursor-pointer">National – 1 Year</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="North America (US & Canada) – 1 Year" id="infomercial-na" />
+        <Label htmlFor="infomercial-na" className="cursor-pointer">North America (US & Canada) – 1 Year</Label>
+      </div>
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(Per script, includes cuts/versions and up to 10 phone numbers)</p>
+      </div>
+    )}
+  </div>
+)}
               </div>
             )}
           </div>
