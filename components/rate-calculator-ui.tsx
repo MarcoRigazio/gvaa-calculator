@@ -487,16 +487,11 @@ export function RateCalculatorUI() {
        const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
        setCalculatedRate(formattedRate);
    }
-   // Calculator for: Non-Broadcast -> Podcasts
-   else if (selectedSubType === "Podcasts" && selectedPodcastType) {
-       const rate = podcastRates[selectedPodcastType as keyof typeof podcastRates];
-       setCalculatedRate(rate || null);
-   }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType]); // Added selectedPodcastType, museumRecordingHours]); // Added museum states dependency array updated]); // Added numberOfHours
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours]); // Added museum states, museumRecordingHours, selectedPodcastType]); // Added selectedPodcastType, museumRecordingHours]); // Added museum states dependency array updated]); // Added numberOfHours
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
