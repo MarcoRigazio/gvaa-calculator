@@ -229,6 +229,10 @@ const tvOttRates = {
   "3 Months": "$1,615–$2,440 / $2,440–$3,565",
   "1 Year": "$3,940–$6,190 / $6,000–$10,500",
 };
+const inShowNarrationRates = {
+  "24 Minutes": "$1,000–$1,500",
+  "48 Minutes": "$2,000–$3,000",
+};
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
@@ -240,6 +244,7 @@ export function RateCalculatorUI() {
   const [numberOfSpots, setNumberOfSpots] = useState<number>(1);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const [selectedMarket, setSelectedMarket] = useState<string | null>(null);
+  const [selectedProgramLength, setSelectedProgramLength] = useState<string | null>(null);
 
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
