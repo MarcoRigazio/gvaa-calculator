@@ -286,7 +286,7 @@ export function RateCalculatorUI() {
   if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
     const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
     setCalculatedRate(rate || null);
-  } 
+  }
   // Calculator for: Digital Visual -> Paid Social
   else if (selectedSubType === "Paid Social" && selectedTerm) {
     const rate = paidSocialRates[selectedTerm as keyof typeof paidSocialRates];
@@ -299,7 +299,7 @@ export function RateCalculatorUI() {
   }
   // Calculator for: Digital Visual -> OTT/CTV
   else if (selectedSubType === "OTT/CTV (Includes Social & Pre-Roll)" && selectedTerm) {
-    const rate = ottRates[selectedTerm as keyof typeof ottRates]; 
+    const rate = ottRates[selectedTerm as keyof typeof ottRates];
     setCalculatedRate(rate || null);
   }
   // Calculator for: Digital Visual -> Digital Tags
@@ -311,8 +311,8 @@ export function RateCalculatorUI() {
   // Calculator for: Digital Visual -> Automotive
   else if (selectedSubType === "Automotive" && selectedTier) {
     const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
-    if (typeof rates === 'string') { setCalculatedRate(rates); } 
-    else if (Array.isArray(rates)) { 
+    if (typeof rates === 'string') { setCalculatedRate(rates); }
+    else if (Array.isArray(rates)) {
       const lowRate = rates[0] * numberOfSpots; const highRate = rates[1] * numberOfSpots;
       setCalculatedRate(`$${lowRate}–$${highRate}`);
     }
@@ -345,7 +345,7 @@ export function RateCalculatorUI() {
   // Calculator for: Radio -> Automotive (Radio)
   else if (selectedSubType === "Automotive (Radio)" && selectedTier) {
      const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
-     if (typeof rates === 'string') { setCalculatedRate(rates); } 
+     if (typeof rates === 'string') { setCalculatedRate(rates); }
      else if (Array.isArray(rates)) {
        const lowRate = rates[0] * numberOfSpots; const highRate = rates[1] * numberOfSpots;
        setCalculatedRate(`$${lowRate}–$${highRate}`);
@@ -358,7 +358,7 @@ export function RateCalculatorUI() {
    }
    // Calculator for: Radio -> PSA
    else if (selectedSubType === "PSA – Public Service Announcement") {
-     setCalculatedRate("$500–$600+ (:60 or less)"); 
+     setCalculatedRate("$500–$600+ (:60 or less)");
    }
    // Calculator for: TV -> Local / Regional
    else if (selectedSubType === "Local / Regional" && selectedTerm) {
@@ -390,7 +390,7 @@ export function RateCalculatorUI() {
    }
    // Calculator for: TV -> TV + Digital Visual – OTT/CTV
    else if (selectedSubType === "TV + Digital Visual – OTT/CTV (Includes Pre-Roll & Paid Social)" && selectedTerm && selectedMarket) {
-     const combinedRate = tvOttRates[selectedTerm as keyof typeof tvOttRates]; 
+     const combinedRate = tvOttRates[selectedTerm as keyof typeof tvOttRates];
      if (combinedRate) {
        const rateParts = combinedRate.split(' / ');
        const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
@@ -400,8 +400,8 @@ export function RateCalculatorUI() {
    // Calculator for: TV -> Automotive (TV)
    else if (selectedSubType === "Automotive (TV)" && selectedTier) {
       const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
-      if (typeof rates === 'string') { setCalculatedRate(rates); } 
-      else if (Array.isArray(rates)) { 
+      if (typeof rates === 'string') { setCalculatedRate(rates); }
+      else if (Array.isArray(rates)) {
         const lowRate = rates[0] * numberOfSpots; const highRate = rates[1] * numberOfSpots;
         setCalculatedRate(`$${lowRate}–$${highRate}`);
       }
@@ -416,11 +416,15 @@ export function RateCalculatorUI() {
       const rate = infomercialRates[selectedInfomercialMarket as keyof typeof infomercialRates];
       setCalculatedRate(rate || null);
     }
+    // Calculator for: TV -> Mnemonics (Informational)
+    else if (selectedSubType === "Mnemonics") {
+      setCalculatedRate("Varies Greatly ($1k–$50k+). Quote based on brand scope/usage.");
+    }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket]); // Added selectedInfomercialMarket
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket]); // Removed selectedMnemonicsTerm if it was accidentally added
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
