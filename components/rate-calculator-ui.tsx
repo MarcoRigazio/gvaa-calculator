@@ -897,6 +897,63 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: TV -> TV + Digital Visual – Paid Social --- */}
+{selectedSubType === "TV + Digital Visual – Paid Social" && (
+  <div className="grid gap-6"> 
+    {/* Term Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Term:</Label>
+      <RadioGroup
+        value={selectedTerm ?? ""}
+        onValueChange={setSelectedTerm} // Reset only Term when Term changes
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="1 Month" id="term-1m-tvps" />
+          <Label htmlFor="term-1m-tvps" className="cursor-pointer">1 Month</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="3 Months" id="term-3m-tvps" />
+          <Label htmlFor="term-3m-tvps" className="cursor-pointer">3 Months</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="1 Year" id="term-1y-tvps" />
+          <Label htmlFor="term-1y-tvps" className="cursor-pointer">1 Year</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* Market Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Market:</Label>
+      <RadioGroup
+        value={selectedMarket ?? ""}
+        onValueChange={setSelectedMarket} // Reset only Market when Market changes
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Local/Regional" id="market-lr-tvps" />
+          <Label htmlFor="market-lr-tvps" className="cursor-pointer">Local / Regional</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="National" id="market-nat-tvps" />
+          <Label htmlFor="market-nat-tvps" className="cursor-pointer">National</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(TV + Paid Social Combined Usage)</p>
+      </div>
+    )}
+  </div>
+)}
               </div>
             )}
           </div>
