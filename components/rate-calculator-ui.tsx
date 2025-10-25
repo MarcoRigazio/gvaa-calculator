@@ -441,11 +441,26 @@ export function RateCalculatorUI() {
      const rate = corporateMinuteRates[selectedDuration as keyof typeof corporateMinuteRates];
      setCalculatedRate(rate || null);
    }
+   // Calculator for: Non-Broadcast -> Corporate Recording Time Scale
+   else if (selectedSubType === "Corporate & Industrial Narration – Recording Time Scale") {
+     if (numberOfHours > 0) {
+       const firstHourRate = 525;
+       const additionalHourRate = 262;
+       // Calculate total rate: first hour + (additional rate * extra hours)
+       const totalRate = numberOfHours === 1 ? firstHourRate : firstHourRate + (additionalHourRate * (numberOfHours - 1));
+       // Format as currency, ensuring it handles potential decimal places if logic changes
+       // Using toLocaleString ensures commas for thousands, etc.
+       const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+       setCalculatedRate(formattedRate);
+     } else {
+       setCalculatedRate(null); // Handle case where numberOfHours might be 0 or less
+     }
+   }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration]); // Added selectedDuration
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours]); // Added numberOfHours
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
