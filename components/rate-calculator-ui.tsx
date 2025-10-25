@@ -1589,6 +1589,86 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: Non-Broadcast -> Medical / Technical Narration --- */}
+{selectedSubType === "Medical / Technical Narration" && (
+  <div className="grid gap-6"> 
+    {/* Calculation Method Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Calculation Method:</Label>
+      <RadioGroup
+        value={medTechCalcMethod ?? ""}
+        // Reset specific inputs when method changes
+        onValueChange={(value) => { 
+          setMedTechCalcMethod(value);
+          setSelectedDuration(null); // Reset duration if switching
+          setWordCount(0);           // Reset word count if switching
+        }} 
+        className="grid grid-cols-2 gap-2" // Two columns
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="minute" id="medtech-method-minute" />
+          <Label htmlFor="medtech-method-minute" className="cursor-pointer">By Finished Minute</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="word" id="medtech-method-word" />
+          <Label htmlFor="medtech-method-word" className="cursor-pointer">By Word Count</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* Conditional Inputs: Finished Minute */}
+    {medTechCalcMethod === 'minute' && (
+      <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+         <Label className="text-base font-medium">Select Finished Minute Range:</Label>
+         <RadioGroup
+           value={selectedDuration ?? ""}
+           onValueChange={setSelectedDuration} // Simple update
+           className="grid grid-cols-2 gap-2" // Use two columns
+         >
+           {Object.keys(medicalMinuteRates).map((duration) => (
+             <div key={duration} className="flex items-center space-x-2">
+               <RadioGroupItem value={duration} id={`duration-med-${duration.replace(/[^a-zA-Z0-9]/g, '')}`} /> 
+               <Label htmlFor={`duration-med-${duration.replace(/[^a-zA-Z0-9]/g, '')}`} className="cursor-pointer">{duration}</Label>
+             </div>
+           ))}
+         </RadioGroup>
+      </div>
+    )}
+
+    {/* Conditional Inputs: Word Count */}
+     {medTechCalcMethod === 'word' && (
+       <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+         <Label htmlFor="medtech-wordcount" className="text-base font-medium">Enter Word Count:</Label>
+         <Input
+           id="medtech-wordcount"
+           type="number"
+           value={wordCount > 0 ? wordCount : ''} // Show empty string if 0
+           onChange={(e) => setWordCount(Math.max(0, Number(e.target.value) || 0))} // Allow 0, ensure non-negative
+           min="0"
+           step="1" 
+           className="max-w-[150px]"
+           placeholder="e.g., 1500"
+         />
+       </div>
+     )}
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+           {medTechCalcMethod === 'minute' 
+             ? "(Includes editing, file splits, naming, delivery, pickups. Free re-records ≤10%.)" 
+             : `($${medicalPerWordRateLow.toFixed(2)}–$${medicalPerWordRateHigh.toFixed(2)} per word)`
+           }
+         </p>
+      </div>
+    )}
+  </div>
+)}
               </div>
             )}
           </div>
