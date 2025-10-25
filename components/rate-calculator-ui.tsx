@@ -1264,6 +1264,37 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: TV -> In-Show / Documentary Narration --- */}
+{selectedSubType === "In-Show / Documentary Narration" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Program Length (Excludes Commercials):</Label>
+    <RadioGroup
+      value={selectedProgramLength ?? ""}
+      onValueChange={setSelectedProgramLength} // Simple update
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="24 Minutes" id="length-24m" />
+        <Label htmlFor="length-24m" className="cursor-pointer">24 Minutes (≈30 min program)</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="48 Minutes" id="length-48m" />
+        <Label htmlFor="length-48m" className="cursor-pointer">48 Minutes (≈60 min program)</Label>
+      </div>
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(Program length excluding commercials)</p>
+      </div>
+    )}
+  </div>
+)}
               </div>
             )}
           </div>
