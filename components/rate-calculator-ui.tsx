@@ -446,21 +446,22 @@ export function RateCalculatorUI() {
      if (numberOfHours > 0) {
        const firstHourRate = 525;
        const additionalHourRate = 262;
-       // Calculate total rate: first hour + (additional rate * extra hours)
        const totalRate = numberOfHours === 1 ? firstHourRate : firstHourRate + (additionalHourRate * (numberOfHours - 1));
-       // Format as currency, ensuring it handles potential decimal places if logic changes
-       // Using toLocaleString ensures commas for thousands, etc.
        const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
        setCalculatedRate(formattedRate);
      } else {
-       setCalculatedRate(null); // Handle case where numberOfHours might be 0 or less
+       setCalculatedRate(null);
      }
+   }
+   // Calculator for: Non-Broadcast -> Explainer Videos (Single Video Info)
+   else if (selectedSubType === "Explainer Videos") {
+      setCalculatedRate("$300–$525 (Single Video, up to 90s)"); // Direct rate set
    }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours]); // Added numberOfHours
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours]); // Keep dependency array updated]); // Added numberOfHours
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
