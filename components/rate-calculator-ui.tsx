@@ -1230,9 +1230,9 @@ export function RateCalculatorUI() {
     {/* Number of Spots Input (Conditional) */}
     {selectedTier && selectedTier !== "Tier 1" && (
       <div className="grid gap-4">
-        <Label htmlFor="spots-number-tv" className="text-base font-medium">Number of Spots:</Label> {/* Changed ID */}
+        <Label htmlFor="spots-number-tv" className="text-base font-medium">Number of Spots:</Label>
         <Input
-          id="spots-number-tv" {/* Changed ID */}
+          id="spots-number-tv"
           type="number"
           value={numberOfSpots}
           onChange={(e) => setNumberOfSpots(Number(e.target.value) || 1)}
