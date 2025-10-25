@@ -484,9 +484,25 @@ export function RateCalculatorUI() {
        setCalculatedRate(null);
      }
    }
-   // Calculator for: Non-Broadcast -> Explainer Videos (Single Video Info)
+   // Calculator for: Non-Broadcast -> Explainer Videos
    else if (selectedSubType === "Explainer Videos") {
-      setCalculatedRate("$300–$525 (Single Video, up to 90s)");
+     if (explainerCalcMethod === 'single') {
+       setCalculatedRate("$300–$525"); // The single video rate 
+     } else if (explainerCalcMethod === 'bulk' && wordCount > 0) {
+       const baseRate = 250; // 
+       if (wordCount <= 175) {
+         setCalculatedRate(`$${baseRate}`);
+       } else {
+         const additionalWords = wordCount - 175;
+         const additionalBlocks = Math.ceil(additionalWords / 100);
+         const additionalCharge = additionalBlocks * 50; // 
+         const totalRate = baseRate + additionalCharge;
+         const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+         setCalculatedRate(formattedRate);
+       }
+     } else {
+       setCalculatedRate(null); // Reset if no method or 0 words in bulk
+     }
    }
    // Calculator for: Non-Broadcast -> Museum Tours
    else if (selectedSubType === "Museum Tours – Educational" && selectedMuseumCategory && museumRecordingHours > 0) {
