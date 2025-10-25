@@ -237,6 +237,16 @@ const infomercialRates = {
   "National – 1 Year": "$1,750 (up to 2 hr session)",
   "North America (US & Canada) – 1 Year": "$2,500 (up to 2 hr session)",
 };
+const corporateMinuteRates = {
+  "1–2 min": "$350–$450",
+  "3–5 min": "$450–$550",
+  "5–10 min": "$600–$700",
+  "10–15 min": "$700–$800",
+  "15–20 min": "$800–$950",
+  "20–30 min": "$950–$1,250",
+  "30–40 min": "$1,250–$1,750",
+  "40–60 min": "$1,750–$2,350",
+};
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
@@ -250,7 +260,7 @@ export function RateCalculatorUI() {
   const [selectedMarket, setSelectedMarket] = useState<string | null>(null);
   const [selectedProgramLength, setSelectedProgramLength] = useState<string | null>(null);
   const [selectedInfomercialMarket, setSelectedInfomercialMarket] = useState<string | null>(null);
-  
+  const [selectedDuration, setSelectedDuration] = useState<string | null>(null);
 
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
