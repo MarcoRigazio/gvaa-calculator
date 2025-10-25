@@ -361,7 +361,17 @@ export function RateCalculatorUI() {
      const combinedRate = tvPaidSocialRates[selectedTerm as keyof typeof tvPaidSocialRates];
      if (combinedRate) {
        const rateParts = combinedRate.split(' / ');
-       // Ensure rateParts has two elements before accessing them
+       const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
+       setCalculatedRate(finalRate || null);
+     } else {
+       setCalculatedRate(null);
+     }
+   }
+   // Calculator for: TV -> TV + Digital Visual – Online Pre-Roll
+   else if (selectedSubType === "TV + Digital Visual – Online Pre-Roll (Includes Paid Social)" && selectedTerm && selectedMarket) {
+     const combinedRate = tvOnlinePreRollRates[selectedTerm as keyof typeof tvOnlinePreRollRates];
+     if (combinedRate) {
+       const rateParts = combinedRate.split(' / ');
        const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
        setCalculatedRate(finalRate || null);
      } else {
@@ -372,7 +382,7 @@ export function RateCalculatorUI() {
   else {
     setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket]); // Added selectedMarket
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket]);
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
