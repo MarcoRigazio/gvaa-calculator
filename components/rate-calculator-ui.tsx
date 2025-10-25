@@ -247,6 +247,8 @@ const corporateMinuteRates = {
   "30–40 min": "$1,250–$1,750",
   "40–60 min": "$1,750–$2,350",
 };
+const museumCat1Rate = { firstHour: 505, additionalHalfHour: 148 };
+const museumCat2Rate = { firstHour: 563, additionalHalfHour: 148 };
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
@@ -262,6 +264,8 @@ export function RateCalculatorUI() {
   const [selectedInfomercialMarket, setSelectedInfomercialMarket] = useState<string | null>(null);
   const [selectedDuration, setSelectedDuration] = useState<string | null>(null);
   const [numberOfHours, setNumberOfHours] = useState<number>(1);
+  const [selectedMuseumCategory, setSelectedMuseumCategory] = useState<string | null>(null);
+  const [museumRecordingHours, setMuseumRecordingHours] = useState<number>(1); // Default to 1 hour
 
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
@@ -282,7 +286,9 @@ export function RateCalculatorUI() {
   setSelectedProgramLength(null); 
   setSelectedInfomercialMarket(null); 
   setSelectedDuration(null);
-  setNumberOfHours(1); // <-- ADDED
+  setNumberOfHours(1); 
+  setSelectedMuseumCategory(null); // <-- ADDED
+  setMuseumRecordingHours(1);      // <-- ADDED
   setCalculatedRate(null);
   // We will add more resets here as we add more forms
 };
