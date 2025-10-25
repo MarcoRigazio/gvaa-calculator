@@ -286,7 +286,8 @@ export function RateCalculatorUI() {
   }
   // Calculator for: Digital Visual -> OTT/CTV
   else if (selectedSubType === "OTT/CTV (Includes Social & Pre-Roll)" && selectedTerm) {
-    const rate = ottRates[selectedTerm as keyof typeof ottRates];
+    // NOTE: This uses the standalone ottRates, not tvOttRates, as per GVAA doc structure.
+    const rate = ottRates[selectedTerm as keyof typeof ottRates]; 
     setCalculatedRate(rate || null);
   }
   // Calculator for: Digital Visual -> Digital Tags
@@ -375,6 +376,17 @@ export function RateCalculatorUI() {
    // Calculator for: TV -> TV + Digital Visual – Online Pre-Roll
    else if (selectedSubType === "TV + Digital Visual – Online Pre-Roll (Includes Paid Social)" && selectedTerm && selectedMarket) {
      const combinedRate = tvOnlinePreRollRates[selectedTerm as keyof typeof tvOnlinePreRollRates];
+     if (combinedRate) {
+       const rateParts = combinedRate.split(' / ');
+       const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
+       setCalculatedRate(finalRate || null);
+     } else {
+       setCalculatedRate(null);
+     }
+   }
+   // Calculator for: TV -> TV + Digital Visual – OTT/CTV
+   else if (selectedSubType === "TV + Digital Visual – OTT/CTV (Includes Pre-Roll & Paid Social)" && selectedTerm && selectedMarket) {
+     const combinedRate = tvOttRates[selectedTerm as keyof typeof tvOttRates]; // Use tvOttRates map
      if (combinedRate) {
        const rateParts = combinedRate.split(' / ');
        const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
