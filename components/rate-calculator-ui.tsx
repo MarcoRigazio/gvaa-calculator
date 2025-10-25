@@ -299,7 +299,6 @@ export function RateCalculatorUI() {
   }
   // Calculator for: Digital Visual -> OTT/CTV
   else if (selectedSubType === "OTT/CTV (Includes Social & Pre-Roll)" && selectedTerm) {
-    // NOTE: This uses the standalone ottRates, not tvOttRates, as per GVAA doc structure.
     const rate = ottRates[selectedTerm as keyof typeof ottRates]; 
     setCalculatedRate(rate || null);
   }
@@ -312,11 +311,9 @@ export function RateCalculatorUI() {
   // Calculator for: Digital Visual -> Automotive
   else if (selectedSubType === "Automotive" && selectedTier) {
     const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
-    if (typeof rates === 'string') { // "Union Rate"
-      setCalculatedRate(rates);
-    } else if (Array.isArray(rates)) { // Tier 2 or 3
-      const lowRate = rates[0] * numberOfSpots;
-      const highRate = rates[1] * numberOfSpots;
+    if (typeof rates === 'string') { setCalculatedRate(rates); } 
+    else if (Array.isArray(rates)) { 
+      const lowRate = rates[0] * numberOfSpots; const highRate = rates[1] * numberOfSpots;
       setCalculatedRate(`$${lowRate}–$${highRate}`);
     }
   }
@@ -348,11 +345,9 @@ export function RateCalculatorUI() {
   // Calculator for: Radio -> Automotive (Radio)
   else if (selectedSubType === "Automotive (Radio)" && selectedTier) {
      const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
-     if (typeof rates === 'string') { // "Union Rate"
-       setCalculatedRate(rates);
-     } else if (Array.isArray(rates)) { // Tier 2 or 3
-       const lowRate = rates[0] * numberOfSpots;
-       const highRate = rates[1] * numberOfSpots;
+     if (typeof rates === 'string') { setCalculatedRate(rates); } 
+     else if (Array.isArray(rates)) {
+       const lowRate = rates[0] * numberOfSpots; const highRate = rates[1] * numberOfSpots;
        setCalculatedRate(`$${lowRate}–$${highRate}`);
      }
    }
@@ -363,7 +358,7 @@ export function RateCalculatorUI() {
    }
    // Calculator for: Radio -> PSA
    else if (selectedSubType === "PSA – Public Service Announcement") {
-     setCalculatedRate("$500–$600+ (:60 or less)"); // Direct rate set
+     setCalculatedRate("$500–$600+ (:60 or less)"); 
    }
    // Calculator for: TV -> Local / Regional
    else if (selectedSubType === "Local / Regional" && selectedTerm) {
@@ -382,9 +377,7 @@ export function RateCalculatorUI() {
        const rateParts = combinedRate.split(' / ');
        const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
        setCalculatedRate(finalRate || null);
-     } else {
-       setCalculatedRate(null);
-     }
+     } else { setCalculatedRate(null); }
    }
    // Calculator for: TV -> TV + Digital Visual – Online Pre-Roll
    else if (selectedSubType === "TV + Digital Visual – Online Pre-Roll (Includes Paid Social)" && selectedTerm && selectedMarket) {
@@ -393,29 +386,23 @@ export function RateCalculatorUI() {
        const rateParts = combinedRate.split(' / ');
        const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
        setCalculatedRate(finalRate || null);
-     } else {
-       setCalculatedRate(null);
-     }
+     } else { setCalculatedRate(null); }
    }
    // Calculator for: TV -> TV + Digital Visual – OTT/CTV
    else if (selectedSubType === "TV + Digital Visual – OTT/CTV (Includes Pre-Roll & Paid Social)" && selectedTerm && selectedMarket) {
-     const combinedRate = tvOttRates[selectedTerm as keyof typeof tvOttRates]; // Use tvOttRates map
+     const combinedRate = tvOttRates[selectedTerm as keyof typeof tvOttRates]; 
      if (combinedRate) {
        const rateParts = combinedRate.split(' / ');
        const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
        setCalculatedRate(finalRate || null);
-     } else {
-       setCalculatedRate(null);
-     }
+     } else { setCalculatedRate(null); }
    }
    // Calculator for: TV -> Automotive (TV)
    else if (selectedSubType === "Automotive (TV)" && selectedTier) {
       const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
-      if (typeof rates === 'string') { // "Union Rate"
-        setCalculatedRate(rates);
-      } else if (Array.isArray(rates)) { // Tier 2 or 3
-        const lowRate = rates[0] * numberOfSpots;
-        const highRate = rates[1] * numberOfSpots;
+      if (typeof rates === 'string') { setCalculatedRate(rates); } 
+      else if (Array.isArray(rates)) { 
+        const lowRate = rates[0] * numberOfSpots; const highRate = rates[1] * numberOfSpots;
         setCalculatedRate(`$${lowRate}–$${highRate}`);
       }
     }
@@ -424,11 +411,16 @@ export function RateCalculatorUI() {
        const rate = inShowNarrationRates[selectedProgramLength as keyof typeof inShowNarrationRates];
        setCalculatedRate(rate || null);
     }
+    // Calculator for: TV -> Infomercial / DRTV
+    else if (selectedSubType === "Infomercial / DRTV" && selectedInfomercialMarket) {
+      const rate = infomercialRates[selectedInfomercialMarket as keyof typeof infomercialRates];
+      setCalculatedRate(rate || null);
+    }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength]); // Added selectedProgramLength
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket]); // Added selectedInfomercialMarket
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
