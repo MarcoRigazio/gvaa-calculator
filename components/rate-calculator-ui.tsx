@@ -268,7 +268,7 @@ export function RateCalculatorUI() {
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
   
- useEffect(() => {
+useEffect(() => {
   // Calculator for: Digital Visual -> Non-Paid Web
   if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
     const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
@@ -373,7 +373,44 @@ export function RateCalculatorUI() {
        setCalculatedRate(null);
      }
    }
-   // Calculator
+   // Calculator for: TV -> TV + Digital Visual – Online Pre-Roll
+   else if (selectedSubType === "TV + Digital Visual – Online Pre-Roll (Includes Paid Social)" && selectedTerm && selectedMarket) {
+     const combinedRate = tvOnlinePreRollRates[selectedTerm as keyof typeof tvOnlinePreRollRates];
+     if (combinedRate) {
+       const rateParts = combinedRate.split(' / ');
+       const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
+       setCalculatedRate(finalRate || null);
+     } else {
+       setCalculatedRate(null);
+     }
+   }
+   // Calculator for: TV -> TV + Digital Visual – OTT/CTV
+   else if (selectedSubType === "TV + Digital Visual – OTT/CTV (Includes Pre-Roll & Paid Social)" && selectedTerm && selectedMarket) {
+     const combinedRate = tvOttRates[selectedTerm as keyof typeof tvOttRates]; // Use tvOttRates map
+     if (combinedRate) {
+       const rateParts = combinedRate.split(' / ');
+       const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
+       setCalculatedRate(finalRate || null);
+     } else {
+       setCalculatedRate(null);
+     }
+   }
+   // Calculator for: TV -> Automotive (TV) - USES EXISTING automotiveRates
+   else if (selectedSubType === "Automotive (TV)" && selectedTier) {
+      const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
+      if (typeof rates === 'string') { // "Union Rate"
+        setCalculatedRate(rates);
+      } else if (Array.isArray(rates)) { // Tier 2 or 3
+        const lowRate = rates[0] * numberOfSpots;
+        const highRate = rates[1] * numberOfSpots;
+        setCalculatedRate(`$${lowRate}–$${highRate}`);
+      }
+    }
+  // Reset rate if sub-type or term changes
+  else {
+    setCalculatedRate(null); // <-- THIS IS THE MISSING RESET
+  }
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket]); // <-- THIS IS THE MISSING DEPENDENCY ARRAY AND CLOSING
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
