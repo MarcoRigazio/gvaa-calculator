@@ -420,11 +420,15 @@ export function RateCalculatorUI() {
     else if (selectedSubType === "Mnemonics") {
       setCalculatedRate("Varies Greatly ($1k–$50k+). Quote based on brand scope/usage.");
     }
+    // Calculator for: TV -> Point of Sale (POS) (Informational)
+    else if (selectedSubType === "Point of Sale (POS)") {
+       setCalculatedRate("Refer to TV Local/Regional or National rates based on scope.");
+    }
   // Reset rate if sub-type or term changes
   else {
     setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket]); // Removed selectedMnemonicsTerm if it was accidentally added
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket]); // Dependency array includes all relevant state variableswas accidentally added
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
