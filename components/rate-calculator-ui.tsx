@@ -1551,6 +1551,38 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: Non-Broadcast -> Podcasts --- */}
+{selectedSubType === "Podcasts" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Podcast Type:</Label>
+    <RadioGroup
+      value={selectedPodcastType ?? ""}
+      onValueChange={setSelectedPodcastType} // Simple update
+      className="grid gap-2"
+    >
+      {Object.keys(podcastRates).map((podcastType) => (
+        <div key={podcastType} className="flex items-center space-x-2">
+          <RadioGroupItem value={podcastType} id={`podcast-${podcastType.replace(/[^a-zA-Z0-9]/g, '')}`} /> 
+          <Label htmlFor={`podcast-${podcastType.replace(/[^a-zA-Z0-9]/g, '')}`} className="cursor-pointer">{podcastType}</Label>
+        </div>
+      ))}
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+        {/* Optionally add note about hours for drama roles */}
+        {(selectedPodcastType?.includes("Audio Drama")) && 
+         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(up to 4 hours session)</p>
+        }
+      </div>
+    )}
+  </div>
+)}
               </div>
             )}
           </div>
