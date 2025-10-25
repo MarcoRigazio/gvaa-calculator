@@ -311,8 +311,9 @@ export function RateCalculatorUI() {
   setSelectedMuseumCategory(null);
   setMuseumRecordingHours(1);      
   setSelectedPodcastType(null);
-  setMedTechCalcMethod(null); // <-- ADDED
-  setWordCount(0);            // <-- ADDED
+  setMedTechCalcMethod(null); 
+  setWordCount(0);            
+  setExplainerCalcMethod(null); // <-- ADD THIS RESET
   setCalculatedRate(null);
   // Add future state resets here
 };
