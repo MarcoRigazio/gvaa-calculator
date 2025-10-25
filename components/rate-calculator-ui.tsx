@@ -268,7 +268,8 @@ export function RateCalculatorUI() {
   setNumberOfSpots(1);   
   setSelectedRole(null); 
   setSelectedMarket(null); 
-  setSelectedProgramLength(null); // <-- ADDED
+  setSelectedProgramLength(null); 
+  setSelectedInfomercialMarket(null); // <-- ADDED
   setCalculatedRate(null);
   // We will add more resets here as we add more forms
 };
