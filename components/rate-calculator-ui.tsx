@@ -279,11 +279,11 @@ export function RateCalculatorUI() {
   setSelectedRole(null); 
   setSelectedMarket(null); 
   setSelectedProgramLength(null); 
-  setSelectedInfomercialMarket(null); // <-- ADDED
+  setSelectedInfomercialMarket(null); 
+  setSelectedDuration(null); // <-- ADDED
   setCalculatedRate(null);
   // We will add more resets here as we add more forms
 };
-
   const handleTierSelect = (tier: string) => {
     setSelectedTier(tier);
     setNumberOfSpots(1);
