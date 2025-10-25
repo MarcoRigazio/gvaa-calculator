@@ -254,6 +254,16 @@ const podcastRates = {
   "Audio Drama – Principal": "$800–$1,000 (up to 4 hrs)",
   "Intro/Outro": "$300–$400",
 };
+const medicalMinuteRates = {
+  "1–2 min": "$400–$500",
+  "3–5 min": "$600–$700",
+  "5–10 min": "$700–$800",
+  "10–15 min": "$800–$900",
+  "15–20 min": "$900–$1,000",
+  "20–30 min": "$1,000–$1,400",
+  "30–40 min": "$1,400–$1,900",
+  "40–60 min": "$1,900–$2,400",
+};
 const medicalPerWordRateLow = 0.25; // $0.25/word average
 const medicalPerWordRateHigh = 0.50; // $0.50/word technical
 
