@@ -1427,6 +1427,32 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: Non-Broadcast -> Corporate & Industrial Narration – Recording Time Scale --- */}
+{selectedSubType === "Corporate & Industrial Narration – Recording Time Scale" && (
+  <div className="grid gap-4">
+    <Label htmlFor="corp-hours" className="text-base font-medium">Number of Recording Hours:</Label>
+    <Input
+      id="corp-hours"
+      type="number"
+      value={numberOfHours}
+      onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} // Ensure at least 1 hour
+      min="1"
+      step="1" // Allow only whole hours for this calculation
+      className="max-w-[150px]"
+    />
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate (RAW Audio Only):</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">($525/1st hr, $262/hr after. Full buyout. No editing included.)</p>
+      </div>
+    )}
+  </div>
+)}
               </div>
             )}
           </div>
