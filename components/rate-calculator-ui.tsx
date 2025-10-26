@@ -330,7 +330,7 @@ export function RateCalculatorUI() {
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
   
- useEffect(() => {
+  useEffect(() => {
   // Calculator for: Digital Visual -> Non-Paid Web
   if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
     const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
@@ -548,15 +548,11 @@ export function RateCalculatorUI() {
    else if (selectedSubType === "Digital Greeting Cards") {
      setCalculatedRate("$750–$1,000");
    }
-     // Calculator for: Non-Broadcast -> YouTube Content
+   // Calculator for: Non-Broadcast -> YouTube Content
    else if (selectedSubType === "YouTube Content" && selectedYouTubeType) {
      const rate = youTubeRates[selectedYouTubeType as keyof typeof youTubeRates];
      setCalculatedRate(rate || null);
    }
-  // Reset rate if sub-type or term changes, or if required inputs for a calculation are missing
-  else {
-    setCalculatedRate(null);
-  }
    // Calculator for: Non-Broadcast -> Kiosk Use (Non-Retail)
    else if (selectedSubType === "Kiosk Use (Non-Retail)") {
      if (numberOfHours > 0) {
@@ -569,6 +565,10 @@ export function RateCalculatorUI() {
        setCalculatedRate(null);
      }
    }
+  // This is the FINAL "cleanup" block - it MUST be last
+  else {
+    setCalculatedRate(null);
+  }
 }, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType]);
   
   return (
