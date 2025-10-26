@@ -324,7 +324,7 @@ export function RateCalculatorUI() {
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
   
- useEffect(() => {
+  useEffect(() => {
   // Calculator for: Digital Visual -> Non-Paid Web
   if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
     const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
@@ -484,7 +484,6 @@ export function RateCalculatorUI() {
        setCalculatedRate(null);
      }
    }
-   // --- CORRECTED LOGIC BLOCK (Was Step 2) ---
    // Calculator for: Non-Broadcast -> Explainer Videos
    else if (selectedSubType === "Explainer Videos") {
      if (explainerCalcMethod === 'single') {
@@ -505,8 +504,6 @@ export function RateCalculatorUI() {
        setCalculatedRate(null); // Reset if no method or 0 words in bulk
      }
    }
-   // --- END CORRECTED LOGIC BLOCK ---
-
    // Calculator for: Non-Broadcast -> Museum Tours
    else if (selectedSubType === "Museum Tours – Educational" && selectedMuseumCategory && museumRecordingHours > 0) {
        const rates = selectedMuseumCategory === "CAT1" ? museumCat1Rate : museumCat2Rate;
@@ -541,11 +538,16 @@ export function RateCalculatorUI() {
        setCalculatedRate(null);
      }
    }
+   // Calculator for: Non-Broadcast -> Digital Greeting Cards
+   else if (selectedSubType === "Digital Greeting Cards") {
+     setCalculatedRate("$750–$1,000");
+   }
   // Reset rate if sub-type or term changes, or if required inputs for a calculation are missing
   else {
     setCalculatedRate(null);
   }
 }, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod]); // Added explainerCalcMethod to dependency array
+, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod]); // Added explainerCalcMethod to dependency array
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
