@@ -266,6 +266,10 @@ const medicalMinuteRates = {
 };
 const medicalPerWordRateLow = 0.25; // $0.25/word average
 const medicalPerWordRateHigh = 0.50; // $0.50/word technical
+const youTubeRates = {
+  "Narration: 3–5 min episodes": "$750–$1,000",
+  "Channel Intro/Outro": "$500–$2,000",
+};
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
@@ -287,6 +291,7 @@ export function RateCalculatorUI() {
   const [medTechCalcMethod, setMedTechCalcMethod] = useState<string | null>(null); // 'minute' or 'word'
   const [wordCount, setWordCount] = useState<number>(0); // Default to 0 words
   const [explainerCalcMethod, setExplainerCalcMethod] = useState<string | null>(null); // 'single' or 'bulk'
+  const [selectedYouTubeType, setSelectedYouTubeType] = useState<string | null>(null);
 
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
