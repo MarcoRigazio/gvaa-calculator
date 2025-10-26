@@ -292,6 +292,7 @@ export function RateCalculatorUI() {
   const [wordCount, setWordCount] = useState<number>(0); // Default to 0 words
   const [explainerCalcMethod, setExplainerCalcMethod] = useState<string | null>(null); // 'single' or 'bulk'
   const [selectedYouTubeType, setSelectedYouTubeType] = useState<string | null>(null);
+  const [selectedLobbyType, setSelectedLobbyType] = useState<string | null>(null);
 
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
@@ -320,6 +321,7 @@ export function RateCalculatorUI() {
   setWordCount(0);            
   setExplainerCalcMethod(null);
   setSelectedYouTubeType(null);
+  setSelectedLobbyType(null);
   setCalculatedRate(null);
   // Add future state resets here
 };
@@ -330,7 +332,7 @@ export function RateCalculatorUI() {
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
   
-  useEffect(() => {
+   useEffect(() => {
   // Calculator for: Digital Visual -> Non-Paid Web
   if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
     const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
@@ -565,12 +567,33 @@ export function RateCalculatorUI() {
        setCalculatedRate(null);
      }
    }
+   // Calculator for: Non-Broadcast -> Lobby Viewing
+   else if (selectedSubType === "Lobby Viewing") {
+     if (selectedLobbyType === 'explainer') {
+       // Re-use the hourly calculation
+       if (numberOfHours > 0) {
+         const firstHourRate = 525;
+         const additionalHourRate = 262;
+         const totalRate = numberOfHours === 1 ? firstHourRate : firstHourRate + (additionalHourRate * (numberOfHours - 1));
+         const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+         setCalculatedRate(formattedRate);
+       } else {
+         setCalculatedRate(null);
+       }
+     } else if (selectedLobbyType === 'retail') {
+       // Show informational message
+       setCalculatedRate("Refer to TV broadcast rates");
+     } else {
+       setCalculatedRate(null); // No type selected
+     }
+   }
   // This is the FINAL "cleanup" block - it MUST be last
   else {
     setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType]);
-  
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType]);
+
+
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
       <Card className="w-full max-w-2xl">
@@ -1858,6 +1881,71 @@ export function RateCalculatorUI() {
                           {calculatedRate}
                         </p>
                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">($525/1st hr, $262/hr after. For non-retail kiosks.)</p>
+                      </div>
+                    )}
+                  </div>
+                )}
+                {/* --- Form for: Non-Broadcast -> Lobby Viewing --- */}
+                {selectedSubType === "Lobby Viewing" && (
+                  <div className="grid gap-6">
+                    {/* Type Selection */}
+                    <div className="grid gap-4">
+                      <Label className="text-base font-medium">Select Lobby Video Type:</Label>
+                      <RadioGroup
+                        value={selectedLobbyType ?? ""}
+                        onValueChange={setSelectedLobbyType}
+                        className="grid gap-2"
+                      >
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="explainer" id="lobby-explainer" />
+                          <Label htmlFor="lobby-explainer" className="cursor-pointer">Explainer (Service Provider, Not Selling)</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="retail" id="lobby-retail" />
+                          <Label htmlFor="lobby-retail" className="cursor-pointer">Retail (Selling a Product/Service)</Label>
+                        </div>
+                      </RadioGroup>
+                    </div>
+
+                    {/* Conditional Inputs: Recording Hours for Explainer */}
+                    {selectedLobbyType === 'explainer' && (
+                      <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+                        <Label htmlFor="lobby-hours" className="text-base font-medium">Number of Recording Hours:</Label>
+                        <Input
+                          id="lobby-hours"
+                          type="number"
+                          value={numberOfHours}
+                          onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))}
+                          min="1"
+                          step="1"
+                          className="max-w-[150px]"
+                        />
+                      </div>
+                    )}
+
+                    {/* --- Rate Display --- */}
+                    {calculatedRate && (
+                      <div className={`mt-6 p-4 rounded-lg text-center ${
+                        selectedLobbyType === 'retail' 
+                        ? 'bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700' 
+                        : 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700'
+                      }`}>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">
+                          {selectedLobbyType === 'retail' ? 'GVAA Guidance:' : 'GVAA Rate (Full Buyout):'}
+                        </p>
+                        <p className={`text-2xl font-semibold ${
+                          selectedLobbyType === 'retail' 
+                          ? 'text-blue-700 dark:text-blue-300' 
+                          : 'text-green-700 dark:text-green-300'
+                        }`}>
+                          {calculatedRate}
+                        </p>
+                        {selectedLobbyType === 'explainer' && (
+                           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">($525/1st hr, $262/hr after. Full buyout.)</p>
+                        )}
+                         {selectedLobbyType === 'retail' && (
+                           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(Selling a product: mirrors TV rates/terms.)</p>
+                        )}
                       </div>
                     )}
                   </div>
