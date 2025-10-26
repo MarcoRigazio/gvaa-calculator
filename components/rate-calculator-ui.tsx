@@ -1949,19 +1949,26 @@ export function RateCalculatorUI() {
 
                     {/* --- Rate Display --- */}
                     {calculatedRate && (
-                      <div className={`mt-6 p-4 rounded-lg text-center ${
-                        selectedLobbyType === 'retail' 
-                        ? 'bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700' 
-                        : 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700'
-                      }`}>
+                      <div className={cn(
+                        "mt-6 p-4 rounded-lg text-center",
+                        selectedLobbyType === 'retail'
+                          ? "bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700"
+                          : "bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700"
+                      )}>
                         <p className="text-sm text-slate-600 dark:text-slate-400">
-                          {selectedLobbyType === 'retail' ? 'GVAA Guidance:' : 'GVAA Rate (Full Buyout):'}
+                          {selectedLobbyType === 'retail' && (
+                            <>GVAA Guidance:</>
+                          )}
+                          {selectedLobbyType !== 'retail' && ( // Default to this if 'explainer' or null
+                            <>GVAA Rate (Full Buyout):</>
+                          )}
                         </p>
-                        <p className={`text-2xl font-semibold ${
-                          selectedLobbyType === 'retail' 
-                          ? 'text-blue-700 dark:text-blue-300' 
-                          : 'text-green-700 dark:text-green-300'
-                        }`}>
+                        <p className={cn(
+                          "text-2xl font-semibold",
+                          selectedLobbyType === 'retail'
+                            ? "text-blue-700 dark:text-blue-300"
+                            : "text-green-700 dark:text-green-300"
+                        )}>
                           {calculatedRate}
                         </p>
                         {selectedLobbyType === 'explainer' && (
