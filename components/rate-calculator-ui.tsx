@@ -292,6 +292,7 @@ export function RateCalculatorUI() {
   const [wordCount, setWordCount] = useState<number>(0); // Default to 0 words
   const [explainerCalcMethod, setExplainerCalcMethod] = useState<string | null>(null); // 'single' or 'bulk'
   const [selectedYouTubeType, setSelectedYouTubeType] = useState<string | null>(null);
+  const [numberOfAirports, setNumberOfAirports] = useState<number>(1);
   const [selectedLobbyType, setSelectedLobbyType] = useState<string | null>(null);
 
   // --- THIS IS THE MISSING FUNCTION ---
@@ -322,6 +323,7 @@ export function RateCalculatorUI() {
   setExplainerCalcMethod(null);
   setSelectedYouTubeType(null);
   setSelectedLobbyType(null);
+  setNumberOfAirports(1);
   setCalculatedRate(null);
   // Add future state resets here
 };
@@ -332,7 +334,7 @@ export function RateCalculatorUI() {
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
   
-   useEffect(() => {
+    useEffect(() => {
   // Calculator for: Digital Visual -> Non-Paid Web
   if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
     const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
@@ -587,11 +589,33 @@ export function RateCalculatorUI() {
        setCalculatedRate(null); // No type selected
      }
    }
+   // Calculator for: Non-Broadcast -> Airport Announcements
+   else if (selectedSubType === "Airport Announcements") {
+     if (numberOfAirports > 0 && numberOfHours > 0) {
+       // 1. Calculate airport-based rate
+       const lowRate_air = 1500 + Math.max(0, numberOfAirports - 1) * 1000;
+       const highRate_air = 2000 + Math.max(0, numberOfAirports - 1) * 1500;
+       
+       // 2. Calculate hourly upcharge (base rate includes up to 2 hours)
+       const hourlyUpcharge = Math.max(0, numberOfHours - 2) * 500;
+       
+       // 3. Calculate final rate
+       const lowTotal = lowRate_air + hourlyUpcharge;
+       const highTotal = highRate_air + hourlyUpcharge;
+       
+       const formattedLow = lowTotal.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+       const formattedHigh = highTotal.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+       
+       setCalculatedRate(`$${formattedLow}–$${formattedHigh}`);
+     } else {
+       setCalculatedRate(null);
+     }
+   }
   // This is the FINAL "cleanup" block - it MUST be last
   else {
     setCalculatedRate(null);
   }
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType]);
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType, numberOfAirports]);
 
 
   return (
@@ -1946,6 +1970,51 @@ export function RateCalculatorUI() {
                          {selectedLobbyType === 'retail' && (
                            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(Selling a product: mirrors TV rates/terms.)</p>
                         )}
+                      </div>
+                    )}
+                  </div>
+                )}
+                {/* --- Form for: Non-Broadcast -> Airport Announcements --- */}
+                {selectedSubType === "Airport Announcements" && (
+                  <div className="grid gap-6">
+                    {/* Number of Airports Input */}
+                    <div className="grid gap-4">
+                      <Label htmlFor="airport-count" className="text-base font-medium">Number of Airports:</Label>
+                      <Input
+                        id="airport-count"
+                        type="number"
+                        value={numberOfAirports}
+                        onChange={(e) => setNumberOfAirports(Math.max(1, Number(e.target.value) || 1))}
+                        min="1"
+                        step="1"
+                        className="max-w-[150px]"
+                      />
+                    </div>
+                
+                    {/* Number of Recording Hours Input */}
+                    <div className="grid gap-4">
+                      <Label htmlFor="airport-hours" className="text-base font-medium">Total Recording Hours (RAW):</Label>
+                      <Input
+                        id="airport-hours"
+                        type="number"
+                        value={numberOfHours}
+                        onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))}
+                        min="1"
+                        step="1" // Doc implies full hour upcharge
+                        className="max-w-[150px]"
+                      />
+                    </div>
+                
+                    {/* --- Rate Display --- */}
+                    {calculatedRate && (
+                      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+                        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range (Per Year):</p>
+                        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+                          {calculatedRate}
+                        </p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                          (Base rate covers 1 airport, up to 2 hrs raw. +$1k–$1.5k/add'l airport. +$500/add'l hr over 2.)
+                        </p>
                       </div>
                     )}
                   </div>
