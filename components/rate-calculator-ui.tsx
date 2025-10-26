@@ -548,6 +548,11 @@ export function RateCalculatorUI() {
    else if (selectedSubType === "Digital Greeting Cards") {
      setCalculatedRate("$750–$1,000");
    }
+     // Calculator for: Non-Broadcast -> YouTube Content
+   else if (selectedSubType === "YouTube Content" && selectedYouTubeType) {
+     const rate = youTubeRates[selectedYouTubeType as keyof typeof youTubeRates];
+     setCalculatedRate(rate || null);
+   }
   // Reset rate if sub-type or term changes, or if required inputs for a calculation are missing
   else {
     setCalculatedRate(null);
