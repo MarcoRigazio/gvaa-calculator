@@ -318,7 +318,8 @@ export function RateCalculatorUI() {
   setSelectedPodcastType(null);
   setMedTechCalcMethod(null); 
   setWordCount(0);            
-  setExplainerCalcMethod(null); 
+  setExplainerCalcMethod(null);
+  setSelectedYouTubeType(null);
   setCalculatedRate(null);
   // Add future state resets here
 };
