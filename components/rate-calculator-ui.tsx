@@ -157,7 +157,7 @@ const nonPaidWebRates = {
 const paidSocialRates = {
   "1 Month": "$300–$450",
   "3 Months": "$400–$750",
-  "1 Year": "$1,000–$1,500",
+  "1Year": "$1,000–$1,500",
 };
 const onlinePreRollRates = {
   "1 Month": "$650–$800",
@@ -182,7 +182,7 @@ const radioLocalRates = {
 };
 const radioNationalRates = {
   "1 Month": "$550–$700",
-  "3D Months": "$750–$1,000",
+  "3 Months": "$750–$1,000",
   "1 Year": "$1,500–$2,500",
 };
 const radioDigitalRates = {
@@ -212,7 +212,7 @@ const tvLocalRates = {
 const tvNationalRates = {
   "1 Month": "$1,000–$1,500",
   "3 Months": "$1,750–$2,500",
-  "1 Year": "$4,000–$8,000",
+  "1Year": "$4,000–$8,000",
 };
 const tvPaidSocialRates = {
   "1 Month": "$525–$850 / $975–$1,465",
@@ -311,9 +311,9 @@ export function RateCalculatorUI() {
   setSelectedMuseumCategory(null);
   setMuseumRecordingHours(1);      
   setSelectedPodcastType(null);
-  setMedTechCalcMethod(null); // <-- ADDED
-  setWordCount(0);            // <-- ADDED
-  setExplainerCalcMethod(null); // <-- CORRECTED (Was Step 1)
+  setMedTechCalcMethod(null); 
+  setWordCount(0);            
+  setExplainerCalcMethod(null); 
   setCalculatedRate(null);
   // Add future state resets here
 };
@@ -324,7 +324,7 @@ export function RateCalculatorUI() {
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
   
-  useEffect(() => {
+ useEffect(() => {
   // Calculator for: Digital Visual -> Non-Paid Web
   if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
     const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
@@ -547,7 +547,6 @@ export function RateCalculatorUI() {
     setCalculatedRate(null);
   }
 }, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod]); // Added explainerCalcMethod to dependency array
-, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod]); // Added explainerCalcMethod to dependency array
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
@@ -1540,7 +1539,6 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
-                {/* --- CORRECTED JSX BLOCK (Was Step 3) --- */}
                 {/* --- Form for: Non-Broadcast -> Explainer Videos --- */}
 {selectedSubType === "Explainer Videos" && (
   <div className="grid gap-6">
@@ -1601,8 +1599,6 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
-                {/* --- END CORRECTED JSX BLOCK --- */}
-
                 {/* --- Form for: Non-Broadcast -> Museum Tours – Educational --- */}
 {selectedSubType === "Museum Tours – Educational" && (
   <div className="grid gap-6"> 
@@ -1766,6 +1762,24 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+
+                {/* --- Form for: Non-Broadcast -> Digital Greeting Cards --- */}
+                {selectedSubType === "Digital Greeting Cards" && (
+                  <div className="grid gap-4">
+                    {/* No inputs needed, rate is informational */}
+
+                    {/* --- Rate Display --- */}
+                    {calculatedRate && (
+                      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+                        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range (Full Buyout):</p>
+                        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+                          {calculatedRate}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+                
               </div>
             )}
           </div>
