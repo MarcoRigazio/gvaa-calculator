@@ -2020,12 +2020,13 @@ export function RateCalculatorUI() {
                           {calculatedRate}
                         </p>
                         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                          (Base rate covers 1 airport, up to 2 hrs raw. +$1k–$1.5k/add'l airport. +$500/add'l hr over 2.)
+                          (Base rate covers 1 airport, up to 2 hrs raw. +$1k–$1.5k/add&apos;l airport. +$500/add&apos;l hr over 2.)
                         </p>
                       </div>
                     )}
                   </div>
                 )}
+                
                 
               </div>
             )}
