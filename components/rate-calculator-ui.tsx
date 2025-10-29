@@ -2191,7 +2191,73 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
-                
+  {/* --- Form for: Animation / Dubbing --- */}
+{selectedCategory === "animation_dubbing" && (
+  <div className="grid gap-6">
+
+    {/* Non-Union Original Animation – 22 Minute Episode */}
+    {selectedSubType === "Non-Union Original Animation – 22 Minute Episode" && (
+      <div className="grid gap-4">
+        <Label htmlFor="anim-session-hours" className="text-base font-medium">Session Hours (Up to 4):</Label>
+        <Input
+          id="anim-session-hours"
+          type="number"
+          value={sessionLength}
+          onChange={(e) => setSessionLength(e.target.value)}
+          min="0"
+          max="4"
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 2.5"
+        />
+        <p className="text-xs text-muted-foreground -mt-2">(Rate is for a session up to 4 hours)</p>
+      </div>
+    )}
+
+    {/* Non-Union Original Animation – 11 Minute Episode or Less */}
+    {selectedSubType === "Non-Union Original Animation – 11 Minute Episode or Less" && (
+      <div className="grid gap-4">
+        <Label htmlFor="anim-11-episodes" className="text-base font-medium">Number of Episodes:</Label>
+        <Input
+          id="anim-11-episodes"
+          type="number"
+          value={numEpisodes}
+          onChange={(e) => setNumEpisodes(Math.max(1, Number(e.target.value) || 1))}
+          min="1"
+          step="1"
+          className="max-w-[150px]"
+        />
+      </div>
+    )}
+
+    {/* Dubbing (Film/TV/Animation) */}
+    {selectedSubType === "Dubbing (Film/TV/Animation)" && (
+      <div className="grid gap-4">
+        <Label htmlFor="dubbing-hours" className="text-base font-medium">Session Hours (2 hr min):</Label>
+        <Input
+          id="dubbing-hours"
+          type="number"
+          value={sessionLength}
+          onChange={(e) => setSessionLength(e.target.value)}
+          min="0" // We'll enforce the 2hr min in the calc
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 3"
+        />
+      </div>
+    )}
+
+    {/* --- Animation/Dubbing Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}              
                 
               </div>
             )}
