@@ -666,6 +666,32 @@ export function RateCalculatorUI() {
       
       setCalculatedRate(`$${lowTotal.toFixed(0)}–$${highTotal.toFixed(0)}`);
     }
+  // Calculator for: Animation / Dubbing
+    else if (selectedCategory === "animation_dubbing") {
+      const numSessionHours = Number(sessionLength) || 0;
+  
+      if (selectedSubType === "Non-Union Original Animation – 22 Minute Episode") {
+        // Rate is per episode, up to 4 hrs
+        setCalculatedRate("$1,100–$1,200");
+      }
+      else if (selectedSubType === "Non-Union Original Animation – 11 Minute Episode or Less") {
+        // Rate is per episode ($400-$700)
+        const lowRate = numEpisodes * 400;
+        const highRate = numEpisodes * 700;
+        setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+      }
+      else if (selectedSubType === "Dubbing (Film/TV/Animation)" && numSessionHours > 0) {
+        // Rate is per hour, 2 hr min
+        const hoursToCharge = Math.max(2, numSessionHours);
+        const rate = hoursToCharge * 125; // Using the ~$125/hr non-union example
+        setCalculatedRate(`~$${rate.toFixed(0)}`);
+      }
+      else {
+        setCalculatedRate(null); // No input or sub-type not handled
+      }
+    }
+
+      
     else {
       setCalculatedRate(null); // No input yet for E-Learning
     }
