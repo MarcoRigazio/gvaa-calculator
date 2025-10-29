@@ -302,6 +302,9 @@ export function RateCalculatorUI() {
   const [finishedMinutes, setFinishedMinutes] = useState<number | string>("");
   const [finishedHours, setFinishedHours] = useState<number | string>("");
   const [sessionHours, setSessionHours] = useState<number | string>("");
+  const [sessionLength, setSessionLength] = useState<number | string>("");
+  const [numEpisodes, setNumEpisodes] = useState<number>(1);
+  const [numVoices, setNumVoices] = useState<number>(1);
 
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
