@@ -2280,7 +2280,199 @@ export function RateCalculatorUI() {
       </div>
     )}
   </div>
-)}              
+)}  
+  {/* --- Form for: Video Games / Toys & Games --- */}
+{selectedCategory === "video_games_toys" && (
+  <div className="grid gap-6">
+
+    {/* Non-Union Video Games */}
+    {selectedSubType === "Video Games (Non-Union)" && (
+      <div className="grid gap-4">
+        <Label className="text-base font-medium">Select Calculation Method:</Label>
+        <RadioGroup
+          value={gameCalcMethod ?? ""}
+          onValueChange={setGameCalcMethod}
+          className="grid gap-2"
+        >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="hourly" id="game-hourly" />
+            <Label htmlFor="game-hourly" className="cursor-pointer">Per Hour (2 or 4 hr min)</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="flat" id="game-flat" />
+            <Label htmlFor="game-flat" className="cursor-pointer">Flat Rate (1 hr max)</Label>
+          </div>
+        </RadioGroup>
+
+        {gameCalcMethod === 'hourly' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="game-hours" className="text-base font-medium">Session Hours:</Label>
+            <Input
+              id="game-hours"
+              type="number"
+              value={sessionLength}
+              onChange={(e) => setSessionLength(e.target.value)}
+              min="0"
+              step="0.5"
+              className="max-w-[150px]"
+              placeholder="e.g., 4"
+            />
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* Union Video Games */}
+    {selectedSubType === "Video Games (Union)" && (
+      <div className="grid gap-4">
+        <Label htmlFor="game-union-hours" className="text-base font-medium">Session Hours (Up to 4):</Label>
+        <Input
+          id="game-union-hours"
+          type="number"
+          value={sessionLength}
+          onChange={(e) => setSessionLength(e.target.value)}
+          min="0"
+          max="4"
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 4"
+        />
+      </div>
+    )}
+
+    {/* Toys & Games */}
+    {selectedSubType === "Toys & Games" && (
+      <div className="grid gap-4">
+        <Label htmlFor="toys-hours" className="text-base font-medium">Session Hours (Up to 2):</Label>
+        <Input
+          id="toys-hours"
+          type="number"
+          value={sessionLength}
+          onChange={(e) => setSessionLength(e.target.value)}
+          min="0"
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 2"
+        />
+      </div>
+    )}
+
+    {/* Toys & Games (Demo/Scratch) */}
+    {selectedSubType === "Toys & Games (Demo/Scratch)" && (
+      <div className="grid gap-4">
+        <Label htmlFor="toys-demo-hours" className="text-base font-medium">Session Hours:</Label>
+        <Input
+          id="toys-demo-hours"
+          type="number"
+          value={sessionLength}
+          onChange={(e) => setSessionLength(e.target.value)}
+          min="0"
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 1.5"
+        />
+      </div>
+    )}
+
+    {/* Mobile Game Apps (Non-Union Character) */}
+    {selectedSubType === "Mobile Game Apps (Non-Union Character)" && (
+      <div className="grid gap-4">
+        <Label className="text-base font-medium">Select Calculation Method:</Label>
+        <RadioGroup
+          value={gameCalcMethod ?? ""}
+          onValueChange={setGameCalcMethod}
+          className="grid gap-2"
+        >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="per_game" id="mobile-game-per-game" />
+            <Label htmlFor="mobile-game-per-game" className="cursor-pointer">Per Game</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="hourly" id="mobile-game-hourly" />
+            <Label htmlFor="mobile-game-hourly" className="cursor-pointer">Per Hour (2 hr min)</Label>
+          </div>
+        </RadioGroup>
+
+        {gameCalcMethod === 'per_game' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="mobile-game-voices" className="text-base font-medium">Number of Voices (Up to 3-4):</Label>
+            <Input
+              id="mobile-game-voices"
+              type="number"
+              value={numVoices}
+              onChange={(e) => setNumVoices(Math.max(1, Number(e.target.value) || 1))}
+              min="1"
+              step="1"
+              className="max-w-[150px]"
+            />
+          </div>
+        )}
+
+        {gameCalcMethod === 'hourly' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="mobile-game-hours" className="text-base font-medium">Session Hours (2 hr min):</Label>
+            <Input
+              id="mobile-game-hours"
+              type="number"
+              value={sessionLength}
+              onChange={(e) => setSessionLength(e.target.value)}
+              min="0"
+              step="0.5"
+              className="max-w-[150px]"
+              placeholder="e.g., 2"
+            />
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* Mobile Game Apps (Union Character) */}
+    {selectedSubType === "Mobile Game Apps (Union Character)" && (
+      <div className="grid gap-4">
+        <Label htmlFor="mobile-union-hours" className="text-base font-medium">Session Hours (Up to 4):</Label>
+        <Input
+          id="mobile-union-hours"
+          type="number"
+          value={sessionLength}
+          onChange={(e) => setSessionLength(e.target.value)}
+          min="0"
+          max="4"
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 4"
+        />
+      </div>
+    )}
+
+    {/* Mobile Game Apps (E-Learning/Educational) */}
+    {selectedSubType === "Mobile Game Apps (E-Learning/Educational)" && (
+      <div className="grid gap-4">
+        <Label htmlFor="mobile-elearn-minutes" className="text-base font-medium">Finished Minutes:</Label>
+        <Input
+          id="mobile-elearn-minutes"
+          type="number"
+          value={finishedMinutes}
+          onChange={(e) => setFinishedMinutes(e.target.value)}
+          min="0"
+          step="1"
+          className="max-w-[150px]"
+          placeholder="e.g., 8"
+        />
+      </div>
+    )}
+
+    {/* --- Video Games Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+
                 
               </div>
             )}
