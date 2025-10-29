@@ -668,7 +668,8 @@ export function RateCalculatorUI() {
     }   
     else {
       setCalculatedRate(null); // No input yet for E-Learning
-    }
+    }    
+  } // <-- This is the crucial closing brace for the 'else if'
 // Calculator for: Animation / Dubbing
   else if (selectedCategory === "animation_dubbing") {
     const numSessionHours = Number(sessionLength) || 0;
@@ -694,8 +695,7 @@ export function RateCalculatorUI() {
     }
   }
 
-    
-  } // <-- This is the crucial closing brace for the 'else if'
+      
 }, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType, numberOfAirports, finishedMinutes, finishedHours, sessionHours]);
 
 
