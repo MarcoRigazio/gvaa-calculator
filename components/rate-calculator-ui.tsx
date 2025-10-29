@@ -299,6 +299,9 @@ export function RateCalculatorUI() {
   const [selectedYouTubeType, setSelectedYouTubeType] = useState<string | null>(null);
   const [numberOfAirports, setNumberOfAirports] = useState<number>(1);
   const [selectedLobbyType, setSelectedLobbyType] = useState<string | null>(null);
+  const [finishedMinutes, setFinishedMinutes] = useState<number | string>("");
+  const [finishedHours, setFinishedHours] = useState<number | string>("");
+  const [sessionHours, setSessionHours] = useState<number | string>("");
 
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
@@ -330,6 +333,9 @@ export function RateCalculatorUI() {
   setSelectedLobbyType(null);
   setNumberOfAirports(1);
   setCalculatedRate(null);
+  setFinishedMinutes("");
+  setFinishedHours("");
+  setSessionHours("");
   // Add future state resets here
 };
   const handleTierSelect = (tier: string) => {
@@ -616,6 +622,51 @@ export function RateCalculatorUI() {
        setCalculatedRate(null);
      }
    }
+     // Calculator for: E-Learning
+  else if (selectedCategory === "elearning") {
+    const numWords = Number(wordCount) || 0;
+    const numPFM = Number(finishedMinutes) || 0;
+    // We re-use numberOfHours for "Per Raw Hour"
+    const numRawHours = Number(numberOfHours) || 0;
+    const numFinishedHours = Number(finishedHours) || 0;
+    const numSessionHours = Number(sessionHours) || 0;
+
+    if (selectedSubType === "Per Word" && numWords > 0) {
+      const lowRate = numWords * 0.20;
+      const highRate = numWords * 0.35;
+      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+    } 
+    else if (selectedSubType === "Per Finished Minute" && numPFM > 0) {
+      const lowRate = numPFM * 30;
+      const highRate = numPFM * 55;
+      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+    } 
+    else if (selectedSubType === "Per Raw Hour" && numRawHours > 0) {
+      const lowRate = numRawHours * 600;
+      const highRate = numRawHours * 2400;
+      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+    }
+    else if (selectedSubType === "Per Finished Hour" && numFinishedHours > 0) {
+      const lowRate = numFinishedHours * 1500;
+      const highRate = numFinishedHours * 3300;
+      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+    }
+    else if (selectedSubType === "Directed Sessions" && numWords > 0) {
+      // Base rate from word count ($0.10–$0.30/word)
+      const lowWordRate = numWords * 0.10;
+      const highWordRate = numWords * 0.30;
+      
+      // Additional hourly charge ($150–$300/hr after 60 mins)
+      const additionalHours = Math.max(0, numSessionHours - 1);
+      const lowHourRate = additionalHours * 150;
+      const highHourRate = additionalHours * 300;
+
+      const lowTotal = lowWordRate + lowHourRate;
+      const highTotal = highWordRate + highHourRate;
+      
+      setCalculatedRate(`$${lowTotal.toFixed(0)}–$${highTotal.toFixed(0)}`);
+    }
+    
   // This is the FINAL "cleanup" block - it MUST be last
   else {
     setCalculatedRate(null);
@@ -2031,7 +2082,116 @@ export function RateCalculatorUI() {
                     )}
                   </div>
                 )}
+{/* --- Form for: E-Learning --- */}
+{selectedCategory === "elearning" && (
+  <div className="grid gap-6">
+    {/* Per Word */}
+    {selectedSubType === "Per Word" && (
+      <div className="grid gap-4">
+        <Label htmlFor="elearning-wordcount" className="text-base font-medium">Enter Word Count:</Label>
+        <Input
+          id="elearning-wordcount"
+          type="number"
+          value={wordCount > 0 ? wordCount : ''}
+          onChange={(e) => setWordCount(Math.max(0, Number(e.target.value) || 0))}
+          min="0"
+          className="max-w-[150px]"
+          placeholder="e.g., 7500"
+        />
+      </div>
+    )}
 
+    {/* Per Finished Minute */}
+    {selectedSubType === "Per Finished Minute" && (
+      <div className="grid gap-4">
+        <Label htmlFor="elearning-pfm" className="text-base font-medium">Enter Finished Minutes:</Label>
+        <Input
+          id="elearning-pfm"
+          type="number"
+          value={finishedMinutes}
+          onChange={(e) => setFinishedMinutes(e.target.value)}
+          min="0"
+          className="max-w-[150px]"
+          placeholder="e.g., 30"
+        />
+      </div>
+    )}
+
+    {/* Per Raw Hour */}
+    {selectedSubType === "Per Raw Hour" && (
+      <div className="grid gap-4">
+        <Label htmlFor="elearning-raw" className="text-base font-medium">Enter Raw Hours:</Label>
+        <Input
+          id="elearning-raw"
+          type="number"
+          value={numberOfHours}
+          onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))}
+          min="1"
+          step="0.5"
+          className="max-w-[150px]"
+        />
+      </div>
+    )}
+    
+    {/* Per Finished Hour */}
+    {selectedSubType === "Per Finished Hour" && (
+      <div className="grid gap-4">
+        <Label htmlFor="elearning-pfh" className="text-base font-medium">Enter Finished Hours:</Label>
+        <Input
+          id="elearning-pfh"
+          type="number"
+          value={finishedHours}
+          onChange={(e) => setFinishedHours(e.target.value)}
+          min="0"
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 1.5"
+        />
+      </div>
+    )}
+
+    {/* Directed Sessions */}
+    {selectedSubType === "Directed Sessions" && (
+      <div className="grid gap-6">
+        <div className="grid gap-4">
+          <Label htmlFor="elearning-directed-words" className="text-base font-medium">Enter Word Count:</Label>
+          <Input
+            id="elearning-directed-words"
+            type="number"
+            value={wordCount > 0 ? wordCount : ''}
+            onChange={(e) => setWordCount(Math.max(0, Number(e.target.value) || 0))}
+            min="0"
+            className="max-w-[150px]"
+            placeholder="e.g., 10000"
+          />
+        </div>
+        <div className="grid gap-4">
+          <Label htmlFor="elearning-directed-hours" className="text-base font-medium">Enter Session Hours (First 60 mins included):</Label>
+          <Input
+            id="elearning-directed-hours"
+            type="number"
+            value={sessionHours}
+            onChange={(e) => setSessionHours(e.target.value)}
+            min="0"
+            step="0.5"
+            className="max-w-[150px]"
+            placeholder="e.g., 2.5"
+          />
+        </div>
+      </div>
+    )}
+
+    {/* --- E-Learning Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
                 
                 
               </div>
