@@ -696,7 +696,7 @@ export function RateCalculatorUI() {
   }
 
       
-}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType, numberOfAirports, finishedMinutes, finishedHours, sessionHours]);
+}, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType, numberOfAirports, **finishedMinutes**, **finishedHours**, **sessionHours**, **sessionLength**, **numEpisodes**]);
 
 
   return (
