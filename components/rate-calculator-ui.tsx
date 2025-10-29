@@ -270,6 +270,11 @@ const youTubeRates = {
   "Narration: 3–5 min episodes": "$750–$1,000",
   "Channel Intro/Outro": "$500–$2,000",
 };
+const RATES = {
+    PFM_RATE: 35, // $35 avg per finished minute 
+    PER_WORD_RATE: 0.25, // $0.25 avg per word 
+    MINIMUM_FEE: 350, // Based on $350-$450 for 1-2 min video 
+  };
 
 export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
