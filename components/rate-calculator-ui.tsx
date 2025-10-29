@@ -692,7 +692,92 @@ export function RateCalculatorUI() {
       setCalculatedRate(null); // No input or sub-type not handled
     }
   }
+// Calculator for: Video Games / Toys & Games
+  else if (selectedCategory === "video_games_toys") {
+    const numSessionHours = Number(sessionLength) || 0;
+    const numMins = Number(finishedMinutes) || 0;
 
+    if (selectedSubType === "Video Games (Non-Union)") {
+      if (gameCalcMethod === 'hourly' && numSessionHours > 0) {
+        // $200–$350/hr (2 or 4 hr min)
+        // We'll calculate based on hours, and note the minimum
+        const lowRate = numSessionHours * 200;
+        const highRate = numSessionHours * 350;
+        setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)} (2-4 hr min)`);
+      } else if (gameCalcMethod === 'flat') {
+        // Common flat: $500 for 1 hr max
+        setCalculatedRate("$500 (1 hr max)");
+      } else {
+        setCalculatedRate(null);
+      }
+    }
+    else if (selectedSubType === "Video Games (Union)") {
+      // $825.50/session (up to 4 hrs)
+      setCalculatedRate("$825.50 (Up to 4 hr session)");
+    }
+    else if (selectedSubType === "Toys & Games" && numSessionHours > 0) {
+      // $500–$750 (up to 2 hrs), $200–$250/add’l hr
+      let lowRate = 500;
+      let highRate = 750;
+      const additionalHours = Math.max(0, numSessionHours - 2);
+      if (additionalHours > 0) {
+        lowRate += additionalHours * 200;
+        highRate += additionalHours * 250;
+      }
+      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+    }
+    else if (selectedSubType === "Toys & Games (Demo/Scratch)" && numSessionHours > 0) {
+      // $150–$300/hr
+      const lowRate = numSessionHours * 150;
+      const highRate = numSessionHours * 300;
+      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+    }
+    else if (selectedSubType === "Mobile Game Apps (Non-Union Character)") {
+      if (gameCalcMethod === 'per_game') {
+        // $300–$500/game. +$75–$100/extra voice over 3-4
+        let lowRate = 300;
+        let highRate = 500;
+        const extraVoices = Math.max(0, numVoices - 4); // Extra voices over 4
+        if (extraVoices > 0) {
+          lowRate += extraVoices * 75;
+          highRate += extraVoices * 100;
+        }
+        setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+      } else if (gameCalcMethod === 'hourly' && numSessionHours > 0) {
+        // $200–$300/hr (2 hr min)
+        const hoursToCharge = Math.max(2, numSessionHours);
+        const lowRate = hoursToCharge * 200;
+        const highRate = hoursToCharge * 300;
+        setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+      } else {
+        setCalculatedRate(null);
+      }
+    }
+    else if (selectedSubType === "Mobile Game Apps (Union Character)") {
+      // $825.50/session
+      setCalculatedRate("$825.50 (Up to 3 voices, 4 hr max)");
+    }
+    else if (selectedSubType === "Mobile Game Apps (E-Learning/Educational)" && numMins > 0) {
+      // $350–$400 (1–5 mins) / $600 (10 mins)
+      if (numMins >= 1 && numMins <= 5) {
+        setCalculatedRate("$350–$400");
+      } else if (numMins > 5 && numMins <= 10) {
+        // Prorating a bit, landing on $600 at 10 mins
+        const lowRate = 350 + (numMins - 5) * ( (600-350) / 5 );
+        const highRate = 400 + (numMins - 5) * ( (600-400) / 5 );
+        setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+      } else if (numMins > 10) {
+         const lowRate = numMins * 60; // $600/10mins = $60/min
+         setCalculatedRate(`$${lowRate.toFixed(0)}+`);
+      } else {
+        setCalculatedRate(null);
+      }
+    }
+    else {
+      setCalculatedRate(null);
+    }
+  }
+      
       
 }, [selectedSubType, selectedCategory, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType, numberOfAirports, finishedMinutes, finishedHours, sessionHours, sessionLength, numEpisodes]);
 
