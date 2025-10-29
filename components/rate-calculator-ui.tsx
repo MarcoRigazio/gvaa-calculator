@@ -626,7 +626,6 @@ export function RateCalculatorUI() {
   else if (selectedCategory === "elearning") {
     const numWords = Number(wordCount) || 0;
     const numPFM = Number(finishedMinutes) || 0;
-    // We re-use numberOfHours for "Per Raw Hour"
     const numRawHours = Number(numberOfHours) || 0;
     const numFinishedHours = Number(finishedHours) || 0;
     const numSessionHours = Number(sessionHours) || 0;
@@ -652,11 +651,9 @@ export function RateCalculatorUI() {
       setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
     }
     else if (selectedSubType === "Directed Sessions" && numWords > 0) {
-      // Base rate from word count ($0.10–$0.30/word)
       const lowWordRate = numWords * 0.10;
       const highWordRate = numWords * 0.30;
       
-      // Additional hourly charge ($150–$300/hr after 60 mins)
       const additionalHours = Math.max(0, numSessionHours - 1);
       const lowHourRate = additionalHours * 150;
       const highHourRate = additionalHours * 300;
@@ -666,11 +663,10 @@ export function RateCalculatorUI() {
       
       setCalculatedRate(`$${lowTotal.toFixed(0)}–$${highTotal.toFixed(0)}`);
     }
-    
-  // This is the FINAL "cleanup" block - it MUST be last
-  else {
-    setCalculatedRate(null);
-  }
+    else {
+      setCalculatedRate(null); // No input yet for E-Learning
+    }
+  } // <-- This is the crucial closing brace for the 'else if'
 }, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType, numberOfAirports, }, [selectedSubType, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType, numberOfAirports, finishedHours, finishedMinutes, sessionHours]);
 
 
