@@ -301,7 +301,6 @@ export function RateCalculatorUI() {
   const [sessionLength, setSessionLength] = useState<number | string>("");
   const [numEpisodes, setNumEpisodes] = useState<number>(1);
   const [gameCalcMethod, setGameCalcMethod] = useState<string | null>(null);
-  const [numGames, setNumGames] = useState<number>(1);
   const [numVoices, setNumVoices] = useState<number>(1);
 
   // --- THIS IS THE MISSING FUNCTION ---
