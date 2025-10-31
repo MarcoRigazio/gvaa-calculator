@@ -337,6 +337,7 @@ export function RateCalculatorUI() {
   setFinishedMinutes("");
   setFinishedHours("");
   setSessionHours("");
+  setSelectedPromoMarket(null);
   // Add future state resets here
 };
   const handleTierSelect = (tier: string) => {
