@@ -308,6 +308,11 @@ const tradeShowRates = {
   "1 Year": { firstHourLow: 600, firstHourHigh: 700, addHourLow: 300, addHourHigh: 350 },
   "Full Buyout": { firstHourLow: 2000, firstHourHigh: 2100, addHourLow: 1000, addHourHigh: 1100 },
 };
+const studioFeeRates = {
+  "ISDN / Source Connect": { low: 25, high: 100 },
+  "Phone Patch": { low: 10, high: 25 },
+  "Editing (breaths/clicks/sequencing)": { low: 25, high: 50 },
+};
 
 
 export function RateCalculatorUI() {
