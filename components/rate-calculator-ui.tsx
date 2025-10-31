@@ -2825,13 +2825,13 @@ export function RateCalculatorUI() {
             onValueChange={setSelectedIvrModel}
             className="grid gap-2"
           >
-            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_min" id="ivr-min" /><Label htmlFor="ivr-min">IVR (Suggested Minimum) [cite: 120]</Label></div>
-            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_prompt" id="ivr-prompt" /><Label htmlFor="ivr-prompt">IVR (Per Prompt) [cite: 120]</Label></div>
-            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_word" id="ivr-word" /><Label htmlFor="ivr-word">IVR (Per Word - RAW) [cite: 120]</Label></div>
-            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_hour" id="ivr-hour" /><Label htmlFor="ivr-hour">IVR (Per Hour - RAW) [cite: 120]</Label></div>
-            <div className="flex items-center space-x-2"><RadioGroupItem value="moh_min" id="moh-min" /><Label htmlFor="moh-min">Message-On-Hold (Minimum) [cite: 120]</Label></div>
-            <div className="flex items-center space-x-2"><RadioGroupItem value="moh_min_rate" id="moh-min-rate" /><Label htmlFor="moh-min-rate">Message-On-Hold (Per Minute) [cite: 120]</Label></div>
-            <div className="flex items-center space-x-2"><RadioGroupItem value="moh_para" id="moh-para" /><Label htmlFor="moh-para">Message-On-Hold (Per Paragraph) [cite: 120]</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_min" id="ivr-min" /><Label htmlFor="ivr-min">IVR (Suggested Minimum)</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_prompt" id="ivr-prompt" /><Label htmlFor="ivr-prompt">IVR (Per Prompt)</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_word" id="ivr-word" /><Label htmlFor="ivr-word">IVR (Per Word - RAW)</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_hour" id="ivr-hour" /><Label htmlFor="ivr-hour">IVR (Per Hour - RAW)</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="moh_min" id="moh-min" /><Label htmlFor="moh-min">Message-On-Hold (Minimum)</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="moh_min_rate" id="moh-min-rate" /><Label htmlFor="moh-min-rate">Message-On-Hold (Per Minute)</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="moh_para" id="moh-para" /><Label htmlFor="moh-para">Message-On-Hold (Per Paragraph)</Label></div>
           </RadioGroup>
         </div>
 
