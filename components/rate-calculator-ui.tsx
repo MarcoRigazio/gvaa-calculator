@@ -850,6 +850,66 @@ export function RateCalculatorUI() {
       setCalculatedRate(null);
     }
   }
+      // Calculator for: IVR / Message-on-Hold
+  else if (selectedCategory === "ivr_message_on_hold") {
+    const numWords = Number(wordCount) || 0;
+    const numHours = Number(numberOfHours) || 0;
+    const numMins = Number(finishedMinutes) || 0;
+    const numParas = Number(numParagraphs) || 0;
+
+    if (selectedSubType === "Direct Quote") {
+      if (selectedIvrModel === 'ivr_min') {
+        setCalculatedRate("$150"); // [cite: 120]
+      }
+      else if (selectedIvrModel === 'ivr_prompt' && numPrompts > 0) {
+        const lowRate = 150 + (numPrompts * 1);
+        const highRate = 200 + (numPrompts * 5);
+        setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`); // [cite: 120]
+      }
+      else if (selectedIvrModel === 'ivr_word' && numWords > 0) {
+        const lowRate = numWords * 0.08;
+        const highRate = numWords * 0.25;
+        setCalculatedRate(`$${lowRate.toFixed(2)}–$${highRate.toFixed(2)}`); // [cite: 120]
+      }
+      else if (selectedIvrModel === 'ivr_hour' && numHours > 0) {
+        const lowRate = numHours * 50;
+        const highRate = numHours * 200;
+        setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`); // [cite: 120]
+      }
+      else if (selectedIvrModel === 'moh_min') {
+        setCalculatedRate("$200"); // [cite: 120]
+      }
+      else if (selectedIvrModel === 'moh_min_rate' && numMins > 0) {
+        const rate = numMins * 100;
+        setCalculatedRate(`$${rate.toFixed(0)}`); // [cite: 120]
+      }
+      else if (selectedIvrModel === 'moh_para' && numParas > 0) {
+        const rate = numParas * 8;
+        setCalculatedRate(`$${rate.toFixed(0)}`); // [cite: 120]
+      }
+      else {
+        setCalculatedRate(null);
+      }
+    }
+    else if (selectedSubType === "Roster Talent") {
+      if (selectedRosterModel === 'prod_house' && numParas > 0) {
+        const lowRate = numParas * 10;
+        const highRate = numParas * 20;
+        setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`); // [cite: 122]
+      }
+      else if (selectedRosterModel === 'other_hourly' && numHours > 0) {
+        const halfHours = numHours * 2;
+        const rate = halfHours * 50;
+        setCalculatedRate(`$${rate.toFixed(0)}`); // [cite: 122]
+      }
+      else {
+        setCalculatedRate(null);
+      }
+    }
+    else {
+      setCalculatedRate(null);
+    }
+  }
       
       
 }, [selectedSubType, selectedCategory, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType, numberOfAirports, finishedMinutes, finishedHours, sessionHours, sessionLength, numEpisodes, gameCalcMethod, numVoices, selectedPromoMarket]);
