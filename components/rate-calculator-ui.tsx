@@ -2879,8 +2879,8 @@ export function RateCalculatorUI() {
             onValueChange={setSelectedRosterModel}
             className="grid gap-2"
           >
-            <div className="flex items-center space-x-2"><RadioGroupItem value="prod_house" id="roster-prod" /><Label htmlFor="roster-prod">Production House (Per Paragraph) [cite: 122]</Label></div>
-            <div className="flex items-center space-x-2"><RadioGroupItem value="other_hourly" id="roster-other" /><Label htmlFor="roster-other">Other (Per 1/2 Hour Booth Time) [cite: 122]</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="prod_house" id="roster-prod" /><Label htmlFor="roster-prod">Production House (Per Paragraph)</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="other_hourly" id="roster-other" /><Label htmlFor="roster-other">Other (Per 1/2 Hour Booth Time)</Label></div>
           </RadioGroup>
         </div>
 
