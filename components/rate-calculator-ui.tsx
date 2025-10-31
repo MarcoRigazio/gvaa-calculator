@@ -2970,6 +2970,101 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: Cinema / Events --- */}
+{selectedCategory === "cinema_events" && (
+  <div className="grid gap-6">
+
+    {/* --- Inputs for: Cinema Usage (1-3 States) --- */}
+    {selectedSubType === "Cinema Usage – Term (1–3 States)" && (
+      <div className="grid gap-4">
+        <Label className="text-base font-medium">Select Term:</Label>
+        <RadioGroup
+          value={selectedTerm ?? ""}
+          onValueChange={setSelectedTerm}
+          className="grid gap-2"
+        >
+          {Object.keys(cinemaRates1to3States).map((term) => (
+            <div key={term} className="flex items-center space-x-2">
+              <RadioGroupItem value={term} id={`cinema-1-3-${term}`} />
+              <Label htmlFor={`cinema-1-3-${term}`} className="cursor-pointer">{term}</Label>
+            </div>
+          ))}
+        </RadioGroup>
+      </div>
+    )}
+
+    {/* --- Inputs for: Cinema Usage (4+ States) --- */}
+    {selectedSubType === "Cinema Usage – Term (4+ States)" && (
+      <div className="grid gap-4">
+        <Label className="text-base font-medium">Select Term:</Label>
+        <RadioGroup
+          value={selectedTerm ?? ""}
+          onValueChange={setSelectedTerm}
+          className="grid gap-2"
+        >
+          {Object.keys(cinemaRates4PlusStates).map((term) => (
+            <div key={term} className="flex items-center space-x-2">
+              <RadioGroupItem value={term} id={`cinema-4-plus-${term}`} />
+              <Label htmlFor={`cinema-4-plus-${term}`} className="cursor-pointer">{term}</Label>
+            </div>
+          ))}
+        </RadioGroup>
+      </div>
+    )}
+
+    {/* --- Inputs for: Event Video --- */}
+    {selectedSubType === "Event Video" && (
+      <div className="grid gap-6">
+        <div className="grid gap-4">
+          <Label className="text-base font-medium">Select Term:</Label>
+          <RadioGroup
+            value={selectedTerm ?? ""}
+            onValueChange={setSelectedTerm}
+            className="grid gap-2"
+          >
+            <div className="flex items-center space-x-2"><RadioGroupItem value="1 Year" id="event-1y" /><Label htmlFor="event-1y">1 Year</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="Full Buyout" id="event-buyout" /><Label htmlFor="event-buyout">Full Buyout</Label></div>
+          </RadioGroup>
+        </div>
+        <div className="grid gap-4">
+          <Label htmlFor="event-hours" className="text-base font-medium">Enter Total Hours:</Label>
+          <Input id="event-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" />
+        </div>
+      </div>
+    )}
+
+    {/* --- Inputs for: Trade Shows / Sporting Events --- */}
+    {selectedSubType === "Trade Shows / Sporting Events" && (
+      <div className="grid gap-6">
+        <div className="grid gap-4">
+          <Label className="text-base font-medium">Select Term:</Label>
+          <RadioGroup
+            value={selectedTerm ?? ""}
+            onValueChange={setSelectedTerm}
+            className="grid gap-2"
+          >
+            <div className="flex items-center space-x-2"><RadioGroupItem value="1 Year" id="trade-1y" /><Label htmlFor="trade-1y">1 Year</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="Full Buyout" id="trade-buyout" /><Label htmlFor="trade-buyout">Full Buyout</Label></div>
+          </RadioGroup>
+        </div>
+        <div className="grid gap-4">
+          <Label htmlFor="trade-hours" className="text-base font-medium">Enter Total Hours:</Label>
+          <Input id="trade-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" />
+        </div>
+      </div>
+    )}
+
+    {/* --- Cinema/Events Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </Done)
+      </div>
+    )}
+  </div>
+)}
                 
                 
               </div>
