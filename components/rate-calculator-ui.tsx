@@ -320,6 +320,10 @@ export function RateCalculatorUI() {
   const [gameCalcMethod, setGameCalcMethod] = useState<string | null>(null);
   const [numVoices, setNumVoices] = useState<number>(1);
   const [selectedPromoMarket, setSelectedPromoMarket] = useState<string | null>(null);
+  const [selectedIvrModel, setSelectedIvrModel] = useState<string | null>(null);
+  const [numPrompts, setNumPrompts] = useState<number>(0);
+  const [numParagraphs, setNumParagraphs] = useState<number>(0);
+  const [selectedRosterModel, setSelectedRosterModel] = useState<string | null>(null);
 
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
