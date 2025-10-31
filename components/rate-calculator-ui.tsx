@@ -2811,6 +2811,106 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: IVR / Message-on-Hold --- */}
+{selectedCategory === "ivr_message_on_hold" && (
+  <div className="grid gap-6">
+
+    {/* --- Inputs for: Direct Quote --- */}
+    {selectedSubType === "Direct Quote" && (
+      <div className="grid gap-6">
+        <div className="grid gap-4">
+          <Label className="text-base font-medium">Select Calculation Model:</Label>
+          <RadioGroup
+            value={selectedIvrModel ?? ""}
+            onValueChange={setSelectedIvrModel}
+            className="grid gap-2"
+          >
+            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_min" id="ivr-min" /><Label htmlFor="ivr-min">IVR (Suggested Minimum) [cite: 120]</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_prompt" id="ivr-prompt" /><Label htmlFor="ivr-prompt">IVR (Per Prompt) [cite: 120]</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_word" id="ivr-word" /><Label htmlFor="ivr-word">IVR (Per Word - RAW) [cite: 120]</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_hour" id="ivr-hour" /><Label htmlFor="ivr-hour">IVR (Per Hour - RAW) [cite: 120]</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="moh_min" id="moh-min" /><Label htmlFor="moh-min">Message-On-Hold (Minimum) [cite: 120]</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="moh_min_rate" id="moh-min-rate" /><Label htmlFor="moh-min-rate">Message-On-Hold (Per Minute) [cite: 120]</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="moh_para" id="moh-para" /><Label htmlFor="moh-para">Message-On-Hold (Per Paragraph) [cite: 120]</Label></div>
+          </RadioGroup>
+        </div>
+
+        {/* Conditional Inputs for Direct Quote */}
+        {selectedIvrModel === 'ivr_prompt' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="ivr-prompts" className="text-base font-medium">Enter Number of Prompts:</Label>
+            <Input id="ivr-prompts" type="number" value={numPrompts > 0 ? numPrompts : ''} onChange={(e) => setNumPrompts(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 10" />
+          </div>
+        )}
+        {selectedIvrModel === 'ivr_word' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="ivr-wordcount" className="text-base font-medium">Enter Word Count:</Label>
+            <Input id="ivr-wordcount" type="number" value={wordCount > 0 ? wordCount : ''} onChange={(e) => setWordCount(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 500" />
+          </div>
+        )}
+        {selectedIvrModel === 'ivr_hour' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="ivr-hours" className="text-base font-medium">Enter Raw Hours:</Label>
+            <Input id="ivr-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" />
+          </div>
+        )}
+        {selectedIvrModel === 'moh_min_rate' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="moh-minutes" className="text-base font-medium">Enter Finished Minutes:</Label>
+            <Input id="moh-minutes" type="number" value={finishedMinutes} onChange={(e) => setFinishedMinutes(e.target.value)} min="0" step="0.5" className="max-w-[150px]" placeholder="e.g., 5" />
+          </div>
+        )}
+        {selectedIvrModel === 'moh_para' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="moh-paras" className="text-base font-medium">Enter Number of Paragraphs:</Label>
+            <Input id="moh-paras" type="number" value={numParagraphs > 0 ? numParagraphs : ''} onChange={(e) => setNumParagraphs(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 4" />
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* --- Inputs for: Roster Talent --- */}
+    {selectedSubType === "Roster Talent" && (
+      <div className="grid gap-6">
+        <div className="grid gap-4">
+          <Label className="text-base font-medium">Select Roster Model:</Label>
+          <RadioGroup
+            value={selectedRosterModel ?? ""}
+            onValueChange={setSelectedRosterModel}
+            className="grid gap-2"
+          >
+            <div className="flex items-center space-x-2"><RadioGroupItem value="prod_house" id="roster-prod" /><Label htmlFor="roster-prod">Production House (Per Paragraph) [cite: 122]</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="other_hourly" id="roster-other" /><Label htmlFor="roster-other">Other (Per 1/2 Hour Booth Time) [cite: 122]</Label></div>
+          </RadioGroup>
+        </div>
+
+        {/* Conditional Inputs for Roster Talent */}
+        {selectedRosterModel === 'prod_house' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="roster-paras" className="text-base font-medium">Enter Number of Paragraphs:</Label>
+            <Input id="roster-paras" type="number" value={numParagraphs > 0 ? numParagraphs : ''} onChange={(e) => setNumParagraphs(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 20" />
+          </div>
+        )}
+        {selectedRosterModel === 'other_hourly' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="roster-hours" className="text-base font-medium">Enter Total Booth Hours:</Label>
+            <Input id="roster-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(0.5, Number(e.target.value) || 0.5))} min="0.5" step="0.5" className="max-w-[150px]" placeholder="e.g., 1.5" />
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* --- IVR Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
                 
                 
               </div>
