@@ -810,6 +810,38 @@ export function RateCalculatorUI() {
     const rate = promoTrailerRates[selectedPromoMarket as keyof typeof promoTrailerRates];
     setCalculatedRate(rate || null);
   }
+// Calculator for: Audiobooks
+  else if (selectedCategory === "audiobooks") {
+    const numFinishedHours = Number(finishedHours) || 0;
+    const numRawHours = Number(numberOfHours) || 0; // Re-using numberOfHours for raw/prod
+
+    if (selectedSubType === "Union Scale – PFH" && numFinishedHours > 0) {
+      const lowRate = numFinishedHours * 150;
+      const highRate = numFinishedHours * 225;
+      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+    }
+    else if (selectedSubType === "Non-Union – PFH" && numFinishedHours > 0) {
+      const lowRate = numFinishedHours * 200;
+      const highRate = numFinishedHours * 500;
+      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+    }
+    else if (selectedSubType === "Per RAW Hour" && numRawHours > 0) {
+      const rate = numRawHours * 225;
+      setCalculatedRate(`$${rate.toFixed(0)}`);
+    }
+    else if (selectedSubType === "Production Add-On" && numRawHours > 0) {
+      const lowRate = numRawHours * 75;
+      const highRate = numRawHours * 125;
+      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+    }
+    else if (selectedSubType === "Hybrid Agreement" && numFinishedHours > 0) {
+      const rate = numFinishedHours * 100;
+      setCalculatedRate(`$${rate.toFixed(0)} + Royalty Share`);
+    }
+    else {
+      setCalculatedRate(null);
+    }
+  }
       
       
 }, [selectedSubType, selectedCategory, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType, numberOfAirports, finishedMinutes, finishedHours, sessionHours, sessionLength, numEpisodes, gameCalcMethod, numVoices, selectedPromoMarket]);
