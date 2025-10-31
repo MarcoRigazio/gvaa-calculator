@@ -912,7 +912,7 @@ export function RateCalculatorUI() {
   }
       
       
-}, [selectedSubType, selectedCategory, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType, numberOfAirports, finishedMinutes, finishedHours, sessionHours, sessionLength, numEpisodes, gameCalcMethod, numVoices, selectedPromoMarket]);
+}, [selectedSubType, selectedCategory, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType, numberOfAirports, finishedMinutes, finishedHours, sessionHours, sessionLength, numEpisodes, gameCalcMethod, numVoices, selectedPromoMarket, selectedIvrModel, numPrompts, numParagraphs, selectedRosterModel]);
 
   
   return (
