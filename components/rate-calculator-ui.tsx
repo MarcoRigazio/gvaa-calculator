@@ -980,6 +980,42 @@ export function RateCalculatorUI() {
       setCalculatedRate(null);
     }
   }
+      // Calculator for: Fees / Pick-Ups / Editing
+  else if (selectedCategory === "fees_pickups_editing") {
+    const numHours = Number(numberOfHours) || 0;
+    const fee = Number(originalFee) || 0;
+
+    if (selectedSubType === "Studio Fees & Editing" && selectedFeeType && numHours > 0) {
+      const rates = studioFeeRates[selectedFeeType as keyof typeof studioFeeRates];
+      if (rates) {
+        const lowTotal = rates.low * numHours;
+        const highTotal = rates.high * numHours;
+        setCalculatedRate(`$${lowTotal.toFixed(0)}–$${highTotal.toFixed(0)}`);
+      } else {
+        setCalculatedRate(null);
+      }
+    }
+    else if (selectedSubType === "Pickups" && selectedPickupType) {
+      if (selectedPickupType === "Talent Error") {
+        setCalculatedRate("Free");
+      }
+      else if (selectedPickupType === "Minor Pickups (≤15 mins)" && fee > 0) {
+        const rate = Math.max(150, fee * 0.50);
+        setCalculatedRate(`$${rate.toFixed(0)} (Min $150 or 50% of original fee)`);
+      }
+      else if (selectedPickupType === "Major Pickups (rewrites)" && numHours > 0) {
+        const numHalfHours = numHours * 2;
+        const rate = numHalfHours * 260;
+        setCalculatedRate(`$${rate.toFixed(0)} (at $260 / 30 mins)`);
+      }
+      else {
+        setCalculatedRate(null);
+      }
+    }
+    else {
+      setCalculatedRate(null);
+    }
+  }
       
       
 }, [selectedSubType, selectedCategory, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType, numberOfAirports, finishedMinutes, finishedHours, sessionHours, sessionLength, numEpisodes, gameCalcMethod, numVoices, selectedPromoMarket, selectedIvrModel, numPrompts, numParagraphs, selectedRosterModel]);
