@@ -287,6 +287,27 @@ const promoTrailerRates = {
   "Regional – Medium Market": "$325–$500",
   "National – Large Market": "$1,500–$2,000",
 };
+const cinemaRates1to3States = {
+  "1 Month": "$300",
+  "3 Months": "$425–$550",
+  "6 Months": "$800–$950",
+  "1 Year": "$1,200–$1,350",
+};
+const cinemaRates4PlusStates = {
+  "1 Month": "$500",
+  "3 Months": "$800–$1,050",
+  "6 Months": "$1,600–$2,000",
+  "1Year": "$2,400–$3,000",
+};
+const eventVideoRates = {
+  "1 Year": { firstHourLow: 600, firstHourHigh: 700, addHourLow: 300, addHourHigh: 350 },
+  "Full Buyout": { firstHourLow: 2000, firstHourHigh: 2100, addHourLow: 1000, addHourHigh: 1100 },
+};
+// Trade Show rates are identical to Event Video rates
+const tradeShowRates = {
+  "1 Year": { firstHourLow: 600, firstHourHigh: 700, addHourLow: 300, addHourHigh: 350 },
+  "Full Buyout": { firstHourLow: 2000, firstHourHigh: 2100, addHourLow: 1000, addHourHigh: 1100 },
+};
 
 
 export function RateCalculatorUI() {
