@@ -685,7 +685,7 @@ export function RateCalculatorUI() {
     else {
       setCalculatedRate(null); // No input yet for E-Learning
     }    
-  } // <-- This is the crucial closing brace for the 'else if'
+  }
 // Calculator for: Animation / Dubbing
   else if (selectedCategory === "animation_dubbing") {
     const numSessionHours = Number(sessionLength) || 0;
@@ -794,6 +794,21 @@ export function RateCalculatorUI() {
     else {
       setCalculatedRate(null);
     }
+  }
+      // Calculator for: Promo & Imaging -> TV
+  else if (selectedSubType === "TV" && selectedPromoMarket) {
+    const rate = promoTvRates[selectedPromoMarket as keyof typeof promoTvRates];
+    setCalculatedRate(rate || null);
+  }
+// Calculator for: Promo & Imaging -> Radio
+  else if (selectedSubType === "Radio" && selectedPromoMarket) {
+    const rate = promoRadioRates[selectedPromoMarket as keyof typeof promoRadioRates];
+    setCalculatedRate(rate || null);
+  }
+// Calculator for: Promo & Imaging -> Trailers
+  else if (selectedSubType === "Trailers" && selectedPromoMarket) {
+    const rate = promoTrailerRates[selectedPromoMarket as keyof typeof promoTrailerRates];
+    setCalculatedRate(rate || null);
   }
       
       
