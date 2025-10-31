@@ -2591,7 +2591,79 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+{/* --- Form for: Promo & Imaging --- */}
+{selectedCategory === "promo_imaging" && (
+  <div className="grid gap-6">
 
+    {/* TV */}
+    {selectedSubType === "TV" && (
+      <div className="grid gap-4">
+        <Label className="text-base font-medium">Select Market:</Label>
+        <RadioGroup
+          value={selectedPromoMarket ?? ""}
+          onValueChange={setSelectedPromoMarket}
+          className="grid gap-2"
+        >
+          {Object.keys(promoTvRates).map((market) => (
+            <div key={market} className="flex items-center space-x-2">
+              <RadioGroupItem value={market} id={`promo-tv-${market}`} />
+              <Label htmlFor={`promo-tv-${market}`} className="cursor-pointer">{market}</Label>
+            </div>
+          ))}
+        </RadioGroup>
+      </div>
+    )}
+
+    {/* Radio */}
+    {selectedSubType === "Radio" && (
+      <div className="grid gap-4">
+        <Label className="text-base font-medium">Select Market:</Label>
+        <RadioGroup
+          value={selectedPromoMarket ?? ""}
+          onValueChange={setSelectedPromoMarket}
+          className="grid gap-2"
+        >
+          {Object.keys(promoRadioRates).map((market) => (
+            <div key={market} className="flex items-center space-x-2">
+              <RadioGroupItem value={market} id={`promo-radio-${market}`} />
+              <Label htmlFor={`promo-radio-${market}`} className="cursor-pointer">{market}</Label>
+            </div>
+          ))}
+        </RadioGroup>
+      </div>
+    )}
+
+    {/* Trailers */}
+    {selectedSubType === "Trailers" && (
+      <div className="grid gap-4">
+        <Label className="text-base font-medium">Select Market:</Label>
+        <RadioGroup
+          value={selectedPromoMarket ?? ""}
+          onValueChange={setSelectedPromoMarket}
+          className="grid gap-2"
+        >
+          {Object.keys(promoTrailerRates).map((market) => (
+            <div key={market} className="flex items-center space-x-2">
+              <RadioGroupItem value={market} id={`promo-trailer-${market}`} />
+              <Label htmlFor={`promo-trailer-${market}`} className="cursor-pointer">{market}</Label>Same 
+            </div>
+          ))}
+        </RadioGroup>
+      </div>
+    )}
+
+    {/* --- Promo & Imaging Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                
                 
               </div>
             )}
