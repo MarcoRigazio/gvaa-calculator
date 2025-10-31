@@ -931,6 +931,44 @@ export function RateCalculatorUI() {
       setCalculatedRate(null);
     }
   }
+      // Calculator for: Cinema / Events
+  else if (selectedCategory === "cinema_events") {
+    const numHours = Number(numberOfHours) || 0;
+
+    if (selectedSubType === "Cinema Usage – Term (1–3 States)" && selectedTerm) {
+      const rate = cinemaRates1to3States[selectedTerm as keyof typeof cinemaRates1to3States];
+      setCalculatedRate(rate || null);
+    }
+    else if (selectedSubType === "Cinema Usage – Term (4+ States)" && selectedTerm) {
+      const rate = cinemaRates4PlusStates[selectedTerm as keyof typeof cinemaRates4PlusStates];
+      setCalculatedRate(rate || null);
+    }
+    else if (selectedSubType === "Event Video" && selectedTerm && numHours > 0) {
+      const rates = eventVideoRates[selectedTerm as keyof typeof eventVideoRates];
+      if (rates) {
+        const additionalHours = Math.max(0, numHours - 1);
+        const lowTotal = rates.firstHourLow + (additionalHours * rates.addHourLow);
+        const highTotal = rates.firstHourHigh + (additionalHours * rates.addHourHigh);
+        setCalculatedRate(`$${lowTotal.toFixed(0)}–$${highTotal.toFixed(0)}`);
+      } else {
+        setCalculatedRate(null);
+      }
+    }
+    else if (selectedSubType === "Trade Shows / Sporting Events" && selectedTerm && numHours > 0) {
+      const rates = tradeShowRates[selectedTerm as keyof typeof tradeShowRates];
+      if (rates) {
+        const additionalHours = Math.max(0, numHours - 1);
+        const lowTotal = rates.firstHourLow + (additionalHours * rates.addHourLow);
+        const highTotal = rates.firstHourHigh + (additionalHours * rates.addHourHigh);
+        setCalculatedRate(`$${lowTotal.toFixed(0)}–$${highTotal.toFixed(0)}`);
+      } else {
+        setCalculatedRate(null);
+      }
+    }
+    else {
+      setCalculatedRate(null);
+    }
+  }
       
       
 }, [selectedSubType, selectedCategory, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType, numberOfAirports, finishedMinutes, finishedHours, sessionHours, sessionLength, numEpisodes, gameCalcMethod, numVoices, selectedPromoMarket, selectedIvrModel, numPrompts, numParagraphs, selectedRosterModel]);
