@@ -270,6 +270,23 @@ const youTubeRates = {
   "Narration: 3–5 min episodes": "$750–$1,000",
   "Channel Intro/Outro": "$500–$2,000",
 };
+const promoTvRates = {
+  "Local": "$150–$300",
+  "Regional": "$450–$600",
+  "National": "$750–$1,000",
+  "Station Voice": "Custom Retainer",
+};
+const promoRadioRates = {
+  "Local": "$150–$200",
+  "Regional": "$350–$500",
+  "National": "$600–$850",
+  "Station Voice": "Custom Retainer",
+};
+const promoTrailerRates = {
+  "Local – Small Market": "$100",
+  "Regional – Medium Market": "$325–$500",
+  "National – Large Market": "$1,500–$2,000",
+};
 
 
 export function RateCalculatorUI() {
