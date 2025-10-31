@@ -2645,7 +2645,7 @@ export function RateCalculatorUI() {
           {Object.keys(promoTrailerRates).map((market) => (
             <div key={market} className="flex items-center space-x-2">
               <RadioGroupItem value={market} id={`promo-trailer-${market}`} />
-              <Label htmlFor={`promo-trailer-${market}`} className="cursor-pointer">{market}</Label>Same 
+              <Label htmlFor={`promo-trailer-${market}`} className="cursor-pointer">{market}</Label> 
             </div>
           ))}
         </RadioGroup>
