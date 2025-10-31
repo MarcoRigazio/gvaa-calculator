@@ -345,6 +345,9 @@ export function RateCalculatorUI() {
   const [numPrompts, setNumPrompts] = useState<number>(0);
   const [numParagraphs, setNumParagraphs] = useState<number>(0);
   const [selectedRosterModel, setSelectedRosterModel] = useState<string | null>(null);
+  const [selectedFeeType, setSelectedFeeType] = useState<string | null>(null);
+  const [selectedPickupType, setSelectedPickupType] = useState<string | null>(null);
+  const [originalFee, setOriginalFee] = useState<number | string>("");
 
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
