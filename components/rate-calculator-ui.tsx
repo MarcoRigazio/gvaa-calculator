@@ -2695,6 +2695,54 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
+                {/* --- Form for: Audiobooks --- */}
+{selectedCategory === "audiobooks" && (
+  <div className="grid gap-6">
+
+    {/* PFH Inputs */}
+    {(selectedSubType === "Union Scale – PFH" || selectedSubType === "Non-Union – PFH" || selectedSubType === "Hybrid Agreement") && (
+      <div className="grid gap-4">
+        <Label htmlFor="audiobook-pfh" className="text-base font-medium">Enter Per Finished Hour (PFH):</Label>
+        <Input
+          id="audiobook-pfh"
+          type="number"
+          value={finishedHours}
+          onChange={(e) => setFinishedHours(e.target.value)}
+          min="0"
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 8.5"
+        />
+      </div>
+    )}
+
+    {/* Raw/Production Hour Inputs */}
+    {(selectedSubType === "Per RAW Hour" || selectedSubType === "Production Add-On") && (
+      <div className="grid gap-4">
+        <Label htmlFor="audiobook-raw" className="text-base font-medium">Enter Hours:</Label>
+        <Input
+          id="audiobook-raw"
+          type="number"
+          value={numberOfHours}
+          onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))}
+          min="1"
+          step="0.5"
+          className="max-w-[150px]"
+        />
+      </div>
+    )}
+
+    {/* --- Audiobooks Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
                 
                 
               </div>
