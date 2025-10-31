@@ -3060,7 +3060,7 @@ export function RateCalculatorUI() {
         <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
         <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
           {calculatedRate}
-        </Done)
+        </p>
       </div>
     )}
   </div>
