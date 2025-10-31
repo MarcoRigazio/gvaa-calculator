@@ -359,6 +359,10 @@ export function RateCalculatorUI() {
   setFinishedHours("");
   setSessionHours("");
   setSelectedPromoMarket(null);
+  setSelectedIvrModel(null);
+  setNumPrompts(0);
+  setNumParagraphs(0);
+  setSelectedRosterModel(null);
   // Add future state resets here
 };
   const handleTierSelect = (tier: string) => {
