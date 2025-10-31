@@ -387,6 +387,9 @@ export function RateCalculatorUI() {
   setNumPrompts(0);
   setNumParagraphs(0);
   setSelectedRosterModel(null);
+  setSelectedFeeType(null);
+  setSelectedPickupType(null);
+  setOriginalFee("");
   // Add future state resets here
 };
   const handleTierSelect = (tier: string) => {
