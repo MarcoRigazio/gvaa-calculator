@@ -2981,14 +2981,3 @@ export function RateCalculatorUI() {
   );
 }
 
-
-    
-                
-              </div>
-            )}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
-}
