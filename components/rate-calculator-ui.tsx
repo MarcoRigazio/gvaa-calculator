@@ -1148,15 +1148,7 @@ export function RateCalculatorUI() {
                         <Label htmlFor="term-5y" className="cursor-pointer">5 Years</Label>
                       </div>
                     </RadioGroup>
-                    {/* --- Rate Display --- */}
-{calculatedRate && (
-  <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-    <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-    <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-      {calculatedRate}
-    </p>
-  </div>
-)}
+                    
                   </div>
                 )}
 
@@ -1183,17 +1175,7 @@ export function RateCalculatorUI() {
       </div>
     </RadioGroup>
     
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
 {/* --- Form for: Digital Visual -> Online Pre-Roll / OLV --- */}
 {selectedSubType === "Online Pre-Roll / OLV" && (
   <div className="grid gap-4">
@@ -1217,17 +1199,7 @@ export function RateCalculatorUI() {
       </div>
     </RadioGroup>
     
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Digital Visual -> OTT/CTV --- */}
 {selectedSubType === "OTT/CTV (Includes Social & Pre-Roll)" && (
   <div className="grid gap-4">
@@ -1251,17 +1223,7 @@ export function RateCalculatorUI() {
       </div>
     </RadioGroup>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Digital Visual -> Digital Tags --- */}
 {selectedSubType === "Digital Tags" && (
   <div className="grid gap-4">
@@ -1275,17 +1237,7 @@ export function RateCalculatorUI() {
       className="max-w-[150px]"
     />
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Digital Visual -> Automotive --- */}
 {selectedSubType === "Automotive" && (
   <div className="grid gap-6">
@@ -1331,17 +1283,7 @@ export function RateCalculatorUI() {
       </div>
     )}
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Radio -> Local – Regional (Terrestrial) --- */}
 {selectedSubType === "Local – Regional (Terrestrial)" && (
   <div className="grid gap-4">
@@ -1365,17 +1307,7 @@ export function RateCalculatorUI() {
       </div>
     </RadioGroup>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Radio -> National (Terrestrial) --- */}
 {selectedSubType === "National (Terrestrial)" && (
   <div className="grid gap-4">
@@ -1399,17 +1331,7 @@ export function RateCalculatorUI() {
       </div>
     </RadioGroup>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Radio -> Digital Radio --- */}
 {selectedSubType === "Digital Radio" && (
   <div className="grid gap-4">
@@ -1433,17 +1355,7 @@ export function RateCalculatorUI() {
       </div>
     </RadioGroup>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Radio -> Value Menu – Terrestrial + Digital (Local/Regional) --- */}
 {selectedSubType === "Value Menu – Terrestrial + Digital (Local/Regional)" && (
   <div className="grid gap-4">
@@ -1467,17 +1379,7 @@ export function RateCalculatorUI() {
       </div>
     </RadioGroup>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Radio -> Value Menu – Terrestrial + Digital (National) --- */}
 {selectedSubType === "Value Menu – Terrestrial + Digital (National)" && (
   <div className="grid gap-4">
@@ -1501,17 +1403,7 @@ export function RateCalculatorUI() {
       </div>
     </RadioGroup>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                {/* --- Form for: Radio -> Automotive (Radio) --- */}
 {selectedSubType === "Automotive (Radio)" && (
   <div className="grid gap-6">
@@ -1557,17 +1449,7 @@ export function RateCalculatorUI() {
       </div>
     )}
     
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Radio -> Radio/Podcast Dramas --- */}
 {selectedSubType === "Radio/Podcast Dramas" && (
   <div className="grid gap-4">
@@ -1587,35 +1469,13 @@ export function RateCalculatorUI() {
       </div>
     </RadioGroup>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(up to 4 hours)</p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Radio -> PSA – Public Service Announcement --- */}
 {selectedSubType === "PSA – Public Service Announcement" && (
   <div className="grid gap-4">
     {/* No inputs needed for PSA, rate is fixed */}
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(:60 or less)</p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: TV -> Local / Regional --- */}
 {selectedSubType === "Local / Regional" && (
   <div className="grid gap-4">
@@ -1639,17 +1499,7 @@ export function RateCalculatorUI() {
       </div>
     </RadioGroup>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: TV -> National --- */}
 {selectedSubType === "National" && (
   <div className="grid gap-4">
@@ -1673,17 +1523,7 @@ export function RateCalculatorUI() {
       </div>
     </RadioGroup>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: TV -> TV + Digital Visual – Paid Social --- */}
 {selectedSubType === "TV + Digital Visual – Paid Social" && (
   <div className="grid gap-6"> 
@@ -1729,18 +1569,7 @@ export function RateCalculatorUI() {
       </RadioGroup>
     </div>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(TV + Paid Social Combined Usage)</p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: TV -> TV + Digital Visual – Online Pre-Roll --- */}
 {selectedSubType === "TV + Digital Visual – Online Pre-Roll (Includes Paid Social)" && (
   <div className="grid gap-6"> 
@@ -1786,18 +1615,7 @@ export function RateCalculatorUI() {
       </RadioGroup>
     </div>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(TV + Online Pre-Roll/OLV Combined Usage)</p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: TV -> TV + Digital Visual – OTT/CTV --- */}
 {selectedSubType === "TV + Digital Visual – OTT/CTV (Includes Pre-Roll & Paid Social)" && (
   <div className="grid gap-6"> 
@@ -1843,18 +1661,7 @@ export function RateCalculatorUI() {
       </RadioGroup>
     </div>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(TV + OTT/CTV Combined Usage)</p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: TV -> Automotive (TV) --- */}
 {selectedSubType === "Automotive (TV)" && (
   <div className="grid gap-6">
@@ -1900,17 +1707,7 @@ export function RateCalculatorUI() {
       </div>
     )}
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: TV -> In-Show / Documentary Narration --- */}
 {selectedSubType === "In-Show / Documentary Narration" && (
   <div className="grid gap-4">
@@ -1930,18 +1727,7 @@ export function RateCalculatorUI() {
       </div>
     </RadioGroup>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(Program length excluding commercials)</p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: TV -> Infomercial / DRTV --- */}
 {selectedSubType === "Infomercial / DRTV" && (
   <div className="grid gap-4">
@@ -1961,18 +1747,7 @@ export function RateCalculatorUI() {
       </div>
     </RadioGroup>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(Per script, includes cuts/versions and up to 10 phone numbers)</p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: TV -> Mnemonics --- */}
 {selectedSubType === "Mnemonics" && (
   <div className="grid gap-4">
@@ -2023,18 +1798,7 @@ export function RateCalculatorUI() {
       ))}
     </RadioGroup>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(Single video usage, includes editing)</p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Non-Broadcast -> Corporate & Industrial Narration – Recording Time Scale --- */}
 {selectedSubType === "Corporate & Industrial Narration – Recording Time Scale" && (
   <div className="grid gap-4">
@@ -2049,18 +1813,7 @@ export function RateCalculatorUI() {
       className="max-w-[150px]"
     />
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate (RAW Audio Only):</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">($525/1st hr, $262/hr after. Full buyout. No editing included.)</p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Non-Broadcast -> Explainer Videos --- */}
 {selectedSubType === "Explainer Videos" && (
   <div className="grid gap-6">
@@ -2104,23 +1857,7 @@ export function RateCalculatorUI() {
       </div>
     )}
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate / Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-          {explainerCalcMethod === 'single'
-            ? "(Public-facing on owned web/YouTube/social. Not paid placement.)" //
-            : `(Based on $250 ≤175 words, +$50/add'l 100 words)` //
-          }
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Non-Broadcast -> Museum Tours – Educational --- */}
 {selectedSubType === "Museum Tours – Educational" && (
   <div className="grid gap-6"> 
@@ -2158,20 +1895,7 @@ export function RateCalculatorUI() {
       />
     </div>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate (Union Scale Reference):</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-          {selectedMuseumCategory === 'CAT1' ? `($${museumCat1Rate.firstHour}/1st hr, $${museumCat1Rate.additionalHalfHour}/add'l 30 min)` : `($${museumCat2Rate.firstHour}/1st hr, $${museumCat2Rate.additionalHalfHour}/add'l 30 min)`}
-         </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Non-Broadcast -> Podcasts --- */}
 {selectedSubType === "Podcasts" && (
   <div className="grid gap-4">
@@ -2189,21 +1913,7 @@ export function RateCalculatorUI() {
       ))}
     </RadioGroup>
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-        {/* Optionally add note about hours for drama roles */}
-        {(selectedPodcastType?.includes("Audio Drama")) && 
-         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(up to 4 hours session)</p>
-        }
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Non-Broadcast -> Medical / Technical Narration --- */}
 {selectedSubType === "Medical / Technical Narration" && (
   <div className="grid gap-6"> 
@@ -2267,40 +1977,14 @@ export function RateCalculatorUI() {
        </div>
      )}
 
-    {/* --- Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-           {medTechCalcMethod === 'minute' 
-             ? "(Includes editing, file splits, naming, delivery, pickups. Free re-records ≤10%.)" 
-             : `($${medicalPerWordRateLow.toFixed(2)}–$${medicalPerWordRateHigh.toFixed(2)} per word)`
-           }
-         </p>
-      </div>
-    )}
-  </div>
-)}
+    
 
                 {/* --- Form for: Non-Broadcast -> Digital Greeting Cards --- */}
                 {selectedSubType === "Digital Greeting Cards" && (
                   <div className="grid gap-4">
                     {/* No inputs needed, rate is informational */}
 
-                    {/* --- Rate Display --- */}
-                    {calculatedRate && (
-                      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-                        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range (Full Buyout):</p>
-                        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-                          {calculatedRate}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                )}
+                    
                 {/* --- Form for: Non-Broadcast -> YouTube Content --- */}
                 {selectedSubType === "YouTube Content" && (
                   <div className="grid gap-4">
@@ -2318,23 +2002,7 @@ export function RateCalculatorUI() {
                       ))}
                     </RadioGroup>
                 
-                    {/* --- Rate Display --- */}
-                    {calculatedRate && (
-                      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-                        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-                        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-                          {calculatedRate}
-                        </p>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                          {selectedYouTubeType === "Narration: 3–5 min episodes"
-                            ? "(~500–1,000 words. Rate increases for high-view channels.)"
-                            : "(Rate increases with subscriber count.)"
-                          }
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                )}
+                    
                 {/* --- Form for: Non-Broadcast -> Kiosk Use (Non-Retail) --- */}
                 {selectedSubType === "Kiosk Use (Non-Retail)" && (
                   <div className="grid gap-4">
@@ -2349,18 +2017,7 @@ export function RateCalculatorUI() {
                       className="max-w-[150px]"
                     />
 
-                    {/* --- Rate Display --- */}
-                    {calculatedRate && (
-                      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-                        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate (Full Buyout):</p>
-                        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-                          {calculatedRate}
-                        </p>
-                         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">($525/1st hr, $262/hr after. For non-retail kiosks.)</p>
-                      </div>
-                    )}
-                  </div>
-                )}
+                    
                 {/* --- Form for: Non-Broadcast -> Lobby Viewing --- */}
                 {selectedSubType === "Lobby Viewing" && (
                   <div className="grid gap-6">
@@ -2399,40 +2056,7 @@ export function RateCalculatorUI() {
                       </div>
                     )}
 
-                    {/* --- Rate Display --- */}
-                    {calculatedRate && (
-                      <div className={cn(
-                        "mt-6 p-4 rounded-lg text-center",
-                        selectedLobbyType === 'retail'
-                          ? "bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700"
-                          : "bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700"
-                      )}>
-                        <p className="text-sm text-slate-600 dark:text-slate-400">
-                          {selectedLobbyType === 'retail' && (
-                            <>GVAA Guidance:</>
-                          )}
-                          {selectedLobbyType !== 'retail' && ( // Default to this if 'explainer' or null
-                            <>GVAA Rate (Full Buyout):</>
-                          )}
-                        </p>
-                        <p className={cn(
-                          "text-2xl font-semibold",
-                          selectedLobbyType === 'retail'
-                            ? "text-blue-700 dark:text-blue-300"
-                            : "text-green-700 dark:text-green-300"
-                        )}>
-                          {calculatedRate}
-                        </p>
-                        {selectedLobbyType === 'explainer' && (
-                           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">($525/1st hr, $262/hr after. Full buyout.)</p>
-                        )}
-                         {selectedLobbyType === 'retail' && (
-                           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(Selling a product: mirrors TV rates/terms.)</p>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                )}
+                    
                                 {/* --- Form for: Non-Broadcast -> Airport Announcements --- */}
                 {selectedSubType === "Airport Announcements" && (
                   <div className="grid gap-6">
@@ -2464,20 +2088,7 @@ export function RateCalculatorUI() {
                       />
                     </div>
                 
-                    {/* --- Rate Display --- */}
-                    {calculatedRate && (
-                      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-                        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range (Per Year):</p>
-                        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-                          {calculatedRate}
-                        </p>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                          (Base rate covers 1 airport, up to 2 hrs raw. +$1k–$1.5k/additional airport. +$500/additional hr over 2.)
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                )}
+                    
 {/* --- Form for: E-Learning --- */}
 {selectedCategory === "elearning" && (
   <div className="grid gap-6">
