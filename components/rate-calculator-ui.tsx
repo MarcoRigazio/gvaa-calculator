@@ -2952,8 +2952,9 @@ export function RateCalculatorUI() {
     )}
   </div>
 )}
-</div>  // <--- THIS IS THE LINE TO FIND (approx 2885)
-</div>  // <--- 1. ADD THIS CLOSING DIV
+</div>
+</div>  
+</div>  
 )}
 
 {/* --- 🚀 MASTER RATE DISPLAY & ADD TO CART (NEW) --- */}
