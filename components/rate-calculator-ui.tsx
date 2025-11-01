@@ -1229,7 +1229,7 @@ export function RateCalculatorUI() {
       <Card className="w-full max-w-2xl">
         <CardHeader>
           <CardTitle className="text-2xl font-semibold">
-            Select Voice Over Genre
+            Select Voice Over Genre.
           </CardTitle>
         </CardHeader>
         <CardContent>
