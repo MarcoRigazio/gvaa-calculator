@@ -2903,7 +2903,7 @@ export function RateCalculatorUI() {
   </div>
 )}
 
-{/* --- 🚀 MASTER RATE DISPLAY & ADD TO CART (NEW) --- */}
+
 {calculatedRate && (
   <div className="pt-6 mt-6 border-t-2 border-blue-200 dark:border-blue-700">
     <div className="p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
