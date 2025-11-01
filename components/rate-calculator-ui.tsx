@@ -2904,30 +2904,4 @@ export function RateCalculatorUI() {
 )}
 
 
-{/* MASTER RATE DISPLAY & ADD TO CART */}
-{calculatedRate && (
-  <div className="pt-6 mt-6 border-t-2 border-blue-200 dark:border-blue-700">
-    <div className="p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-      <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-      <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-        {calculatedRate.text}
-      </p>
-      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-        {calculatedRate.description}
-      </p>
-    </div>
-
-    <button
-      onClick={() => console.log("Add to cart")}
-      className="w-full mt-4 p-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-    >
-      Add to Project Quote
-    </button>
-  </div>
-)}
-</div>          {/* closes the form/grid wrapper above */}
-</CardContent>
-</Card>
-</div>          {/* closes the outer page/grid wrapper */}
-);              {/* closes return( ... ) */}
-}               {/* closes component */}
+{calculatedRate && <div />}
