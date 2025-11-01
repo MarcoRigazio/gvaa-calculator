@@ -2966,7 +2966,7 @@ export function RateCalculatorUI() {
                   </p>
                 </div>
                 <button
-                 onClick={() => console.log('Add to cart')}
+                 onClick={addToCart}
                  className="w-full mt-4 p-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
                 >
                  Add to Project Quote
