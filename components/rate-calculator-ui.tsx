@@ -2925,3 +2925,13 @@ export function RateCalculatorUI() {
   </div>
 )}
 {/* --- End of MASTER RATE DISPLAY --- */}
+
+    
+     </div>             {/* close the inner section wrapper */}
+        </CardContent>
+      </Card>
+    </div>                  
+  );                         
+} 
+
+    
