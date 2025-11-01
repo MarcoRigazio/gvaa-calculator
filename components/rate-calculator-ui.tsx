@@ -2951,6 +2951,8 @@ export function RateCalculatorUI() {
         )}
       </div>
     )}
+    </div>
+)}
 
 
 {/* --- 🚀 MASTER RATE DISPLAY & ADD TO CART (NEW) --- */}
