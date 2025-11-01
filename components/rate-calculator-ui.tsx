@@ -2884,6 +2884,8 @@ export function RateCalculatorUI() {
         )}
       </div>
     )}
+  </div>
+)}
 
 {/* --- 🚀 MASTER RATE DISPLAY & ADD TO CART (NEW) --- */}
             {calculatedRate && (
@@ -2906,6 +2908,13 @@ export function RateCalculatorUI() {
               </div>
             )}
             {/* --- End of MASTER RATE DISPLAY --- */}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
 
     
                 
