@@ -14,6 +14,12 @@ interface CartItem {
   low: number;
   high: number;
 }
+interface RateInfo {
+  text: string;  // e.g., "$400–$600"
+  low: number;
+  high: number;
+  description: string; // e.g., "Paid Social - 3 Months"
+}
 
 // Define the main categories
 const categories = [
