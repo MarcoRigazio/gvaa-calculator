@@ -333,7 +333,7 @@ export function RateCalculatorUI() {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedSubType, setSelectedSubType] = useState<string | null>(null);
-  const [calculatedRate, setCalculatedRate] = useState<string | null>(null);
+  const [calculatedRate, setCalculatedRate] = useState<RateInfo | null>(null);
   const [numberOfTags, setNumberOfTags] = useState<number>(1);
   const [selectedTier, setSelectedTier] = useState<string | null>(null);
   const [numberOfSpots, setNumberOfSpots] = useState<number>(1);
