@@ -1286,7 +1286,7 @@ export function RateCalculatorUI() {
                         <p className="text-sm text-slate-600 dark:text-slate-400">{item.rate}</p>
                       </div>
                       <button
-                        onClick={() => console.log('Remove item', item.id)}
+                        onClick={() => removeFromCart(item.id)}
                         className="text-sm font-medium text-red-600 hover:text-red-500"
                       >
                         Remove
