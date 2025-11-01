@@ -369,6 +369,72 @@ export function RateCalculatorUI() {
   const [originalFee, setOriginalFee] = useState<number | string>("");
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
+  // --- START: Shopping Cart Logic (Snippet 1) ---
+
+  // 1. Helper function to build a clear description
+  const getCartDescription = (): string => {
+    // This is a simple version; we can make it more detailed later
+    let desc = selectedSubType || selectedCategory || "Unknown Item";
+
+    if (selectedTerm) desc += ` - ${selectedTerm}`;
+    if ((selectedSubType === "Corporate & Industrial Narration – Finished Minute Scale" || selectedSubType === "Medical / Technical Narration") && selectedDuration) desc += ` (${selectedDuration})`;
+    if (wordCount > 0) desc += ` (${wordCount} words)`;
+    if (numberOfHours > 0) desc += ` (${numberOfHours} hrs)`;
+    if (finishedMinutes > 0) desc += ` (${finishedMinutes} mins)`;
+    if (numberOfSpots > 0 && (selectedSubType === "Automotive" || selectedSubType === "Automotive (Radio)" || selectedSubType === "Automotive (TV)")) desc += ` (${numberOfSpots} spot(s))`;
+    
+    // Add more specific contexts as needed
+    
+    return desc;
+  };
+
+  // 2. Function to add the current rate to the cart
+  const addToCart = () => {
+    if (!calculatedRate || calculatedRate.low === 0 && calculatedRate.high === 0) return; // Don't add "Union Rate" etc.
+
+    const newItem: CartItem = {
+      id: `${Date.now()}-${Math.random()}`, // Unique ID
+      description: getCartDescription(),
+      rate: calculatedRate.text,
+      low: calculatedRate.low,
+      high: calculatedRate.high,
+    };
+
+    setCartItems((prevItems) => [...prevItems, newItem]);
+  };
+
+  // 3. Function to remove an item from the cart
+  const removeFromCart = (itemId: string) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
+  };
+
+  // 4. useMemo hook to calculate the total
+  const cartTotal = React.useMemo(() => {
+    if (cartItems.length === 0) {
+      return { low: 0, high: 0, text: "$0–$0" };
+    }
+
+    const totalLow = cartItems.reduce((sum, item) => sum + item.low, 0);
+    const totalHigh = cartItems.reduce((sum, item) => sum + item.high, 0);
+
+    // Handle cases where low and high are the same
+    if (totalLow === totalHigh) {
+      return {
+        low: totalLow,
+        high: totalHigh,
+        text: `$${totalLow.toLocaleString()}`
+      };
+    }
+
+    return {
+      low: totalLow,
+      high: totalHigh,
+      text: `$${totalLow.toLocaleString()}–$${totalHigh.toLocaleString()}`,
+    };
+  }, [cartItems]);
+
+  // --- END: Shopping Cart Logic (Snippet 1) ---
+
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
     setSelectedCategory(categoryId);
