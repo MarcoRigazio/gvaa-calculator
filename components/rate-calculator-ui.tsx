@@ -2822,7 +2822,7 @@ export function RateCalculatorUI() {
       </div>
     )}
 
-                {/* --- Form for: Fees / Pick-Ups / Editing --- */}
+               {/* --- Form for: Fees / Pick-Ups / Editing --- */}
 {selectedCategory === "fees_pickups_editing" && (
   <div className="grid gap-6">
 
@@ -2844,9 +2844,18 @@ export function RateCalculatorUI() {
             ))}
           </RadioGroup>
         </div>
+
         <div className="grid gap-4">
           <Label htmlFor="fee-hours" className="text-base font-medium">Enter Total Hours:</Label>
-          <Input id="fee-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" />
+          <Input
+            id="fee-hours"
+            type="number"
+            value={numberOfHours}
+            onChange={(e) => setNumberOfHours(Math.max(0.5, Number(e.target.value) || 1))}
+            min="0.5"
+            step="0.5"
+            className="max-w-[150px]"
+          />
         </div>
       </div>
     )}
@@ -2854,32 +2863,39 @@ export function RateCalculatorUI() {
     {/* --- Inputs for: Pickups --- */}
     {selectedSubType === "Pickups" && (
       <div className="grid gap-6">
+        {/* Minor vs Major toggle */}
         <div className="grid gap-4">
-          <Label className="text-base font-medium">Select Pickup Type:</Label>
+          <Label className="text-base font-medium">Pickup Type:</Label>
           <RadioGroup
             value={selectedPickupType ?? ""}
             onValueChange={setSelectedPickupType}
             className="grid gap-2"
           >
-            <div className="flex items-center space-x-2"><RadioGroupItem value="Talent Error" id="pickup-error" /><Label htmlFor="pickup-error">Pickups due to Talent Error</Label></div>
-            <div className="flex items-center space-x-2"><RadioGroupItem value="Minor Pickups (≤15 mins)" id="pickup-minor" /><Label htmlFor="pickup-minor">Minor Pickups (≤15 mins)</Label></div>
-            <div className="flex items-center space-x-2"><RadioGroupItem value="Major Pickups (rewrites)" id="pickup-major" /><Label htmlFor="pickup-major">Major Pickups (rewrites/large re-records)</Label></div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="Minor Pickups (typos)" id="pickup-minor" />
+              <Label htmlFor="pickup-minor" className="cursor-pointer">Minor Pickups (typos)</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="Major Pickups (rewrites)" id="pickup-major" />
+              <Label htmlFor="pickup-major" className="cursor-pointer">Major Pickups (rewrites)</Label>
+            </div>
           </RadioGroup>
         </div>
 
-        {/* Conditional Input for Minor Pickups */}
-        {selectedPickupType === 'Minor Pickups (≤15 mins)' && (
-          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
-            <Label htmlFor="pickup-original-fee" className="text-base font-medium">Enter Original Fee ($):</Label>
-            <Input id="pickup-original-fee" type="number" value={originalFee} onChange={(e) => setOriginalFee(e.target.value)} min="0" className="max-w-[150px]" placeholder="e.g., 500" />
-          </div>
-        )}
-        
         {/* Conditional Input for Major Pickups (by 30 min block) */}
-        {selectedPickupType === 'Major Pickups (rewrites)' && (
+        {selectedPickupType === "Major Pickups (rewrites)" && (
           <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
-            <Label htmlFor="pickup-hours" className="text-base font-medium">Enter Session Hours (in 0.5 hr increments):</Label>
-            <Input id="pickup-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(0.5, Number(e.target.value) || 0.5))} min="0.5" step="0.5" className="max-w-[150px]" placeholder="e.g., 0.5" />
+            <Label htmlFor="pickup-hours" className="text-base font-medium">
+              Enter Session Hours (in 0.5 hr increments):
+            </Label>
+            <Input
+              id="pickup-hours"
+              type="number"
+              value={numberOfHours}
+              onChange={(e) => setNumberOfHours(Math.max(0.5, Number(e.target.value) || 0.5))}
+              min="0.5"
+              step="0.5"
+            />
           </div>
         )}
       </div>
@@ -2888,29 +2904,24 @@ export function RateCalculatorUI() {
 )}
 
 {/* --- 🚀 MASTER RATE DISPLAY & ADD TO CART (NEW) --- */}
-            {calculatedRate && (
-              <div className="pt-6 mt-6 border-t-2 border-blue-200 dark:border-blue-700">
-                <div className="p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-                  <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-                  <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-                    {calculatedRate.text}
-                  </p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                    {calculatedRate.description}
-                  </p>
-                </div>
-                <button
-                 onClick={() => console.log('Add to cart')}
-                 className="w-full mt-4 p-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-                >
-                 Add to Project Quote
-                </button>
-              </div>
-            )}
-            {/* --- End of MASTER RATE DISPLAY --- */}
-          </div>
-        </CardContent>
-      </Card>
+{calculatedRate && (
+  <div className="pt-6 mt-6 border-t-2 border-blue-200 dark:border-blue-700">
+    <div className="p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+      <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+      <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+        {calculatedRate.text}
+      </p>
+      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+        {calculatedRate.description}
+      </p>
     </div>
-  );
-}
+
+    <button
+      onClick={() => console.log("Add to cart")}
+      className="w-full mt-4 p-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+    >
+      Add to Project Quote
+    </button>
+  </div>
+)}
+{/* --- End of MASTER RATE DISPLAY --- */}
