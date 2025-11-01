@@ -943,21 +943,21 @@ export function RateCalculatorUI() {
         });
       }
     }
-  // Calculator for: Promo & Imaging -> TV
-    else if (selectedSubType === "TV" && selectedPromoMarket) {
-      const rate = promoTvRates[selectedPromoMarket as keyof typeof promoTvRates];
-      setCalculatedRate(parseRate(rate, `Promo (TV) - ${selectedPromoMarket}`));
-    }
-  // Calculator for: Promo & Imaging -> Radio
-    else if (selectedSubType === "Radio" && selectedPromoMarket) {
-      const rate = promoRadioRates[selectedPromoMarket as keyof typeof promoRadioRates];
-      setCalculatedRate(parseRate(rate, `Promo (Radio) - ${selectedPromoMarket}`));
-    }
-  // Calculator for: Promo & Imaging -> Trailers
-    else if (selectedSubType === "Trailers" && selectedPromoMarket) {
-      const rate = promoTrailerRates[selectedPromoMarket as keyof typeof promoTrailerRates];
-      setCalculatedRate(parseRate(rate, `Promo (Trailer) - ${selectedPromoMarket}`));
-    }
+  // Calculator for: Promo & Imaging
+else if (selectedCategory === "promo_imaging") {
+  if (selectedSubType === "TV" && selectedPromoMarket) {
+    const rate = promoTvRates[selectedPromoMarket as keyof typeof promoTvRates];
+    setCalculatedRate(parseRate(rate, `Promo (TV) - ${selectedPromoMarket}`));
+  }
+  else if (selectedSubType === "Radio" && selectedPromoMarket) {
+    const rate = promoRadioRates[selectedPromoMarket as keyof typeof promoRadioRates];
+    setCalculatedRate(parseRate(rate, `Promo (Radio) - ${selectedPromoMarket}`));
+  }
+  else if (selectedSubType === "Trailers" && selectedPromoMarket) {
+    const rate = promoTrailerRates[selectedPromoMarket as keyof typeof promoTrailerRates];
+    setCalculatedRate(parseRate(rate, `Promo (Trailer) - ${selectedPromoMarket}`));
+  }
+}
   // Calculator for: Audiobooks
     else if (selectedCategory === "audiobooks") {
       const numFinishedHours = Number(finishedHours) || 0;
