@@ -7,6 +7,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils"; // Import cn utility if you haven't already
 
+interface CartItem {
+  id: string; // A unique ID for React
+  description: string; // e.g., "Local TV - 1 Year"
+  rate: string;      // e.g., "$1,250–$2,250"
+  low: number;
+  high: number;
+}
+
 // Define the main categories
 const categories = [
   { 
