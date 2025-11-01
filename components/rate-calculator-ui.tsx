@@ -361,6 +361,7 @@ export function RateCalculatorUI() {
   const [selectedFeeType, setSelectedFeeType] = useState<string | null>(null);
   const [selectedPickupType, setSelectedPickupType] = useState<string | null>(null);
   const [originalFee, setOriginalFee] = useState<number | string>("");
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   // --- THIS IS THE MISSING FUNCTION ---
   const handleCategorySelect = (categoryId: string) => {
