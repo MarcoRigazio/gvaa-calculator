@@ -1078,6 +1078,40 @@ export function RateCalculatorUI() {
               </div>
             )}
 
+            {/* --- 🛒 SHOPPING CART (NEW) --- */}
+            <div className="pt-6 border-t border-slate-200 dark:border-slate-700">
+              <h3 className="text-lg font-medium mb-4">Project Quote Cart</h3>
+              {cartItems.length === 0 ? (
+                <p className="text-sm text-slate-500 dark:text-slate-400">Your cart is empty. Calculate a rate and add it to build a quote.</p>
+              ) : (
+                <div className="space-y-4">
+                  {/* This is where the cart items will go */}
+                  {cartItems.map((item) => (
+                    <div key={item.id} className="flex justify-between items-center p-3 rounded-lg border bg-slate-50 dark:bg-slate-800">
+                      <div>
+                        <p className="font-medium text-slate-900 dark:text-slate-100">{item.description}</p>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">{item.rate}</p>
+                      </div>
+                      <button
+                        onClick={() => console.log('Remove item', item.id)} // We'll wire this up later
+                        className="text-sm font-medium text-red-600 hover:text-red-500"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                  {/* --- Cart Total --- */}
+                  <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+                    <div className="flex justify-between items-center">
+                      <p className="text-base font-semibold">Project Total:</p>
+                      <p className="text-xl font-semibold text-blue-600 dark:text-blue-400">$0–$0</p> { /* Placeholder total */ }
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            {/* --- End of SHOPPING CART --- */}
+
             {/* --- Dynamic Input Fields --- */}
             {selectedSubType && (
               <div className="pt-6 mt-6 border-t border-slate-200 dark:border-slate-700">
