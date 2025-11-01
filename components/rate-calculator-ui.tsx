@@ -2904,6 +2904,7 @@ export function RateCalculatorUI() {
 )}
 
 
+{/* MASTER RATE DISPLAY & ADD TO CART */}
 {calculatedRate && (
   <div className="pt-6 mt-6 border-t-2 border-blue-200 dark:border-blue-700">
     <div className="p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
@@ -2924,14 +2925,9 @@ export function RateCalculatorUI() {
     </button>
   </div>
 )}
-{/* --- End of MASTER RATE DISPLAY --- */}
-
-    
-     </div>             {/* close the inner section wrapper */}
-        </CardContent>
-      </Card>
-    </div>                  
-  );                         
-} 
-
-    
+</div>          {/* closes the form/grid wrapper above */}
+</CardContent>
+</Card>
+</div>          {/* closes the outer page/grid wrapper */}
+);              {/* closes return( ... ) */}
+}               {/* closes component */}
