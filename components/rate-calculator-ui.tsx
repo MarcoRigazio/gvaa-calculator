@@ -1297,7 +1297,7 @@ export function RateCalculatorUI() {
                   <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
                     <div className="flex justify-between items-center">
                       <p className="text-base font-semibold">Project Total:</p>
-                      <p className="text-xl font-semibold text-blue-600 dark:text-blue-400">$0–$0</p>{/* Placeholder total */}
+                      <<p className="text-xl font-semibold text-blue-600 dark:text-blue-400">{cartTotal.text}</p>
                     </div>
                   </div>
                 </div>
