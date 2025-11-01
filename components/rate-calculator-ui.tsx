@@ -420,621 +420,765 @@ export function RateCalculatorUI() {
   const currentCategory = categories.find(cat => cat.id === selectedCategory);
   
     useEffect(() => {
-  // Calculator for: Digital Visual -> Non-Paid Web
-  if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
-    const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
-    setCalculatedRate(rate || null);
-  }
-  // Calculator for: Digital Visual -> Paid Social
-  else if (selectedSubType === "Paid Social" && selectedTerm) {
-    const rate = paidSocialRates[selectedTerm as keyof typeof paidSocialRates];
-    setCalculatedRate(rate || null);
-  }
-  // Calculator for: Digital Visual -> Online Pre-Roll
-  else if (selectedSubType === "Online Pre-Roll / OLV" && selectedTerm) {
-    const rate = onlinePreRollRates[selectedTerm as keyof typeof onlinePreRollRates];
-    setCalculatedRate(rate || null);
-  }
-  // Calculator for: Digital Visual -> OTT/CTV
-  else if (selectedSubType === "OTT/CTV (Includes Social & Pre-Roll)" && selectedTerm) {
-    const rate = ottRates[selectedTerm as keyof typeof ottRates];
-    setCalculatedRate(rate || null);
-  }
-  // Calculator for: Digital Visual -> Digital Tags
-  else if (selectedSubType === "Digital Tags") {
-    const lowRate = 175 * numberOfTags;
-    const highRate = 225 * numberOfTags;
-    setCalculatedRate(`$${lowRate}–$${highRate}`);
-  }
-  // Calculator for: Digital Visual -> Automotive
-  else if (selectedSubType === "Automotive" && selectedTier) {
-    const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
-    if (typeof rates === 'string') { setCalculatedRate(rates); }
-    else if (Array.isArray(rates)) {
-      const lowRate = rates[0] * numberOfSpots; const highRate = rates[1] * numberOfSpots;
-      setCalculatedRate(`$${lowRate}–$${highRate}`);
-    }
-  }
-  // Calculator for: Radio -> Local - Regional
-  else if (selectedSubType === "Local – Regional (Terrestrial)" && selectedTerm) {
-    const rate = radioLocalRates[selectedTerm as keyof typeof radioLocalRates];
-    setCalculatedRate(rate || null);
-  }
-  // Calculator for: Radio -> National (Terrestrial)
-  else if (selectedSubType === "National (Terrestrial)" && selectedTerm) {
-    const rate = radioNationalRates[selectedTerm as keyof typeof radioNationalRates];
-    setCalculatedRate(rate || null);
-  }
-  // Calculator for: Radio -> Digital Radio
-  else if (selectedSubType === "Digital Radio" && selectedTerm) {
-    const rate = radioDigitalRates[selectedTerm as keyof typeof radioDigitalRates];
-    setCalculatedRate(rate || null);
-  }
-  // Calculator for: Radio -> Value Menu (Local)
-  else if (selectedSubType === "Value Menu – Terrestrial + Digital (Local/Regional)" && selectedTerm) {
-    const rate = radioValueLocalRates[selectedTerm as keyof typeof radioValueLocalRates];
-    setCalculatedRate(rate || null);
-  }
-  // Calculator for: Radio -> Value Menu (National)
-  else if (selectedSubType === "Value Menu – Terrestrial + Digital (National)" && selectedTerm) {
-    const rate = radioValueNationalRates[selectedTerm as keyof typeof radioValueNationalRates];
-    setCalculatedRate(rate || null);
-  }
-  // Calculator for: Radio -> Automotive (Radio)
-  else if (selectedSubType === "Automotive (Radio)" && selectedTier) {
-     const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
-     if (typeof rates === 'string') { setCalculatedRate(rates); }
-     else if (Array.isArray(rates)) {
-       const lowRate = rates[0] * numberOfSpots; const highRate = rates[1] * numberOfSpots;
-       setCalculatedRate(`$${lowRate}–$${highRate}`);
-     }
-   }
-   // Calculator for: Radio -> Radio/Podcast Dramas
-   else if (selectedSubType === "Radio/Podcast Dramas" && selectedRole) {
-     const rate = radioDramaRates[selectedRole as keyof typeof radioDramaRates];
-     setCalculatedRate(rate || null);
-   }
-   // Calculator for: Radio -> PSA
-   else if (selectedSubType === "PSA – Public Service Announcement") {
-     setCalculatedRate("$500–$600+ (:60 or less)");
-   }
-   // Calculator for: TV -> Local / Regional
-   else if (selectedSubType === "Local / Regional" && selectedTerm) {
-      const rate = tvLocalRates[selectedTerm as keyof typeof tvLocalRates];
-      setCalculatedRate(rate || null);
-   }
-    // Calculator for: TV -> National
-   else if (selectedSubType === "National" && selectedTerm) {
-     const rate = tvNationalRates[selectedTerm as keyof typeof tvNationalRates];
-     setCalculatedRate(rate || null);
-   }
-   // Calculator for: TV -> TV + Digital Visual – Paid Social
-   else if (selectedSubType === "TV + Digital Visual – Paid Social" && selectedTerm && selectedMarket) {
-     const combinedRate = tvPaidSocialRates[selectedTerm as keyof typeof tvPaidSocialRates];
-     if (combinedRate) {
-       const rateParts = combinedRate.split(' / ');
-       const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
-       setCalculatedRate(finalRate || null);
-     } else { setCalculatedRate(null); }
-   }
-   // Calculator for: TV -> TV + Digital Visual – Online Pre-Roll
-   else if (selectedSubType === "TV + Digital Visual – Online Pre-Roll (Includes Paid Social)" && selectedTerm && selectedMarket) {
-     const combinedRate = tvOnlinePreRollRates[selectedTerm as keyof typeof tvOnlinePreRollRates];
-     if (combinedRate) {
-       const rateParts = combinedRate.split(' / ');
-       const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
-       setCalculatedRate(finalRate || null);
-     } else { setCalculatedRate(null); }
-   }
-   // Calculator for: TV -> TV + Digital Visual – OTT/CTV
-   else if (selectedSubType === "TV + Digital Visual – OTT/CTV (Includes Pre-Roll & Paid Social)" && selectedTerm && selectedMarket) {
-     const combinedRate = tvOttRates[selectedTerm as keyof typeof tvOttRates];
-     if (combinedRate) {
-       const rateParts = combinedRate.split(' / ');
-       const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
-       setCalculatedRate(finalRate || null);
-     } else { setCalculatedRate(null); }
-   }
-   // Calculator for: TV -> Automotive (TV)
-   else if (selectedSubType === "Automotive (TV)" && selectedTier) {
-      const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
-      if (typeof rates === 'string') { setCalculatedRate(rates); }
-      else if (Array.isArray(rates)) {
-        const lowRate = rates[0] * numberOfSpots; const highRate = rates[1] * numberOfSpots;
-        setCalculatedRate(`$${lowRate}–$${highRate}`);
-      }
-    }
-    // Calculator for: TV -> In-Show / Documentary Narration
-    else if (selectedSubType === "In-Show / Documentary Narration" && selectedProgramLength) {
-       const rate = inShowNarrationRates[selectedProgramLength as keyof typeof inShowNarrationRates];
-       setCalculatedRate(rate || null);
-    }
-    // Calculator for: TV -> Infomercial / DRTV
-    else if (selectedSubType === "Infomercial / DRTV" && selectedInfomercialMarket) {
-      const rate = infomercialRates[selectedInfomercialMarket as keyof typeof infomercialRates];
-      setCalculatedRate(rate || null);
-    }
-    // Calculator for: TV -> Mnemonics (Informational)
-    else if (selectedSubType === "Mnemonics") {
-      setCalculatedRate("Varies Greatly ($1k–$50k+). Quote based on brand scope/usage.");
-    }
-    // Calculator for: TV -> Point of Sale (POS) (Informational)
-    else if (selectedSubType === "Point of Sale (POS)") {
-       setCalculatedRate("Refer to TV Local/Regional or National rates based on scope.");
-    }
-   // Calculator for: Non-Broadcast -> Corporate Minute Scale
-   else if (selectedSubType === "Corporate & Industrial Narration – Finished Minute Scale" && selectedDuration) {
-     const rate = corporateMinuteRates[selectedDuration as keyof typeof corporateMinuteRates];
-     setCalculatedRate(rate || null);
-   }
-   // Calculator for: Non-Broadcast -> Corporate Recording Time Scale
-   else if (selectedSubType === "Corporate & Industrial Narration – Recording Time Scale") {
-     if (numberOfHours > 0) {
-       const firstHourRate = 525;
-       const additionalHourRate = 262;
-       const totalRate = numberOfHours === 1 ? firstHourRate : firstHourRate + (additionalHourRate * (numberOfHours - 1));
-       const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-       setCalculatedRate(formattedRate);
-     } else {
-       setCalculatedRate(null);
-     }
-   }
-   // Calculator for: Non-Broadcast -> Explainer Videos
-   else if (selectedSubType === "Explainer Videos") {
-     if (explainerCalcMethod === 'single') {
-       setCalculatedRate("$300–$525"); // The single video rate
-     } else if (explainerCalcMethod === 'bulk' && wordCount > 0) {
-       const baseRate = 250; //
-       if (wordCount <= 175) {
-         setCalculatedRate(`$${baseRate}`);
-       } else {
-         const additionalWords = wordCount - 175;
-         const additionalBlocks = Math.ceil(additionalWords / 100);
-         const additionalCharge = additionalBlocks * 50; //
-         const totalRate = baseRate + additionalCharge;
-         const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-         setCalculatedRate(formattedRate);
-       }
-     } else {
-       setCalculatedRate(null); // Reset if no method or 0 words in bulk
-     }
-   }
-   // Calculator for: Non-Broadcast -> Museum Tours
-   else if (selectedSubType === "Museum Tours – Educational" && selectedMuseumCategory && museumRecordingHours > 0) {
-       const rates = selectedMuseumCategory === "CAT1" ? museumCat1Rate : museumCat2Rate;
-       let totalRate = rates.firstHour;
-       if (museumRecordingHours > 1) {
-         const additionalHalfHours = Math.ceil((museumRecordingHours - 1) * 2);
-         totalRate += additionalHalfHours * rates.additionalHalfHour;
-       }
-       const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-       setCalculatedRate(formattedRate);
-   }
-   // Calculator for: Non-Broadcast -> Podcasts
-   else if (selectedSubType === "Podcasts" && selectedPodcastType) {
-       const rate = podcastRates[selectedPodcastType as keyof typeof podcastRates];
-       setCalculatedRate(rate || null);
-   }
-   // Calculator for: Non-Broadcast -> Medical / Technical Narration
-   else if (selectedSubType === "Medical / Technical Narration") {
-     if (medTechCalcMethod === 'minute' && selectedDuration) {
-       // Calculate by minute
-       const rate = medicalMinuteRates[selectedDuration as keyof typeof medicalMinuteRates];
-       setCalculatedRate(rate || null);
-     } else if (medTechCalcMethod === 'word' && wordCount > 0) {
-       // Calculate by word count
-       const lowTotal = wordCount * medicalPerWordRateLow;
-       const highTotal = wordCount * medicalPerWordRateHigh;
-       const formattedLow = lowTotal.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-       const formattedHigh = highTotal.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-       setCalculatedRate(`$${formattedLow}–$${formattedHigh}`);
-     } else {
-       // If method isn't selected or valid input not provided, reset rate
-       setCalculatedRate(null);
-     }
-   }
-   // Calculator for: Non-Broadcast -> Digital Greeting Cards
-   else if (selectedSubType === "Digital Greeting Cards") {
-     setCalculatedRate("$750–$1,000");
-   }
-   // Calculator for: Non-Broadcast -> YouTube Content
-   else if (selectedSubType === "YouTube Content" && selectedYouTubeType) {
-     const rate = youTubeRates[selectedYouTubeType as keyof typeof youTubeRates];
-     setCalculatedRate(rate || null);
-   }
-   // Calculator for: Non-Broadcast -> Kiosk Use (Non-Retail)
-   else if (selectedSubType === "Kiosk Use (Non-Retail)") {
-     if (numberOfHours > 0) {
-       const firstHourRate = 525;
-       const additionalHourRate = 262;
-       const totalRate = numberOfHours === 1 ? firstHourRate : firstHourRate + (additionalHourRate * (numberOfHours - 1));
-       const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-       setCalculatedRate(formattedRate);
-     } else {
-       setCalculatedRate(null);
-     }
-   }
-   // Calculator for: Non-Broadcast -> Lobby Viewing
-   else if (selectedSubType === "Lobby Viewing") {
-     if (selectedLobbyType === 'explainer') {
-       // Re-use the hourly calculation
-       if (numberOfHours > 0) {
-         const firstHourRate = 525;
-         const additionalHourRate = 262;
-         const totalRate = numberOfHours === 1 ? firstHourRate : firstHourRate + (additionalHourRate * (numberOfHours - 1));
-         const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-         setCalculatedRate(formattedRate);
-       } else {
-         setCalculatedRate(null);
-       }
-     } else if (selectedLobbyType === 'retail') {
-       // Show informational message
-       setCalculatedRate("Refer to TV broadcast rates");
-     } else {
-       setCalculatedRate(null); // No type selected
-     }
-   }
-   // Calculator for: Non-Broadcast -> Airport Announcements
-   else if (selectedSubType === "Airport Announcements") {
-     if (numberOfAirports > 0 && numberOfHours > 0) {
-       // 1. Calculate airport-based rate
-       const lowRate_air = 1500 + Math.max(0, numberOfAirports - 1) * 1000;
-       const highRate_air = 2000 + Math.max(0, numberOfAirports - 1) * 1500;
-       
-       // 2. Calculate hourly upcharge (base rate includes up to 2 hours)
-       const hourlyUpcharge = Math.max(0, numberOfHours - 2) * 500;
-       
-       // 3. Calculate final rate
-       const lowTotal = lowRate_air + hourlyUpcharge;
-       const highTotal = highRate_air + hourlyUpcharge;
-       
-       const formattedLow = lowTotal.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-       const formattedHigh = highTotal.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-       
-       setCalculatedRate(`$${formattedLow}–$${formattedHigh}`);
-     } else {
-       setCalculatedRate(null);
-     }
-   }
-     // Calculator for: E-Learning
-  else if (selectedCategory === "elearning") {
-    const numWords = Number(wordCount) || 0;
-    const numPFM = Number(finishedMinutes) || 0;
-    const numRawHours = Number(numberOfHours) || 0;
-    const numFinishedHours = Number(finishedHours) || 0;
-    const numSessionHours = Number(sessionHours) || 0;
-
-    if (selectedSubType === "Per Word" && numWords > 0) {
-      const lowRate = numWords * 0.20;
-      const highRate = numWords * 0.35;
-      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
-    } 
-    else if (selectedSubType === "Per Finished Minute" && numPFM > 0) {
-      const lowRate = numPFM * 30;
-      const highRate = numPFM * 55;
-      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
-    } 
-    else if (selectedSubType === "Per Raw Hour" && numRawHours > 0) {
-      const lowRate = numRawHours * 600;
-      const highRate = numRawHours * 2400;
-      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
-    }
-    else if (selectedSubType === "Per Finished Hour" && numFinishedHours > 0) {
-      const lowRate = numFinishedHours * 1500;
-      const highRate = numFinishedHours * 3300;
-      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
-    }
-    else if (selectedSubType === "Directed Sessions" && numWords > 0) {
-      const lowWordRate = numWords * 0.10;
-      const highWordRate = numWords * 0.30;
-      
-      const additionalHours = Math.max(0, numSessionHours - 1);
-      const lowHourRate = additionalHours * 150;
-      const highHourRate = additionalHours * 300;
-
-      const lowTotal = lowWordRate + lowHourRate;
-      const highTotal = highWordRate + highHourRate;
-      
-      setCalculatedRate(`$${lowTotal.toFixed(0)}–$${highTotal.toFixed(0)}`);
-    }   
-    else {
-      setCalculatedRate(null); // No input yet for E-Learning
-    }    
-  }
-// Calculator for: Animation / Dubbing
-  else if (selectedCategory === "animation_dubbing") {
-    const numSessionHours = Number(sessionLength) || 0;
-
-    if (selectedSubType === "Non-Union Original Animation – 22 Minute Episode") {
-      // Rate is per episode, up to 4 hrs
-      setCalculatedRate("$1,100–$1,200");
-    }
-    else if (selectedSubType === "Non-Union Original Animation – 11 Minute Episode or Less") {
-      // Rate is per episode ($400-$700)
-      const lowRate = numEpisodes * 400;
-      const highRate = numEpisodes * 700;
-      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
-    }
-    else if (selectedSubType === "Dubbing (Film/TV/Animation)" && numSessionHours > 0) {
-      // Rate is per hour, 2 hr min
-      const hoursToCharge = Math.max(2, numSessionHours);
-      const rate = hoursToCharge * 125; // Using the ~$125/hr non-union example
-      setCalculatedRate(`~$${rate.toFixed(0)}`);
-    }
-    else {
-      setCalculatedRate(null); // No input or sub-type not handled
-    }
-  }
-// Calculator for: Video Games / Toys & Games
-  else if (selectedCategory === "video_games_toys") {
-    const numSessionHours = Number(sessionLength) || 0;
-    const numMins = Number(finishedMinutes) || 0;
-
-    if (selectedSubType === "Video Games (Non-Union)") {
-      if (gameCalcMethod === 'hourly' && numSessionHours > 0) {
-        // $200–$350/hr (2 or 4 hr min)
-        // We'll calculate based on hours, and note the minimum
-        const lowRate = numSessionHours * 200;
-        const highRate = numSessionHours * 350;
-        setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)} (2-4 hr min)`);
-      } else if (gameCalcMethod === 'flat') {
-        // Common flat: $500 for 1 hr max
-        setCalculatedRate("$500 (1 hr max)");
-      } else {
-        setCalculatedRate(null);
-      }
-    }
-    else if (selectedSubType === "Video Games (Union)") {
-      // $825.50/session (up to 4 hrs)
-      setCalculatedRate("$825.50 (Up to 4 hr session)");
-    }
-    else if (selectedSubType === "Toys & Games" && numSessionHours > 0) {
-      // $500–$750 (up to 2 hrs), $200–$250/add’l hr
-      let lowRate = 500;
-      let highRate = 750;
-      const additionalHours = Math.max(0, numSessionHours - 2);
-      if (additionalHours > 0) {
-        lowRate += additionalHours * 200;
-        highRate += additionalHours * 250;
-      }
-      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
-    }
-    else if (selectedSubType === "Toys & Games (Demo/Scratch)" && numSessionHours > 0) {
-      // $150–$300/hr
-      const lowRate = numSessionHours * 150;
-      const highRate = numSessionHours * 300;
-      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
-    }
-    else if (selectedSubType === "Mobile Game Apps (Non-Union Character)") {
-      if (gameCalcMethod === 'per_game') {
-        // $300–$500/game. +$75–$100/extra voice over 3-4
-        let lowRate = 300;
-        let highRate = 500;
-        const extraVoices = Math.max(0, numVoices - 4); // Extra voices over 4
-        if (extraVoices > 0) {
-          lowRate += extraVoices * 75;
-          highRate += extraVoices * 100;
+    // Helper function to parse range strings like "$400–$750"
+    const parseRate = (rateString: string, description: string): RateInfo => {
+      if (!rateString.includes('–')) {
+        // Handle single numbers or special strings
+        const singleRate = parseFloat(rateString.replace(/[^0-9.]/g, ''));
+        if (!isNaN(singleRate)) {
+          return { text: rateString, low: singleRate, high: singleRate, description };
         }
-        setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
-      } else if (gameCalcMethod === 'hourly' && numSessionHours > 0) {
-        // $200–$300/hr (2 hr min)
+        // Handle "Union Rate", "Custom Retainer", etc.
+        return { text: rateString, low: 0, high: 0, description };
+      }
+      
+      const parts = rateString.split('–');
+      const low = parseFloat(parts[0].replace(/[^0-9.]/g, ''));
+      const high = parseFloat(parts[1].replace(/[^0-9.]/g, ''));
+      
+      return { 
+        text: rateString, 
+        low: isNaN(low) ? 0 : low, 
+        high: isNaN(high) ? 0 : high, 
+        description 
+      };
+    };
+
+    // Reset rate
+    setCalculatedRate(null);
+
+    // Calculator for: Digital Visual -> Non-Paid Web
+    if (selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && selectedTerm) {
+      const rate = nonPaidWebRates[selectedTerm as keyof typeof nonPaidWebRates];
+      setCalculatedRate(parseRate(rate, `Non-Paid Web - ${selectedTerm}`));
+    }
+    // Calculator for: Digital Visual -> Paid Social
+    else if (selectedSubType === "Paid Social" && selectedTerm) {
+      const rate = paidSocialRates[selectedTerm as keyof typeof paidSocialRates];
+      setCalculatedRate(parseRate(rate, `Paid Social - ${selectedTerm}`));
+    }
+    // Calculator for: Digital Visual -> Online Pre-Roll
+    else if (selectedSubType === "Online Pre-Roll / OLV" && selectedTerm) {
+      const rate = onlinePreRollRates[selectedTerm as keyof typeof onlinePreRollRates];
+      setCalculatedRate(parseRate(rate, `Online Pre-Roll - ${selectedTerm}`));
+    }
+    // Calculator for: Digital Visual -> OTT/CTV
+    else if (selectedSubType === "OTT/CTV (Includes Social & Pre-Roll)" && selectedTerm) {
+      const rate = ottRates[selectedTerm as keyof typeof ottRates];
+      setCalculatedRate(parseRate(rate, `OTT/CTV - ${selectedTerm}`));
+    }
+    // Calculator for: Digital Visual -> Digital Tags
+    else if (selectedSubType === "Digital Tags") {
+      const lowRate = 175 * numberOfTags;
+      const highRate = 225 * numberOfTags;
+      setCalculatedRate({
+        text: `$${lowRate}–$${highRate}`,
+        low: lowRate,
+        high: highRate,
+        description: `${numberOfTags} Digital Tag(s)`
+      });
+    }
+    // Calculator for: Digital Visual -> Automotive
+    else if (selectedSubType === "Automotive" && selectedTier) {
+      const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
+      if (typeof rates === 'string') { 
+        setCalculatedRate({ text: rates, low: 0, high: 0, description: `Automotive - ${selectedTier}` });
+      } else if (Array.isArray(rates)) {
+        const lowRate = rates[0] * numberOfSpots; const highRate = rates[1] * numberOfSpots;
+        setCalculatedRate({
+          text: `$${lowRate}–$${highRate}`,
+          low: lowRate,
+          high: highRate,
+          description: `Automotive (${selectedTier}) - ${numberOfSpots} spot(s)`
+        });
+      }
+    }
+    // Calculator for: Radio -> Local - Regional
+    else if (selectedSubType === "Local – Regional (Terrestrial)" && selectedTerm) {
+      const rate = radioLocalRates[selectedTerm as keyof typeof radioLocalRates];
+      setCalculatedRate(parseRate(rate, `Local Radio - ${selectedTerm}`));
+    }
+    // Calculator for: Radio -> National (Terrestrial)
+    else if (selectedSubType === "National (Terrestrial)" && selectedTerm) {
+      const rate = radioNationalRates[selectedTerm as keyof typeof radioNationalRates];
+      setCalculatedRate(parseRate(rate, `National Radio - ${selectedTerm}`));
+    }
+    // Calculator for: Radio -> Digital Radio
+    else if (selectedSubType === "Digital Radio" && selectedTerm) {
+      const rate = radioDigitalRates[selectedTerm as keyof typeof radioDigitalRates];
+      setCalculatedRate(parseRate(rate, `Digital Radio - ${selectedTerm}`));
+    }
+    // Calculator for: Radio -> Value Menu (Local)
+    else if (selectedSubType === "Value Menu – Terrestrial + Digital (Local/Regional)" && selectedTerm) {
+      const rate = radioValueLocalRates[selectedTerm as keyof typeof radioValueLocalRates];
+      setCalculatedRate(parseRate(rate, `Value Menu (Local) - ${selectedTerm}`));
+    }
+    // Calculator for: Radio -> Value Menu (National)
+    else if (selectedSubType === "Value Menu – Terrestrial + Digital (National)" && selectedTerm) {
+      const rate = radioValueNationalRates[selectedTerm as keyof typeof radioValueNationalRates];
+      setCalculatedRate(parseRate(rate, `Value Menu (National) - ${selectedTerm}`));
+    }
+    // Calculator for: Radio -> Automotive (Radio)
+    else if (selectedSubType === "Automotive (Radio)" && selectedTier) {
+      const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
+      if (typeof rates === 'string') { 
+        setCalculatedRate({ text: rates, low: 0, high: 0, description: `Automotive (Radio) - ${selectedTier}` });
+      } else if (Array.isArray(rates)) {
+        const lowRate = rates[0] * numberOfSpots; const highRate = rates[1] * numberOfSpots;
+        setCalculatedRate({
+          text: `$${lowRate}–$${highRate}`,
+          low: lowRate,
+          high: highRate,
+          description: `Automotive (Radio, ${selectedTier}) - ${numberOfSpots} spot(s)`
+        });
+      }
+    }
+    // Calculator for: Radio -> Radio/Podcast Dramas
+    else if (selectedSubType === "Radio/Podcast Dramas" && selectedRole) {
+      const rate = radioDramaRates[selectedRole as keyof typeof radioDramaRates];
+      setCalculatedRate(parseRate(rate, `Radio/Podcast Drama - ${selectedRole}`));
+    }
+    // Calculator for: Radio -> PSA
+    else if (selectedSubType === "PSA – Public Service Announcement") {
+      setCalculatedRate(parseRate("$500–$600+", `PSA – :60 or less`));
+    }
+    // Calculator for: TV -> Local / Regional
+    else if (selectedSubType === "Local / Regional" && selectedTerm) {
+        const rate = tvLocalRates[selectedTerm as keyof typeof tvLocalRates];
+        setCalculatedRate(parseRate(rate, `Local/Regional TV - ${selectedTerm}`));
+    }
+      // Calculator for: TV -> National
+    else if (selectedSubType === "National" && selectedTerm) {
+      const rate = tvNationalRates[selectedTerm as keyof typeof tvNationalRates];
+      setCalculatedRate(parseRate(rate, `National TV - ${selectedTerm}`));
+    }
+    // Calculator for: TV -> TV + Digital Visual – Paid Social
+    else if (selectedSubType === "TV + Digital Visual – Paid Social" && selectedTerm && selectedMarket) {
+      const combinedRate = tvPaidSocialRates[selectedTerm as keyof typeof tvPaidSocialRates];
+      if (combinedRate) {
+        const rateParts = combinedRate.split(' / ');
+        const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
+        if(finalRate) setCalculatedRate(parseRate(finalRate, `TV + Paid Social (${selectedMarket}) - ${selectedTerm}`));
+      }
+    }
+    // Calculator for: TV -> TV + Digital Visual – Online Pre-Roll
+    else if (selectedSubType === "TV + Digital Visual – Online Pre-Roll (Includes Paid Social)" && selectedTerm && selectedMarket) {
+      const combinedRate = tvOnlinePreRollRates[selectedTerm as keyof typeof tvOnlinePreRollRates];
+      if (combinedRate) {
+        const rateParts = combinedRate.split(' / ');
+        const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
+        if(finalRate) setCalculatedRate(parseRate(finalRate, `TV + Pre-Roll (${selectedMarket}) - ${selectedTerm}`));
+      }
+    }
+    // Calculator for: TV -> TV + Digital Visual – OTT/CTV
+    else if (selectedSubType === "TV + Digital Visual – OTT/CTV (Includes Pre-Roll & Paid Social)" && selectedTerm && selectedMarket) {
+      const combinedRate = tvOttRates[selectedTerm as keyof typeof tvOttRates];
+      if (combinedRate) {
+        const rateParts = combinedRate.split(' / ');
+        const finalRate = selectedMarket === 'Local/Regional' ? (rateParts.length > 0 ? rateParts[0] : null) : (rateParts.length > 1 ? rateParts[1] : null) ;
+        if(finalRate) setCalculatedRate(parseRate(finalRate, `TV + OTT/CTV (${selectedMarket}) - ${selectedTerm}`));
+      }
+    }
+    // Calculator for: TV -> Automotive (TV)
+    else if (selectedSubType === "Automotive (TV)" && selectedTier) {
+        const rates = automotiveRates[selectedTier as keyof typeof automotiveRates];
+        if (typeof rates === 'string') { 
+          setCalculatedRate({ text: rates, low: 0, high: 0, description: `Automotive (TV) - ${selectedTier}` });
+        } else if (Array.isArray(rates)) {
+          const lowRate = rates[0] * numberOfSpots; const highRate = rates[1] * numberOfSpots;
+          setCalculatedRate({
+            text: `$${lowRate}–$${highRate}`,
+            low: lowRate,
+            high: highRate,
+            description: `Automotive (TV, ${selectedTier}) - ${numberOfSpots} spot(s)`
+          });
+        }
+      }
+      // Calculator for: TV -> In-Show / Documentary Narration
+      else if (selectedSubType === "In-Show / Documentary Narration" && selectedProgramLength) {
+        const rate = inShowNarrationRates[selectedProgramLength as keyof typeof inShowNarrationRates];
+        setCalculatedRate(parseRate(rate, `In-Show Narration - ${selectedProgramLength}`));
+      }
+      // Calculator for: TV -> Infomercial / DRTV
+      else if (selectedSubType === "Infomercial / DRTV" && selectedInfomercialMarket) {
+        const rate = infomercialRates[selectedInfomercialMarket as keyof typeof infomercialRates];
+        setCalculatedRate(parseRate(rate, `Infomercial - ${selectedInfomercialMarket}`));
+      }
+      // Calculator for: TV -> Mnemonics (Informational)
+      else if (selectedSubType === "Mnemonics") {
+        setCalculatedRate({ text: "Varies Greatly ($1k–$50k+). Quote based on brand scope/usage.", low: 0, high: 0, description: "Mnemonics" });
+      }
+      // Calculator for: TV -> Point of Sale (POS) (Informational)
+      else if (selectedSubType === "Point of Sale (POS)") {
+        setCalculatedRate({ text: "Refer to TV Local/Regional or National rates based on scope.", low: 0, high: 0, description: "Point of Sale (POS)" });
+      }
+    // Calculator for: Non-Broadcast -> Corporate Minute Scale
+    else if (selectedSubType === "Corporate & Industrial Narration – Finished Minute Scale" && selectedDuration) {
+      const rate = corporateMinuteRates[selectedDuration as keyof typeof corporateMinuteRates];
+      setCalculatedRate(parseRate(rate, `Corporate Narration (Minute) - ${selectedDuration}`));
+    }
+    // Calculator for: Non-Broadcast -> Corporate Recording Time Scale
+    else if (selectedSubType === "Corporate & Industrial Narration – Recording Time Scale") {
+      if (numberOfHours > 0) {
+        const firstHourRate = 525;
+        const additionalHourRate = 262;
+        const totalRate = numberOfHours === 1 ? firstHourRate : firstHourRate + (additionalHourRate * (numberOfHours - 1));
+        const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+        setCalculatedRate({
+          text: formattedRate,
+          low: totalRate,
+          high: totalRate,
+          description: `Corporate Narration (Time) - ${numberOfHours} hr(s)`
+        });
+      }
+    }
+    // Calculator for: Non-Broadcast -> Explainer Videos
+    else if (selectedSubType === "Explainer Videos") {
+      if (explainerCalcMethod === 'single') {
+        setCalculatedRate(parseRate("$300–$525", "Explainer Video (Single ≤ 90s)"));
+      } else if (explainerCalcMethod === 'bulk' && wordCount > 0) {
+        const baseRate = 250;
+        let totalRate: number;
+        if (wordCount <= 175) {
+          totalRate = baseRate;
+        } else {
+          const additionalWords = wordCount - 175;
+          const additionalBlocks = Math.ceil(additionalWords / 100);
+          const additionalCharge = additionalBlocks * 50;
+          totalRate = baseRate + additionalCharge;
+        }
+        const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+        setCalculatedRate({
+          text: formattedRate,
+          low: totalRate,
+          high: totalRate,
+          description: `Explainer Video (Bulk) - ${wordCount} words`
+        });
+      }
+    }
+    // Calculator for: Non-Broadcast -> Museum Tours
+    else if (selectedSubType === "Museum Tours – Educational" && selectedMuseumCategory && museumRecordingHours > 0) {
+        const rates = selectedMuseumCategory === "CAT1" ? museumCat1Rate : museumCat2Rate;
+        let totalRate = rates.firstHour;
+        if (museumRecordingHours > 1) {
+          const additionalHalfHours = Math.ceil((museumRecordingHours - 1) * 2);
+          totalRate += additionalHalfHours * rates.additionalHalfHour;
+        }
+        const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+        setCalculatedRate({
+          text: formattedRate,
+          low: totalRate,
+          high: totalRate,
+          description: `Museum Tour (${selectedMuseumCategory}) - ${museumRecordingHours} hr(s)`
+        });
+    }
+    // Calculator for: Non-Broadcast -> Podcasts
+    else if (selectedSubType === "Podcasts" && selectedPodcastType) {
+        const rate = podcastRates[selectedPodcastType as keyof typeof podcastRates];
+        setCalculatedRate(parseRate(rate, `Podcast - ${selectedPodcastType}`));
+    }
+    // Calculator for: Non-Broadcast -> Medical / Technical Narration
+    else if (selectedSubType === "Medical / Technical Narration") {
+      if (medTechCalcMethod === 'minute' && selectedDuration) {
+        const rate = medicalMinuteRates[selectedDuration as keyof typeof medicalMinuteRates];
+        setCalculatedRate(parseRate(rate, `Medical Narration (Minute) - ${selectedDuration}`));
+      } else if (medTechCalcMethod === 'word' && wordCount > 0) {
+        const lowTotal = wordCount * medicalPerWordRateLow;
+        const highTotal = wordCount * medicalPerWordRateHigh;
+        setCalculatedRate({
+          text: `$${lowTotal.toFixed(0)}–$${highTotal.toFixed(0)}`,
+          low: lowTotal,
+          high: highTotal,
+          description: `Medical Narration (Word) - ${wordCount} words`
+        });
+      }
+    }
+    // Calculator for: Non-Broadcast -> Digital Greeting Cards
+    else if (selectedSubType === "Digital Greeting Cards") {
+      setCalculatedRate(parseRate("$750–$1,000", "Digital Greeting Cards"));
+    }
+    // Calculator for: Non-Broadcast -> YouTube Content
+    else if (selectedSubType === "YouTube Content" && selectedYouTubeType) {
+      const rate = youTubeRates[selectedYouTubeType as keyof typeof youTubeRates];
+      setCalculatedRate(parseRate(rate, `YouTube - ${selectedYouTubeType}`));
+    }
+    // Calculator for: Non-Broadcast -> Kiosk Use (Non-Retail)
+    else if (selectedSubType === "Kiosk Use (Non-Retail)") {
+      if (numberOfHours > 0) {
+        const firstHourRate = 525;
+        const additionalHourRate = 262;
+        const totalRate = numberOfHours === 1 ? firstHourRate : firstHourRate + (additionalHourRate * (numberOfHours - 1));
+        const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+        setCalculatedRate({
+          text: formattedRate,
+          low: totalRate,
+          high: totalRate,
+          description: `Kiosk (Non-Retail) - ${numberOfHours} hr(s)`
+        });
+      }
+    }
+    // Calculator for: Non-Broadcast -> Lobby Viewing
+    else if (selectedSubType === "Lobby Viewing") {
+      if (selectedLobbyType === 'explainer') {
+        if (numberOfHours > 0) {
+          const firstHourRate = 525;
+          const additionalHourRate = 262;
+          const totalRate = numberOfHours === 1 ? firstHourRate : firstHourRate + (additionalHourRate * (numberOfHours - 1));
+          const formattedRate = `$${totalRate.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+          setCalculatedRate({
+            text: formattedRate,
+            low: totalRate,
+            high: totalRate,
+            description: `Lobby Viewing (Explainer) - ${numberOfHours} hr(s)`
+          });
+        }
+      } else if (selectedLobbyType === 'retail') {
+        setCalculatedRate({ text: "Refer to TV broadcast rates", low: 0, high: 0, description: "Lobby Viewing (Retail)" });
+      }
+    }
+    // Calculator for: Non-Broadcast -> Airport Announcements
+    else if (selectedSubType === "Airport Announcements") {
+      if (numberOfAirports > 0 && numberOfHours > 0) {
+        const lowRate_air = 1500 + Math.max(0, numberOfAirports - 1) * 1000;
+        const highRate_air = 2000 + Math.max(0, numberOfAirports - 1) * 1500;
+        const hourlyUpcharge = Math.max(0, numberOfHours - 2) * 500;
+        const lowTotal = lowRate_air + hourlyUpcharge;
+        const highTotal = highRate_air + hourlyUpcharge;
+        
+        setCalculatedRate({
+          text: `$${lowTotal.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}–$${highTotal.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`,
+          low: lowTotal,
+          high: highTotal,
+          description: `Airport Announcements - ${numberOfAirports} airport(s), ${numberOfHours} hr(s)`
+        });
+      }
+    }
+      // Calculator for: E-Learning
+    else if (selectedCategory === "elearning") {
+      const numWords = Number(wordCount) || 0;
+      const numPFM = Number(finishedMinutes) || 0;
+      const numRawHours = Number(numberOfHours) || 0;
+      const numFinishedHours = Number(finishedHours) || 0;
+      const numSessionHours = Number(sessionHours) || 0;
+
+      if (selectedSubType === "Per Word" && numWords > 0) {
+        const lowRate = numWords * 0.20;
+        const highRate = numWords * 0.35;
+        setCalculatedRate({
+          text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`,
+          low: lowRate,
+          high: highRate,
+          description: `E-Learning (Word) - ${numWords} words`
+        });
+      } 
+      else if (selectedSubType === "Per Finished Minute" && numPFM > 0) {
+        const lowRate = numPFM * 30;
+        const highRate = numPFM * 55;
+        setCalculatedRate({
+          text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`,
+          low: lowRate,
+          high: highRate,
+          description: `E-Learning (PFM) - ${numPFM} mins`
+        });
+      } 
+      else if (selectedSubType === "Per Raw Hour" && numRawHours > 0) {
+        const lowRate = numRawHours * 600;
+        const highRate = numRawHours * 2400;
+        setCalculatedRate({
+          text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`,
+          low: lowRate,
+          high: highRate,
+          description: `E-Learning (Raw) - ${numRawHours} hr(s)`
+        });
+      }
+      else if (selectedSubType === "Per Finished Hour" && numFinishedHours > 0) {
+        const lowRate = numFinishedHours * 1500;
+        const highRate = numFinishedHours * 3300;
+        setCalculatedRate({
+          text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`,
+          low: lowRate,
+          high: highRate,
+          description: `E-Learning (PFH) - ${numFinishedHours} hr(s)`
+        });
+      }
+      else if (selectedSubType === "Directed Sessions" && numWords > 0) {
+        const lowWordRate = numWords * 0.10;
+        const highWordRate = numWords * 0.30;
+        const additionalHours = Math.max(0, numSessionHours - 1);
+        const lowHourRate = additionalHours * 150;
+        const highHourRate = additionalHours * 300;
+        const lowTotal = lowWordRate + lowHourRate;
+        const highTotal = highWordRate + highHourRate;
+        
+        setCalculatedRate({
+          text: `$${lowTotal.toFixed(0)}–$${highTotal.toFixed(0)}`,
+          low: lowTotal,
+          high: highTotal,
+          description: `E-Learning (Directed) - ${numWords} words, ${numSessionHours} hr(s)`
+        });
+      }   
+    }
+  // Calculator for: Animation / Dubbing
+    else if (selectedCategory === "animation_dubbing") {
+      const numSessionHours = Number(sessionLength) || 0;
+
+      if (selectedSubType === "Non-Union Original Animation – 22 Minute Episode") {
+        setCalculatedRate(parseRate("$1,100–$1,200", "Animation - 22 Min Episode"));
+      }
+      else if (selectedSubType === "Non-Union Original Animation – 11 Minute Episode or Less") {
+        const lowRate = numEpisodes * 400;
+        const highRate = numEpisodes * 700;
+        setCalculatedRate({
+          text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`,
+          low: lowRate,
+          high: highRate,
+          description: `Animation - ${numEpisodes} episode(s) (≤ 11 min)`
+        });
+      }
+      else if (selectedSubType === "Dubbing (Film/TV/Animation)" && numSessionHours > 0) {
         const hoursToCharge = Math.max(2, numSessionHours);
-        const lowRate = hoursToCharge * 200;
-        const highRate = hoursToCharge * 300;
-        setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
-      } else {
-        setCalculatedRate(null);
+        const rate = hoursToCharge * 125;
+        setCalculatedRate({
+          text: `~$${rate.toFixed(0)}`,
+          low: rate,
+          high: rate,
+          description: `Dubbing - ${numSessionHours} hr(s)`
+        });
       }
     }
-    else if (selectedSubType === "Mobile Game Apps (Union Character)") {
-      // $825.50/session
-      setCalculatedRate("$825.50 (Up to 3 voices, 4 hr max)");
-    }
-    else if (selectedSubType === "Mobile Game Apps (E-Learning/Educational)" && numMins > 0) {
-      // $350–$400 (1–5 mins) / $600 (10 mins)
-      if (numMins >= 1 && numMins <= 5) {
-        setCalculatedRate("$350–$400");
-      } else if (numMins > 5 && numMins <= 10) {
-        // Prorating a bit, landing on $600 at 10 mins
-        const lowRate = 350 + (numMins - 5) * ( (600-350) / 5 );
-        const highRate = 400 + (numMins - 5) * ( (600-400) / 5 );
-        setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
-      } else if (numMins > 10) {
-         const lowRate = numMins * 60; // $600/10mins = $60/min
-         setCalculatedRate(`$${lowRate.toFixed(0)}+`);
-      } else {
-        setCalculatedRate(null);
-      }
-    }
-    else {
-      setCalculatedRate(null);
-    }
-  }
-      // Calculator for: Promo & Imaging -> TV
-  else if (selectedSubType === "TV" && selectedPromoMarket) {
-    const rate = promoTvRates[selectedPromoMarket as keyof typeof promoTvRates];
-    setCalculatedRate(rate || null);
-  }
-// Calculator for: Promo & Imaging -> Radio
-  else if (selectedSubType === "Radio" && selectedPromoMarket) {
-    const rate = promoRadioRates[selectedPromoMarket as keyof typeof promoRadioRates];
-    setCalculatedRate(rate || null);
-  }
-// Calculator for: Promo & Imaging -> Trailers
-  else if (selectedSubType === "Trailers" && selectedPromoMarket) {
-    const rate = promoTrailerRates[selectedPromoMarket as keyof typeof promoTrailerRates];
-    setCalculatedRate(rate || null);
-  }
-// Calculator for: Audiobooks
-  else if (selectedCategory === "audiobooks") {
-    const numFinishedHours = Number(finishedHours) || 0;
-    const numRawHours = Number(numberOfHours) || 0; // Re-using numberOfHours for raw/prod
+  // Calculator for: Video Games / Toys & Games
+    else if (selectedCategory === "video_games_toys") {
+      const numSessionHours = Number(sessionLength) || 0;
+      const numMins = Number(finishedMinutes) || 0;
 
-    if (selectedSubType === "Union Scale – PFH" && numFinishedHours > 0) {
-      const lowRate = numFinishedHours * 150;
-      const highRate = numFinishedHours * 225;
-      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+      if (selectedSubType === "Video Games (Non-Union)") {
+        if (gameCalcMethod === 'hourly' && numSessionHours > 0) {
+          const lowRate = numSessionHours * 200;
+          const highRate = numSessionHours * 350;
+          setCalculatedRate({
+            text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)} (2-4 hr min)`,
+            low: lowRate,
+            high: highRate,
+            description: `Video Game (Non-Union) - ${numSessionHours} hr(s)`
+          });
+        } else if (gameCalcMethod === 'flat') {
+          setCalculatedRate({ text: "$500 (1 hr max)", low: 500, high: 500, description: "Video Game (Non-Union) - Flat Rate" });
+        }
+      }
+      else if (selectedSubType === "Video Games (Union)") {
+        setCalculatedRate({ text: "$825.50 (Up to 4 hr session)", low: 825.50, high: 825.50, description: "Video Game (Union) - 4hr Session" });
+      }
+      else if (selectedSubType === "Toys & Games" && numSessionHours > 0) {
+        let lowRate = 500;
+        let highRate = 750;
+        const additionalHours = Math.max(0, numSessionHours - 2);
+        if (additionalHours > 0) {
+          lowRate += additionalHours * 200;
+          highRate += additionalHours * 250;
+        }
+        setCalculatedRate({
+          text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`,
+          low: lowRate,
+          high: highRate,
+          description: `Toys & Games - ${numSessionHours} hr(s)`
+        });
+      }
+      else if (selectedSubType === "Toys & Games (Demo/Scratch)" && numSessionHours > 0) {
+        const lowRate = numSessionHours * 150;
+        const highRate = numSessionHours * 300;
+        setCalculatedRate({
+          text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`,
+          low: lowRate,
+          high: highRate,
+          description: `Toys & Games (Demo) - ${numSessionHours} hr(s)`
+        });
+      }
+      else if (selectedSubType === "Mobile Game Apps (Non-Union Character)") {
+        if (gameCalcMethod === 'per_game') {
+          let lowRate = 300;
+          let highRate = 500;
+          const extraVoices = Math.max(0, numVoices - 4);
+          if (extraVoices > 0) {
+            lowRate += extraVoices * 75;
+            highRate += extraVoices * 100;
+          }
+          setCalculatedRate({
+            text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`,
+            low: lowRate,
+            high: highRate,
+            description: `Mobile Game (Non-Union) - ${numVoices} voice(s)`
+          });
+        } else if (gameCalcMethod === 'hourly' && numSessionHours > 0) {
+          const hoursToCharge = Math.max(2, numSessionHours);
+          const lowRate = hoursToCharge * 200;
+          const highRate = hoursToCharge * 300;
+          setCalculatedRate({
+            text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`,
+            low: lowRate,
+            high: highRate,
+            description: `Mobile Game (Non-Union) - ${numSessionHours} hr(s)`
+          });
+        }
+      }
+      else if (selectedSubType === "Mobile Game Apps (Union Character)") {
+        setCalculatedRate({ text: "$825.50 (Up to 3 voices, 4 hr max)", low: 825.50, high: 825.50, description: "Mobile Game (Union)" });
+      }
+      else if (selectedSubType === "Mobile Game Apps (E-Learning/Educational)" && numMins > 0) {
+        let lowRate = 0, highRate = 0, text = "";
+        if (numMins >= 1 && numMins <= 5) {
+          lowRate = 350; highRate = 400; text = "$350–$400";
+        } else if (numMins > 5 && numMins <= 10) {
+          lowRate = 350 + (numMins - 5) * ( (600-350) / 5 );
+          highRate = 400 + (numMins - 5) * ( (600-400) / 5 );
+          text = `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`;
+        } else if (numMins > 10) {
+          lowRate = numMins * 60; highRate = lowRate; // No upper bound given, so set high=low
+          text = `$${lowRate.toFixed(0)}+`;
+        }
+        setCalculatedRate({
+          text: text,
+          low: lowRate,
+          high: highRate,
+          description: `Mobile Game (E-Learning) - ${numMins} min(s)`
+        });
+      }
     }
-    else if (selectedSubType === "Non-Union – PFH" && numFinishedHours > 0) {
-      const lowRate = numFinishedHours * 200;
-      const highRate = numFinishedHours * 500;
-      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+  // Calculator for: Promo & Imaging -> TV
+    else if (selectedSubType === "TV" && selectedPromoMarket) {
+      const rate = promoTvRates[selectedPromoMarket as keyof typeof promoTvRates];
+      setCalculatedRate(parseRate(rate, `Promo (TV) - ${selectedPromoMarket}`));
     }
-    else if (selectedSubType === "Per RAW Hour" && numRawHours > 0) {
-      const rate = numRawHours * 225;
-      setCalculatedRate(`$${rate.toFixed(0)}`);
+  // Calculator for: Promo & Imaging -> Radio
+    else if (selectedSubType === "Radio" && selectedPromoMarket) {
+      const rate = promoRadioRates[selectedPromoMarket as keyof typeof promoRadioRates];
+      setCalculatedRate(parseRate(rate, `Promo (Radio) - ${selectedPromoMarket}`));
     }
-    else if (selectedSubType === "Production Add-On" && numRawHours > 0) {
-      const lowRate = numRawHours * 75;
-      const highRate = numRawHours * 125;
-      setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`);
+  // Calculator for: Promo & Imaging -> Trailers
+    else if (selectedSubType === "Trailers" && selectedPromoMarket) {
+      const rate = promoTrailerRates[selectedPromoMarket as keyof typeof promoTrailerRates];
+      setCalculatedRate(parseRate(rate, `Promo (Trailer) - ${selectedPromoMarket}`));
     }
-    else if (selectedSubType === "Hybrid Agreement" && numFinishedHours > 0) {
-      const rate = numFinishedHours * 100;
-      setCalculatedRate(`$${rate.toFixed(0)} + Royalty Share`);
-    }
-    else {
-      setCalculatedRate(null);
-    }
-  }
-      // Calculator for: IVR / Message-on-Hold
-  else if (selectedCategory === "ivr_message_on_hold") {
-    const numWords = Number(wordCount) || 0;
-    const numHours = Number(numberOfHours) || 0;
-    const numMins = Number(finishedMinutes) || 0;
-    const numParas = Number(numParagraphs) || 0;
+  // Calculator for: Audiobooks
+    else if (selectedCategory === "audiobooks") {
+      const numFinishedHours = Number(finishedHours) || 0;
+      const numRawHours = Number(numberOfHours) || 0;
 
-    if (selectedSubType === "Direct Quote") {
-      if (selectedIvrModel === 'ivr_min') {
-        setCalculatedRate("$150"); // [cite: 120]
+      if (selectedSubType === "Union Scale – PFH" && numFinishedHours > 0) {
+        const lowRate = numFinishedHours * 150;
+        const highRate = numFinishedHours * 225;
+        setCalculatedRate({
+          text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`,
+          low: lowRate,
+          high: highRate,
+          description: `Audiobook (Union PFH) - ${numFinishedHours} hr(s)`
+        });
       }
-      else if (selectedIvrModel === 'ivr_prompt' && numPrompts > 0) {
-        const lowRate = 150 + (numPrompts * 1);
-        const highRate = 200 + (numPrompts * 5);
-        setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`); // [cite: 120]
+      else if (selectedSubType === "Non-Union – PFH" && numFinishedHours > 0) {
+        const lowRate = numFinishedHours * 200;
+        const highRate = numFinishedHours * 500;
+        setCalculatedRate({
+          text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`,
+          low: lowRate,
+          high: highRate,
+          description: `Audiobook (Non-Union PFH) - ${numFinishedHours} hr(s)`
+        });
       }
-      else if (selectedIvrModel === 'ivr_word' && numWords > 0) {
-        const lowRate = numWords * 0.08;
-        const highRate = numWords * 0.25;
-        setCalculatedRate(`$${lowRate.toFixed(2)}–$${highRate.toFixed(2)}`); // [cite: 120]
+      else if (selectedSubType === "Per RAW Hour" && numRawHours > 0) {
+        const rate = numRawHours * 225;
+        setCalculatedRate({
+          text: `$${rate.toFixed(0)}`,
+          low: rate,
+          high: rate,
+          description: `Audiobook (Raw) - ${numRawHours} hr(s)`
+        });
       }
-      else if (selectedIvrModel === 'ivr_hour' && numHours > 0) {
-        const lowRate = numHours * 50;
-        const highRate = numHours * 200;
-        setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`); // [cite: 120]
+      else if (selectedSubType === "Production Add-On" && numRawHours > 0) {
+        const lowRate = numRawHours * 75;
+        const highRate = numRawHours * 125;
+        setCalculatedRate({
+          text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`,
+          low: lowRate,
+          high: highRate,
+          description: `Audiobook (Production) - ${numRawHours} hr(s)`
+        });
       }
-      else if (selectedIvrModel === 'moh_min') {
-        setCalculatedRate("$200"); // [cite: 120]
-      }
-      else if (selectedIvrModel === 'moh_min_rate' && numMins > 0) {
-        const rate = numMins * 100;
-        setCalculatedRate(`$${rate.toFixed(0)}`); // [cite: 120]
-      }
-      else if (selectedIvrModel === 'moh_para' && numParas > 0) {
-        const rate = numParas * 8;
-        setCalculatedRate(`$${rate.toFixed(0)}`); // [cite: 120]
-      }
-      else {
-        setCalculatedRate(null);
+      else if (selectedSubType === "Hybrid Agreement" && numFinishedHours > 0) {
+        const rate = numFinishedHours * 100;
+        setCalculatedRate({
+          text: `$${rate.toFixed(0)} + Royalty Share`,
+          low: rate, // We can represent the $100 PFH part
+          high: rate,
+          description: `Audiobook (Hybrid) - ${numFinishedHours} hr(s)`
+        });
       }
     }
-    else if (selectedSubType === "Roster Talent") {
-      if (selectedRosterModel === 'prod_house' && numParas > 0) {
-        const lowRate = numParas * 10;
-        const highRate = numParas * 20;
-        setCalculatedRate(`$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`); // [cite: 122]
-      }
-      else if (selectedRosterModel === 'other_hourly' && numHours > 0) {
-        const halfHours = numHours * 2;
-        const rate = halfHours * 50;
-        setCalculatedRate(`$${rate.toFixed(0)}`); // [cite: 122]
-      }
-      else {
-        setCalculatedRate(null);
-      }
-    }
-    else {
-      setCalculatedRate(null);
-    }
-  }
-      // Calculator for: Cinema / Events
-  else if (selectedCategory === "cinema_events") {
-    const numHours = Number(numberOfHours) || 0;
+  // Calculator for: IVR / Message-on-Hold
+    else if (selectedCategory === "ivr_message_on_hold") {
+      const numWords = Number(wordCount) || 0;
+      const numHours = Number(numberOfHours) || 0;
+      const numMins = Number(finishedMinutes) || 0;
+      const numParas = Number(numParagraphs) || 0;
 
-    if (selectedSubType === "Cinema Usage – Term (1–3 States)" && selectedTerm) {
-      const rate = cinemaRates1to3States[selectedTerm as keyof typeof cinemaRates1to3States];
-      setCalculatedRate(rate || null);
-    }
-    else if (selectedSubType === "Cinema Usage – Term (4+ States)" && selectedTerm) {
-      const rate = cinemaRates4PlusStates[selectedTerm as keyof typeof cinemaRates4PlusStates];
-      setCalculatedRate(rate || null);
-    }
-    else if (selectedSubType === "Event Video" && selectedTerm && numHours > 0) {
-      const rates = eventVideoRates[selectedTerm as keyof typeof eventVideoRates];
-      if (rates) {
-        const additionalHours = Math.max(0, numHours - 1);
-        const lowTotal = rates.firstHourLow + (additionalHours * rates.addHourLow);
-        const highTotal = rates.firstHourHigh + (additionalHours * rates.addHourHigh);
-        setCalculatedRate(`$${lowTotal.toFixed(0)}–$${highTotal.toFixed(0)}`);
-      } else {
-        setCalculatedRate(null);
+      if (selectedSubType === "Direct Quote") {
+        if (selectedIvrModel === 'ivr_min') {
+          setCalculatedRate({ text: "$150", low: 150, high: 150, description: "IVR (Suggested Minimum)" });
+        }
+        else if (selectedIvrModel === 'ivr_prompt' && numPrompts > 0) {
+          const lowRate = 150 + (numPrompts * 1);
+          const highRate = 200 + (numPrompts * 5);
+          setCalculatedRate({
+            text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`,
+            low: lowRate,
+            high: highRate,
+            description: `IVR (Per Prompt) - ${numPrompts} prompts`
+          });
+        }
+        else if (selectedIvrModel === 'ivr_word' && numWords > 0) {
+          const lowRate = numWords * 0.08;
+          const highRate = numWords * 0.25;
+          setCalculatedRate({
+            text: `$${lowRate.toFixed(2)}–$${highRate.toFixed(2)}`,
+            low: lowRate,
+            high: highRate,
+            description: `IVR (Per Word) - ${numWords} words`
+          });
+        }
+        else if (selectedIvrModel === 'ivr_hour' && numHours > 0) {
+          const lowRate = numHours * 50;
+          const highRate = numHours * 200;
+          setCalculatedRate({
+            text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`,
+            low: lowRate,
+            high: highRate,
+            description: `IVR (Per Hour) - ${numHours} hr(s)`
+          });
+        }
+        else if (selectedIvrModel === 'moh_min') {
+          setCalculatedRate({ text: "$200", low: 200, high: 200, description: "Message-On-Hold (Minimum)" });
+        }
+        else if (selectedIvrModel === 'moh_min_rate' && numMins > 0) {
+          const rate = numMins * 100;
+          setCalculatedRate({
+            text: `$${rate.toFixed(0)}`,
+            low: rate,
+            high: rate,
+            description: `Message-On-Hold - ${numMins} min(s)`
+          });
+        }
+        else if (selectedIvrModel === 'moh_para' && numParas > 0) {
+          const rate = numParas * 8;
+          setCalculatedRate({
+            text: `$${rate.toFixed(0)}`,
+            low: rate,
+            high: rate,
+            description: `Message-On-Hold - ${numParas} paragraph(s)`
+          });
+        }
+      }
+      else if (selectedSubType === "Roster Talent") {
+        if (selectedRosterModel === 'prod_house' && numParas > 0) {
+          const lowRate = numParas * 10;
+          const highRate = numParas * 20;
+          setCalculatedRate({
+            text: `$${lowRate.toFixed(0)}–$${highRate.toFixed(0)}`,
+            low: lowRate,
+            high: highRate,
+            description: `Roster (Production House) - ${numParas} paragraph(s)`
+          });
+        }
+        else if (selectedRosterModel === 'other_hourly' && numHours > 0) {
+          const halfHours = numHours * 2;
+          const rate = halfHours * 50;
+          setCalculatedRate({
+            text: `$${rate.toFixed(0)}`,
+            low: rate,
+            high: rate,
+            description: `Roster (Hourly) - ${numHours} hr(s)`
+          });
+        }
       }
     }
-    else if (selectedSubType === "Trade Shows / Sporting Events" && selectedTerm && numHours > 0) {
-      const rates = tradeShowRates[selectedTerm as keyof typeof tradeShowRates];
-      if (rates) {
-        const additionalHours = Math.max(0, numHours - 1);
-        const lowTotal = rates.firstHourLow + (additionalHours * rates.addHourLow);
-        const highTotal = rates.firstHourHigh + (additionalHours * rates.addHourHigh);
-        setCalculatedRate(`$${lowTotal.toFixed(0)}–$${highTotal.toFixed(0)}`);
-      } else {
-        setCalculatedRate(null);
-      }
-    }
-    else {
-      setCalculatedRate(null);
-    }
-  }
-      // Calculator for: Fees / Pick-Ups / Editing
-  else if (selectedCategory === "fees_pickups_editing") {
-    const numHours = Number(numberOfHours) || 0;
-    const fee = Number(originalFee) || 0;
+  // Calculator for: Cinema / Events
+    else if (selectedCategory === "cinema_events") {
+      const numHours = Number(numberOfHours) || 0;
 
-    if (selectedSubType === "Studio Fees & Editing" && selectedFeeType && numHours > 0) {
-      const rates = studioFeeRates[selectedFeeType as keyof typeof studioFeeRates];
-      if (rates) {
-        const lowTotal = rates.low * numHours;
-        const highTotal = rates.high * numHours;
-        setCalculatedRate(`$${lowTotal.toFixed(0)}–$${highTotal.toFixed(0)}`);
-      } else {
-        setCalculatedRate(null);
+      if (selectedSubType === "Cinema Usage – Term (1–3 States)" && selectedTerm) {
+        const rate = cinemaRates1to3States[selectedTerm as keyof typeof cinemaRates1to3States];
+        setCalculatedRate(parseRate(rate, `Cinema (1-3 States) - ${selectedTerm}`));
+      }
+      else if (selectedSubType === "Cinema Usage – Term (4+ States)" && selectedTerm) {
+        const rate = cinemaRates4PlusStates[selectedTerm as keyof typeof cinemaRates4PlusStates];
+        setCalculatedRate(parseRate(rate, `Cinema (4+ States) - ${selectedTerm}`));
+      }
+      else if ((selectedSubType === "Event Video" || selectedSubType === "Trade Shows / Sporting Events") && selectedTerm && numHours > 0) {
+        const rateData = selectedSubType === "Event Video" ? eventVideoRates : tradeShowRates;
+        const rates = rateData[selectedTerm as keyof typeof eventVideoRates];
+        if (rates) {
+          const additionalHours = Math.max(0, numHours - 1);
+          const lowTotal = rates.firstHourLow + (additionalHours * rates.addHourLow);
+          const highTotal = rates.firstHourHigh + (additionalHours * rates.addHourHigh);
+          setCalculatedRate({
+            text: `$${lowTotal.toFixed(0)}–$${highTotal.toFixed(0)}`,
+            low: lowTotal,
+            high: highTotal,
+            description: `${selectedSubType} (${selectedTerm}) - ${numHours} hr(s)`
+          });
+        }
       }
     }
-    else if (selectedSubType === "Pickups" && selectedPickupType) {
-      if (selectedPickupType === "Talent Error") {
-        setCalculatedRate("Free");
-      }
-      else if (selectedPickupType === "Minor Pickups (≤15 mins)" && fee > 0) {
-        const rate = Math.max(150, fee * 0.50);
-        setCalculatedRate(`$${rate.toFixed(0)} (Min $150 or 50% of original fee)`);
-      }
-      else if (selectedPickupType === "Major Pickups (rewrites)" && numHours > 0) {
-        const numHalfHours = numHours * 2;
-        const rate = numHalfHours * 260;
-        setCalculatedRate(`$${rate.toFixed(0)} (at $260 / 30 mins)`);
-      }
-      else {
-        setCalculatedRate(null);
-      }
-    }
-    else {
-      setCalculatedRate(null);
-    }
-  }
-      
-      
-}, [selectedSubType, selectedCategory, selectedTerm, numberOfTags, selectedTier, numberOfSpots, selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType, numberOfAirports, finishedMinutes, finishedHours, sessionHours, sessionLength, numEpisodes, gameCalcMethod, numVoices, selectedPromoMarket, selectedIvrModel, numPrompts, numParagraphs, selectedRosterModel, selectedFeeType, selectedPickupType, originalFee]);
+  // Calculator for: Fees / Pick-Ups / Editing
+    else if (selectedCategory === "fees_pickups_editing") {
+      const numHours = Number(numberOfHours) || 0;
+      const fee = Number(originalFee) || 0;
 
+      if (selectedSubType === "Studio Fees & Editing" && selectedFeeType && numHours > 0) {
+        const rates = studioFeeRates[selectedFeeType as keyof typeof studioFeeRates];
+        if (rates) {
+          const lowTotal = rates.low * numHours;
+          const highTotal = rates.high * numHours;
+          setCalculatedRate({
+            text: `$${lowTotal.toFixed(0)}–$${highTotal.toFixed(0)}`,
+            low: lowTotal,
+            high: highTotal,
+            description: `${selectedFeeType} - ${numHours} hr(s)`
+          });
+        }
+      }
+      else if (selectedSubType === "Pickups" && selectedPickupType) {
+        if (selectedPickupType === "Talent Error") {
+          setCalculatedRate({ text: "Free", low: 0, high: 0, description: "Pickup - Talent Error" });
+        }
+        else if (selectedPickupType === "Minor Pickups (≤15 mins)" && fee > 0) {
+          const rate = Math.max(150, fee * 0.50);
+          setCalculatedRate({
+            text: `$${rate.toFixed(0)} (Min $150 or 50% of original fee)`,
+            low: rate,
+            high: rate,
+            description: `Minor Pickup (Original Fee: $${fee})`
+          });
+        }
+        else if (selectedPickupType === "Major Pickups (rewrites)" && numHours > 0) {
+          const numHalfHours = numHours * 2;
+          const rate = numHalfHours * 260;
+          setCalculatedRate({
+            text: `$${rate.toFixed(0)} (at $260 / 30 mins)`,
+            low: rate,
+            high: rate,
+            description: `Major Pickup - ${numHours} hr(s)`
+          });
+        }
+      }
+    }
+    
+  }, [
+    selectedSubType, selectedCategory, selectedTerm, numberOfTags, selectedTier, numberOfSpots, 
+    selectedRole, selectedMarket, selectedProgramLength, selectedInfomercialMarket, selectedDuration, 
+    numberOfHours, selectedMuseumCategory, museumRecordingHours, selectedPodcastType, medTechCalcMethod, 
+    wordCount, explainerCalcMethod, selectedYouTubeType, selectedLobbyType, numberOfAirports, 
+    finishedMinutes, finishedHours, sessionHours, sessionLength, numEpisodes, gameCalcMethod, 
+    numVoices, selectedPromoMarket, selectedIvrModel, numPrompts, numParagraphs, 
+    selectedRosterModel, selectedFeeType, selectedPickupType, originalFee
+  ]);
   
   return (
     <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
