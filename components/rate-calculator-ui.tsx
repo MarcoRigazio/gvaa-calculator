@@ -2188,17 +2188,7 @@ export function RateCalculatorUI() {
       </div>
     )}
 
-    {/* --- E-Learning Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+   
   {/* --- Form for: Animation / Dubbing --- */}
 {selectedCategory === "animation_dubbing" && (
   <div className="grid gap-6">
@@ -2255,17 +2245,7 @@ export function RateCalculatorUI() {
       </div>
     )}
 
-    {/* --- Animation/Dubbing Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}  
+  
   {/* --- Form for: Video Games / Toys & Games --- */}
 {selectedCategory === "video_games_toys" && (
   <div className="grid gap-6">
@@ -2446,17 +2426,7 @@ export function RateCalculatorUI() {
       </div>
     )}
 
-    {/* --- Video Games Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+   
 {/* --- Form for: Promo & Imaging --- */}
 {selectedCategory === "promo_imaging" && (
   <div className="grid gap-6">
@@ -2518,17 +2488,7 @@ export function RateCalculatorUI() {
       </div>
     )}
 
-    {/* --- Promo & Imaging Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Audiobooks --- */}
 {selectedCategory === "audiobooks" && (
   <div className="grid gap-6">
@@ -2566,17 +2526,7 @@ export function RateCalculatorUI() {
       </div>
     )}
 
-    {/* --- Audiobooks Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: IVR / Message-on-Hold --- */}
 {selectedCategory === "ivr_message_on_hold" && (
   <div className="grid gap-6">
@@ -2666,17 +2616,7 @@ export function RateCalculatorUI() {
       </div>
     )}
 
-    {/* --- IVR Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
+    
                 {/* --- Form for: Cinema / Events --- */}
 {selectedCategory === "cinema_events" && (
   <div className="grid gap-6">
@@ -2761,17 +2701,6 @@ export function RateCalculatorUI() {
       </div>
     )}
 
-    {/* --- Cinema/Events Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
                 {/* --- Form for: Fees / Pick-Ups / Editing --- */}
 {selectedCategory === "fees_pickups_editing" && (
   <div className="grid gap-6">
@@ -2835,18 +2764,29 @@ export function RateCalculatorUI() {
       </div>
     )}
 
-    {/* --- Fees Rate Display --- */}
-    {calculatedRate && (
-      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-          {calculatedRate}
-        </p>
-      </div>
-    )}
-  </div>
-)}
-                
+{/* --- 🚀 MASTER RATE DISPLAY & ADD TO CART (NEW) --- */}
+            {calculatedRate && (
+              <div className="pt-6 mt-6 border-t-2 border-blue-200 dark:border-blue-700">
+                <div className="p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+                  <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+                  <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+                    {calculatedRate.text}
+                  </p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    {calculatedRate.description}
+                  </p>
+                </div>
+                <button
+                  onClick={() => console.log('Add to cart')} // We'll wire this up next
+                  className="w-full mt-4 p-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                >
+                  Add to Project Quote
+                </button>
+              </div>
+            )}
+            {/* --- End of MASTER RATE DISPLAY --- */}
+
+    
                 
               </div>
             )}
