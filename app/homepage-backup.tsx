@@ -1717,7 +1717,7 @@ export function RateCalculatorUI() {
   </div>
 )}
                 {/* --- Form for: Radio -> Local – Regional (Terrestrial) --- */}
-{selectedSubType === "Local – Regional (Terrestrial)" && (
+                {selectedSubType === "Local — Regional (Terrestrial)" && (
   <div className="grid gap-4">
     <Label className="text-base font-medium">Select Term:</Label>
     <RadioGroup
@@ -1819,7 +1819,7 @@ export function RateCalculatorUI() {
   </div>
 )}
                 {/* --- Form for: Radio -> Value Menu – Terrestrial + Digital (Local/Regional) --- */}
-{selectedSubType === "Value Menu – Terrestrial + Digital (Local/Regional)" && (
+                {selectedSubType === "Value Menu — Terrestrial + Digital (Local/Regional)" && (
   <div className="grid gap-4">
     <Label className="text-base font-medium">Select Term:</Label>
     <RadioGroup
@@ -1853,7 +1853,7 @@ export function RateCalculatorUI() {
   </div>
 )}
                 {/* --- Form for: Radio -> Value Menu – Terrestrial + Digital (National) --- */}
-{selectedSubType === "Value Menu – Terrestrial + Digital (National)" && (
+                {selectedSubType === "Value Menu — Terrestrial + Digital (National)" && (
   <div className="grid gap-4">
     <Label className="text-base font-medium">Select Term:</Label>
     <RadioGroup
@@ -1974,7 +1974,7 @@ export function RateCalculatorUI() {
   </div>
 )}
                 {/* --- Form for: Radio -> PSA – Public Service Announcement --- */}
-{selectedSubType === "PSA – Public Service Announcement" && (
+                {selectedSubType === "PSA — Public Service Announcement" && (
   <div className="grid gap-4">
     {/* No inputs needed for PSA, rate is fixed */}
 
@@ -2059,7 +2059,7 @@ export function RateCalculatorUI() {
   </div>
 )}
                 {/* --- Form for: TV -> TV + Digital Visual – Paid Social --- */}
-{selectedSubType === "TV + Digital Visual – Paid Social" && (
+                {selectedSubType === "TV + Digital Visual — Paid Social" && (
   <div className="grid gap-6"> 
     {/* Term Selection */}
     <div className="grid gap-4">
@@ -2116,7 +2116,7 @@ export function RateCalculatorUI() {
   </div>
 )}
                 {/* --- Form for: TV -> TV + Digital Visual – Online Pre-Roll --- */}
-{selectedSubType === "TV + Digital Visual – Online Pre-Roll (Includes Paid Social)" && (
+                {selectedSubType === "TV + Digital Visual — Online Pre-Roll (Includes Paid Social)" && (
   <div className="grid gap-6"> 
     {/* Term Selection */}
     <div className="grid gap-4">
@@ -2173,7 +2173,7 @@ export function RateCalculatorUI() {
   </div>
 )}
                 {/* --- Form for: TV -> TV + Digital Visual – OTT/CTV --- */}
-{selectedSubType === "TV + Digital Visual – OTT/CTV (Includes Pre-Roll & Paid Social)" && (
+{selectedSubType === "TV + Digital Visual — OTT/CTV (Includes Pre-Roll & Paid Social)" && (
   <div className="grid gap-6"> 
     {/* Term Selection */}
     <div className="grid gap-4">
@@ -2381,7 +2381,7 @@ export function RateCalculatorUI() {
   </div>
 )}
                 {/* --- Form for: Non-Broadcast -> Corporate & Industrial Narration – Finished Minute Scale --- */}
-{selectedSubType === "Corporate & Industrial Narration – Finished Minute Scale" && (
+                {selectedSubType === "Corporate & Industrial Narration — Finished Minute Scale" && (
   <div className="grid gap-4">
     <Label className="text-base font-medium">Select Finished Minute Range:</Label>
     <RadioGroup
@@ -2410,7 +2410,7 @@ export function RateCalculatorUI() {
   </div>
 )}
                 {/* --- Form for: Non-Broadcast -> Corporate & Industrial Narration – Recording Time Scale --- */}
-{selectedSubType === "Corporate & Industrial Narration – Recording Time Scale" && (
+                {selectedSubType === "Corporate & Industrial Narration — Recording Time Scale" && (
   <div className="grid gap-4">
     <Label htmlFor="corp-hours" className="text-base font-medium">Number of Recording Hours:</Label>
     <Input
@@ -2496,7 +2496,7 @@ export function RateCalculatorUI() {
   </div>
 )}
                 {/* --- Form for: Non-Broadcast -> Museum Tours – Educational --- */}
-{selectedSubType === "Museum Tours – Educational" && (
+                {selectedSubType === "Museum Tours — Educational" && (
   <div className="grid gap-6"> 
     {/* Category Selection */}
     <div className="grid gap-4">
@@ -2967,7 +2967,7 @@ export function RateCalculatorUI() {
   <div className="grid gap-6">
 
     {/* Non-Union Original Animation – 22 Minute Episode */}
-    {selectedSubType === "Non-Union Original Animation – 22 Minute Episode" && (
+    {selectedSubType === "Non-Union Original Animation — 22 Minute Episode" && (
       <div className="grid gap-4">
         <Label htmlFor="anim-session-hours" className="text-base font-medium">Session Hours (Up to 4):</Label>
         <Input
@@ -2986,7 +2986,7 @@ export function RateCalculatorUI() {
     )}
 
     {/* Non-Union Original Animation – 11 Minute Episode or Less */}
-    {selectedSubType === "Non-Union Original Animation – 11 Minute Episode or Less" && (
+    {selectedSubType === "Non-Union Original Animation — 11 Minute Episode or Less" && (
       <div className="grid gap-4">
         <Label htmlFor="anim-11-episodes" className="text-base font-medium">Number of Episodes:</Label>
         <Input
@@ -3297,7 +3297,7 @@ export function RateCalculatorUI() {
   <div className="grid gap-6">
 
     {/* PFH Inputs */}
-    {(selectedSubType === "Union Scale – PFH" || selectedSubType === "Non-Union – PFH" || selectedSubType === "Hybrid Agreement") && (
+    {(selectedSubType === "Union Scale — PFH" || selectedSubType === "Non-Union — PFH" || selectedSubType === "Hybrid Agreement") && (
       <div className="grid gap-4">
         <Label htmlFor="audiobook-pfh" className="text-base font-medium">Enter Per Finished Hour (PFH):</Label>
         <Input
@@ -3445,7 +3445,7 @@ export function RateCalculatorUI() {
   <div className="grid gap-6">
 
     {/* --- Inputs for: Cinema Usage (1-3 States) --- */}
-    {selectedSubType === "Cinema Usage – Term (1–3 States)" && (
+    {selectedSubType === "Cinema Usage — Term (1—3 States)" && (
       <div className="grid gap-4">
         <Label className="text-base font-medium">Select Term:</Label>
         <RadioGroup
@@ -3464,7 +3464,7 @@ export function RateCalculatorUI() {
     )}
 
     {/* --- Inputs for: Cinema Usage (4+ States) --- */}
-    {selectedSubType === "Cinema Usage – Term (4+ States)" && (
+    {selectedSubType === "Cinema Usage — Term (4+ States)" && (
       <div className="grid gap-4">
         <Label className="text-base font-medium">Select Term:</Label>
         <RadioGroup
