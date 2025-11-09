@@ -1528,28 +1528,2120 @@ export function RateCalculatorUI() {
                   </div>
                 )}
 
-                {/* 
-                  MARCO: INSERT ALL YOUR OTHER FORM SECTIONS HERE
-                  Copy from line ~600 to line ~3100 of your original file
-                  All the forms for:
-                  - Paid Social
-                  - Online Pre-Roll
-                  - Digital Tags
-                  - Automotive
-                  - All Radio forms
-                  - All TV forms
-                  - All Non-Broadcast forms
-                  - E-Learning forms
-                  - Animation forms
-                  - Video Games forms
-                  - Promo & Imaging forms
-                  - Audiobooks forms
-                  - IVR forms
-                  - Cinema forms
-                  - Fees/Pickups forms
-                  
-                  Just copy all those form sections directly from your original file
-                */}
+                                {/* --- Form for: Digital Visual -> Non-Paid Web --- */}
+                {selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && (
+                  <div className="grid gap-4">
+                    <Label className="text-base font-medium">Select Term:</Label>
+                    <RadioGroup
+                      value={selectedTerm ?? ""}
+                      onValueChange={setSelectedTerm}
+                      className="grid gap-2"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="3 Months" id="term-3m" />
+                        <Label htmlFor="term-3m" className="cursor-pointer">3 Months</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="1 Year" id="term-1y" />
+                        <Label htmlFor="term-1y" className="cursor-pointer">1 Year</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="3 Years" id="term-3y" />
+                        <Label htmlFor="term-3y" className="cursor-pointer">3 Years</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="5 Years" id="term-5y" />
+                        <Label htmlFor="term-5y" className="cursor-pointer">5 Years</Label>
+                      </div>
+                    </RadioGroup>
+                    {/* --- Rate Display --- */}
+{calculatedRate && (
+  <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+    <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+    <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+      {calculatedRate}
+    </p>
+  </div>
+)}
+                  </div>
+                )}
+
+                {/* --- Form for: Digital Visual -> Paid Social --- */}
+{selectedSubType === "Paid Social" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Term:</Label>
+    <RadioGroup
+      value={selectedTerm ?? ""}
+      onValueChange={setSelectedTerm}
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Month" id="term-1m-ps" />
+        <Label htmlFor="term-1m-ps" className="cursor-pointer">1 Month</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="3 Months" id="term-3m-ps" />
+        <Label htmlFor="term-3m-ps" className="cursor-pointer">3 Months</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Year" id="term-1y-ps" />
+        <Label htmlFor="term-1y-ps" className="cursor-pointer">1 Year</Label>
+      </div>
+    </RadioGroup>
+    
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+{/* --- Form for: Digital Visual -> Online Pre-Roll / OLV --- */}
+{selectedSubType === "Online Pre-Roll / OLV" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Term:</Label>
+    <RadioGroup
+      value={selectedTerm ?? ""}
+      onValueChange={setSelectedTerm}
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Month" id="term-1m-olv" />
+        <Label htmlFor="term-1m-olv" className="cursor-pointer">1 Month</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="3 Months" id="term-3m-olv" />
+        <Label htmlFor="term-3m-olv" className="cursor-pointer">3 Months</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Year" id="term-1y-olv" />
+        <Label htmlFor="term-1y-olv" className="cursor-pointer">1 Year</Label>
+      </div>
+    </RadioGroup>
+    
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Digital Visual -> OTT/CTV --- */}
+{selectedSubType === "OTT/CTV (Includes Social & Pre-Roll)" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Term:</Label>
+    <RadioGroup
+      value={selectedTerm ?? ""}
+      onValueChange={setSelectedTerm}
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Month" id="term-1m-ott" />
+        <Label htmlFor="term-1m-ott" className="cursor-pointer">1 Month</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="3 Months" id="term-3m-ott" />
+        <Label htmlFor="term-3m-ott" className="cursor-pointer">3 Months</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Year" id="term-1y-ott" />
+        <Label htmlFor="term-1y-ott" className="cursor-pointer">1 Year</Label>
+      </div>
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Digital Visual -> Digital Tags --- */}
+{selectedSubType === "Digital Tags" && (
+  <div className="grid gap-4">
+    <Label htmlFor="tags-number" className="text-base font-medium">Number of Tags:</Label>
+    <Input
+      id="tags-number"
+      type="number"
+      value={numberOfTags}
+      onChange={(e) => setNumberOfTags(Number(e.target.value) || 1)}
+      min="1"
+      className="max-w-[150px]"
+    />
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Digital Visual -> Automotive --- */}
+{selectedSubType === "Automotive" && (
+  <div className="grid gap-6">
+    {/* Tier Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Tier:</Label>
+      <RadioGroup
+        value={selectedTier ?? ""}
+        onValueChange={handleTierSelect}
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 1" id="tier-1" />
+          <Label htmlFor="tier-1" className="cursor-pointer">Tier 1 – National Brand Spots</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 2" id="tier-2" />
+          <Label htmlFor="tier-2" className="cursor-pointer">Tier 2 – Regional Tags</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 3 (:30/:60)" id="tier-3-30" />
+          <Label htmlFor="tier-3-30" className="cursor-pointer">Tier 3 – Local Dealer :30/:60</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 3 (:15/:10/:6)" id="tier-3-15" />
+          <Label htmlFor="tier-3-15" className="cursor-pointer">Tier 3 – Local Dealer :15/:10/:6</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* Number of Spots Input (Conditional) */}
+    {selectedTier && selectedTier !== "Tier 1" && (
+      <div className="grid gap-4">
+        <Label htmlFor="spots-number" className="text-base font-medium">Number of Spots:</Label>
+        <Input
+          id="spots-number"
+          type="number"
+          value={numberOfSpots}
+          onChange={(e) => setNumberOfSpots(Number(e.target.value) || 1)}
+          min="1"
+          className="max-w-[150px]"
+        />
+      </div>
+    )}
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Radio -> Local – Regional (Terrestrial) --- */}
+{selectedSubType === "Local – Regional (Terrestrial)" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Term:</Label>
+    <RadioGroup
+      value={selectedTerm ?? ""}
+      onValueChange={setSelectedTerm}
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Month" id="term-1m-rl" />
+        <Label htmlFor="term-1m-rl" className="cursor-pointer">1 Month</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="3 Months" id="term-3m-rl" />
+        <Label htmlFor="term-3m-rl" className="cursor-pointer">3 Months</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Year" id="term-1y-rl" />
+        <Label htmlFor="term-1y-rl" className="cursor-pointer">1 Year</Label>
+      </div>
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Radio -> National (Terrestrial) --- */}
+{selectedSubType === "National (Terrestrial)" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Term:</Label>
+    <RadioGroup
+      value={selectedTerm ?? ""}
+      onValueChange={setSelectedTerm}
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Month" id="term-1m-rn" />
+        <Label htmlFor="term-1m-rn" className="cursor-pointer">1 Month</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="3 Months" id="term-3m-rn" />
+        <Label htmlFor="term-3m-rn" className="cursor-pointer">3 Months</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Year" id="term-1y-rn" />
+        <Label htmlFor="term-1y-rn" className="cursor-pointer">1 Year</Label>
+      </div>
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Radio -> Digital Radio --- */}
+{selectedSubType === "Digital Radio" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Term:</Label>
+    <RadioGroup
+      value={selectedTerm ?? ""}
+      onValueChange={setSelectedTerm}
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Month" id="term-1m-rd" />
+        <Label htmlFor="term-1m-rd" className="cursor-pointer">1 Month</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="3 Months" id="term-3m-rd" />
+        <Label htmlFor="term-3m-rd" className="cursor-pointer">3 Months</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Year" id="term-1y-rd" />
+        <Label htmlFor="term-1y-rd" className="cursor-pointer">1 Year</Label>
+      </div>
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Radio -> Value Menu – Terrestrial + Digital (Local/Regional) --- */}
+{selectedSubType === "Value Menu – Terrestrial + Digital (Local/Regional)" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Term:</Label>
+    <RadioGroup
+      value={selectedTerm ?? ""}
+      onValueChange={setSelectedTerm}
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Month" id="term-1m-rvl" />
+        <Label htmlFor="term-1m-rvl" className="cursor-pointer">1 Month</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="3 Months" id="term-3m-rvl" />
+        <Label htmlFor="term-3m-rvl" className="cursor-pointer">3 Months</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Year" id="term-1y-rvl" />
+        <Label htmlFor="term-1y-rvl" className="cursor-pointer">1 Year</Label>
+      </div>
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Radio -> Value Menu – Terrestrial + Digital (National) --- */}
+{selectedSubType === "Value Menu – Terrestrial + Digital (National)" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Term:</Label>
+    <RadioGroup
+      value={selectedTerm ?? ""}
+      onValueChange={setSelectedTerm}
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Month" id="term-1m-rvn" />
+        <Label htmlFor="term-1m-rvn" className="cursor-pointer">1 Month</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="3 Months" id="term-3m-rvn" />
+        <Label htmlFor="term-3m-rvn" className="cursor-pointer">3 Months</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Year" id="term-1y-rvn" />
+        <Label htmlFor="term-1y-rvn" className="cursor-pointer">1 Year</Label>
+      </div>
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+               {/* --- Form for: Radio -> Automotive (Radio) --- */}
+{selectedSubType === "Automotive (Radio)" && (
+  <div className="grid gap-6">
+    {/* Tier Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Tier:</Label>
+      <RadioGroup
+        value={selectedTier ?? ""}
+        onValueChange={handleTierSelect}
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 1" id="tier-1-radio" /> {/* Changed ID */}
+          <Label htmlFor="tier-1-radio" className="cursor-pointer">Tier 1 – National Brand Spots</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 2" id="tier-2-radio" /> {/* Changed ID */}
+          <Label htmlFor="tier-2-radio" className="cursor-pointer">Tier 2 – Regional Tags</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 3 (:30/:60)" id="tier-3-30-radio" /> {/* Changed ID */}
+          <Label htmlFor="tier-3-30-radio" className="cursor-pointer">Tier 3 – Local Dealer :30/:60</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 3 (:15/:10/:6)" id="tier-3-15-radio" /> {/* Changed ID */}
+          <Label htmlFor="tier-3-15-radio" className="cursor-pointer">Tier 3 – Local Dealer :15/:10/:6</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* Number of Spots Input (Conditional) */}
+    {selectedTier && selectedTier !== "Tier 1" && (
+      <div className="grid gap-4">
+        <Label htmlFor="spots-number-radio" className="text-base font-medium">Number of Spots:</Label> 
+        <Input
+          id="spots-number-radio" 
+          type="number"
+          value={numberOfSpots}
+          onChange={(e) => setNumberOfSpots(Number(e.target.value) || 1)}
+          min="1"
+          className="max-w-[150px]"
+        />
+      </div>
+    )}
+    
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Radio -> Radio/Podcast Dramas --- */}
+{selectedSubType === "Radio/Podcast Dramas" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Role:</Label>
+    <RadioGroup
+      value={selectedRole ?? ""}
+      onValueChange={setSelectedRole} // Simple state update, no reset needed here
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="Principal Actors" id="role-principal" />
+        <Label htmlFor="role-principal" className="cursor-pointer">Principal Actors</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="Non-Principal Actors" id="role-non-principal" />
+        <Label htmlFor="role-non-principal" className="cursor-pointer">Non-Principal Actors</Label>
+      </div>
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(up to 4 hours)</p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Radio -> PSA – Public Service Announcement --- */}
+{selectedSubType === "PSA – Public Service Announcement" && (
+  <div className="grid gap-4">
+    {/* No inputs needed for PSA, rate is fixed */}
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(:60 or less)</p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: TV -> Local / Regional --- */}
+{selectedSubType === "Local / Regional" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Term:</Label>
+    <RadioGroup
+      value={selectedTerm ?? ""}
+      onValueChange={setSelectedTerm}
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Month" id="term-1m-tvl" />
+        <Label htmlFor="term-1m-tvl" className="cursor-pointer">1 Month</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="3 Months" id="term-3m-tvl" />
+        <Label htmlFor="term-3m-tvl" className="cursor-pointer">3 Months</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Year" id="term-1y-tvl" />
+        <Label htmlFor="term-1y-tvl" className="cursor-pointer">1 Year</Label>
+      </div>
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: TV -> National --- */}
+{selectedSubType === "National" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Term:</Label>
+    <RadioGroup
+      value={selectedTerm ?? ""}
+      onValueChange={setSelectedTerm}
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Month" id="term-1m-tvn" />
+        <Label htmlFor="term-1m-tvn" className="cursor-pointer">1 Month</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="3 Months" id="term-3m-tvn" />
+        <Label htmlFor="term-3m-tvn" className="cursor-pointer">3 Months</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="1 Year" id="term-1y-tvn" />
+        <Label htmlFor="term-1y-tvn" className="cursor-pointer">1 Year</Label>
+      </div>
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: TV -> TV + Digital Visual – Paid Social --- */}
+{selectedSubType === "TV + Digital Visual – Paid Social" && (
+  <div className="grid gap-6"> 
+    {/* Term Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Term:</Label>
+      <RadioGroup
+        value={selectedTerm ?? ""}
+        onValueChange={setSelectedTerm} // Reset only Term when Term changes
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="1 Month" id="term-1m-tvps" />
+          <Label htmlFor="term-1m-tvps" className="cursor-pointer">1 Month</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="3 Months" id="term-3m-tvps" />
+          <Label htmlFor="term-3m-tvps" className="cursor-pointer">3 Months</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="1 Year" id="term-1y-tvps" />
+          <Label htmlFor="term-1y-tvps" className="cursor-pointer">1 Year</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* Market Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Market:</Label>
+      <RadioGroup
+        value={selectedMarket ?? ""}
+        onValueChange={setSelectedMarket} // Reset only Market when Market changes
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Local/Regional" id="market-lr-tvps" />
+          <Label htmlFor="market-lr-tvps" className="cursor-pointer">Local / Regional</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="National" id="market-nat-tvps" />
+          <Label htmlFor="market-nat-tvps" className="cursor-pointer">National</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(TV + Paid Social Combined Usage)</p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: TV -> TV + Digital Visual – Online Pre-Roll --- */}
+{selectedSubType === "TV + Digital Visual – Online Pre-Roll (Includes Paid Social)" && (
+  <div className="grid gap-6"> 
+    {/* Term Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Term:</Label>
+      <RadioGroup
+        value={selectedTerm ?? ""}
+        onValueChange={setSelectedTerm} // Simple update
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="1 Month" id="term-1m-tvol" />
+          <Label htmlFor="term-1m-tvol" className="cursor-pointer">1 Month</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="3 Months" id="term-3m-tvol" />
+          <Label htmlFor="term-3m-tvol" className="cursor-pointer">3 Months</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="1 Year" id="term-1y-tvol" />
+          <Label htmlFor="term-1y-tvol" className="cursor-pointer">1 Year</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* Market Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Market:</Label>
+      <RadioGroup
+        value={selectedMarket ?? ""}
+        onValueChange={setSelectedMarket} // Simple update
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Local/Regional" id="market-lr-tvol" />
+          <Label htmlFor="market-lr-tvol" className="cursor-pointer">Local / Regional</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="National" id="market-nat-tvol" />
+          <Label htmlFor="market-nat-tvol" className="cursor-pointer">National</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(TV + Online Pre-Roll/OLV Combined Usage)</p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: TV -> TV + Digital Visual – OTT/CTV --- */}
+{selectedSubType === "TV + Digital Visual – OTT/CTV (Includes Pre-Roll & Paid Social)" && (
+  <div className="grid gap-6"> 
+    {/* Term Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Term:</Label>
+      <RadioGroup
+        value={selectedTerm ?? ""}
+        onValueChange={setSelectedTerm} // Simple update
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="1 Month" id="term-1m-tvott" />
+          <Label htmlFor="term-1m-tvott" className="cursor-pointer">1 Month</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="3 Months" id="term-3m-tvott" />
+          <Label htmlFor="term-3m-tvott" className="cursor-pointer">3 Months</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="1 Year" id="term-1y-tvott" />
+          <Label htmlFor="term-1y-tvott" className="cursor-pointer">1 Year</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* Market Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Market:</Label>
+      <RadioGroup
+        value={selectedMarket ?? ""}
+        onValueChange={setSelectedMarket} // Simple update
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Local/Regional" id="market-lr-tvott" />
+          <Label htmlFor="market-lr-tvott" className="cursor-pointer">Local / Regional</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="National" id="market-nat-tvott" />
+          <Label htmlFor="market-nat-tvott" className="cursor-pointer">National</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(TV + OTT/CTV Combined Usage)</p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: TV -> Automotive (TV) --- */}
+{selectedSubType === "Automotive (TV)" && (
+  <div className="grid gap-6">
+    {/* Tier Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Tier:</Label>
+      <RadioGroup
+        value={selectedTier ?? ""}
+        onValueChange={handleTierSelect}
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 1" id="tier-1-tv" /> {/* Changed ID */}
+          <Label htmlFor="tier-1-tv" className="cursor-pointer">Tier 1 – National Brand Spots</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 2" id="tier-2-tv" /> {/* Changed ID */}
+          <Label htmlFor="tier-2-tv" className="cursor-pointer">Tier 2 – Regional Tags</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 3 (:30/:60)" id="tier-3-30-tv" /> {/* Changed ID */}
+          <Label htmlFor="tier-3-30-tv" className="cursor-pointer">Tier 3 – Local Dealer :30/:60</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="Tier 3 (:15/:10/:6)" id="tier-3-15-tv" /> {/* Changed ID */}
+          <Label htmlFor="tier-3-15-tv" className="cursor-pointer">Tier 3 – Local Dealer :15/:10/:6</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* Number of Spots Input (Conditional) */}
+    {selectedTier && selectedTier !== "Tier 1" && (
+      <div className="grid gap-4">
+        <Label htmlFor="spots-number-tv" className="text-base font-medium">Number of Spots:</Label>
+        <Input
+          id="spots-number-tv"
+          type="number"
+          value={numberOfSpots}
+          onChange={(e) => setNumberOfSpots(Number(e.target.value) || 1)}
+          min="1"
+          className="max-w-[150px]"
+        />
+      </div>
+    )}
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: TV -> In-Show / Documentary Narration --- */}
+{selectedSubType === "In-Show / Documentary Narration" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Program Length (Excludes Commercials):</Label>
+    <RadioGroup
+      value={selectedProgramLength ?? ""}
+      onValueChange={setSelectedProgramLength} // Simple update
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="24 Minutes" id="length-24m" />
+        <Label htmlFor="length-24m" className="cursor-pointer">24 Minutes (≈30 min program)</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="48 Minutes" id="length-48m" />
+        <Label htmlFor="length-48m" className="cursor-pointer">48 Minutes (≈60 min program)</Label>
+      </div>
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(Program length excluding commercials)</p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: TV -> Infomercial / DRTV --- */}
+{selectedSubType === "Infomercial / DRTV" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Market / Term:</Label>
+    <RadioGroup
+      value={selectedInfomercialMarket ?? ""}
+      onValueChange={setSelectedInfomercialMarket} // Simple update
+      className="grid gap-2"
+    >
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="National – 1 Year" id="infomercial-nat" />
+        <Label htmlFor="infomercial-nat" className="cursor-pointer">National – 1 Year</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="North America (US & Canada) – 1 Year" id="infomercial-na" />
+        <Label htmlFor="infomercial-na" className="cursor-pointer">North America (US & Canada) – 1 Year</Label>
+      </div>
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(Per script, includes cuts/versions and up to 10 phone numbers)</p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: TV -> Mnemonics --- */}
+{selectedSubType === "Mnemonics" && (
+  <div className="grid gap-4">
+    {/* No inputs needed, rate is informational */}
+
+    {/* --- Rate Display (Informational) --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Guidance:</p>
+        <p className="text-lg font-medium text-blue-700 dark:text-blue-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: TV -> Point of Sale (POS) --- */}
+{selectedSubType === "Point of Sale (POS)" && (
+  <div className="grid gap-4">
+    {/* No inputs needed, rate is informational */}
+
+    {/* --- Rate Display (Informational) --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Guidance:</p>
+        <p className="text-lg font-medium text-blue-700 dark:text-blue-300">
+          {calculatedRate}
+        </p>
+         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(Applies to videos at grocery/gas/retail displays)</p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Non-Broadcast -> Corporate & Industrial Narration – Finished Minute Scale --- */}
+{selectedSubType === "Corporate & Industrial Narration – Finished Minute Scale" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Finished Minute Range:</Label>
+    <RadioGroup
+      value={selectedDuration ?? ""}
+      onValueChange={setSelectedDuration} // Simple update
+      className="grid grid-cols-2 gap-2" // Use two columns for better layout
+    >
+      {Object.keys(corporateMinuteRates).map((duration) => (
+        <div key={duration} className="flex items-center space-x-2">
+          <RadioGroupItem value={duration} id={`duration-${duration.replace(' ','')}`} />
+          <Label htmlFor={`duration-${duration.replace(' ','')}`} className="cursor-pointer">{duration}</Label>
+        </div>
+      ))}
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(Single video usage, includes editing)</p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Non-Broadcast -> Corporate & Industrial Narration – Recording Time Scale --- */}
+{selectedSubType === "Corporate & Industrial Narration – Recording Time Scale" && (
+  <div className="grid gap-4">
+    <Label htmlFor="corp-hours" className="text-base font-medium">Number of Recording Hours:</Label>
+    <Input
+      id="corp-hours"
+      type="number"
+      value={numberOfHours}
+      onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} // Ensure at least 1 hour
+      min="1"
+      step="1" // Allow only whole hours for this calculation
+      className="max-w-[150px]"
+    />
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate (RAW Audio Only):</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">($525/1st hr, $262/hr after. Full buyout. No editing included.)</p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Non-Broadcast -> Explainer Videos --- */}
+{selectedSubType === "Explainer Videos" && (
+  <div className="grid gap-6">
+    {/* Calculation Method Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Calculation Method:</Label>
+      <RadioGroup
+        value={explainerCalcMethod ?? ""}
+        onValueChange={(value) => {
+          setExplainerCalcMethod(value);
+          setWordCount(0); // Reset word count when method changes
+          setSelectedDuration(null); // Also reset duration just in case
+        }}
+        className="grid grid-cols-2 gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="single" id="explainer-method-single" />
+          <Label htmlFor="explainer-method-single" className="cursor-pointer">Single Video (≤ 90s)</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="bulk" id="explainer-method-bulk" />
+          <Label htmlFor="explainer-method-bulk" className="cursor-pointer">Bulk Rate (by Word Count)</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* Conditional Inputs: Word Count for Bulk */}
+    {explainerCalcMethod === 'bulk' && (
+      <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+        <Label htmlFor="explainer-wordcount" className="text-base font-medium">Enter Word Count:</Label>
+        <Input
+          id="explainer-wordcount"
+          type="number"
+          value={wordCount > 0 ? wordCount : ''}
+          onChange={(e) => setWordCount(Math.max(0, Number(e.target.value) || 0))}
+          min="0"
+          step="1"
+          className="max-w-[150px]"
+          placeholder="e.g., 250"
+        />
+      </div>
+    )}
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate / Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+          {explainerCalcMethod === 'single'
+            ? "(Public-facing on owned web/YouTube/social. Not paid placement.)" //
+            : `(Based on $250 ≤175 words, +$50/add'l 100 words)` //
+          }
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Non-Broadcast -> Museum Tours – Educational --- */}
+{selectedSubType === "Museum Tours – Educational" && (
+  <div className="grid gap-6"> 
+    {/* Category Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Category:</Label>
+      <RadioGroup
+        value={selectedMuseumCategory ?? ""}
+        onValueChange={setSelectedMuseumCategory} // Simple update
+        className="grid gap-2"
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="CAT1" id="museum-cat1" />
+          <Label htmlFor="museum-cat1" className="cursor-pointer">Principal Voice, Audio Tour (Industrial CAT 1)</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="CAT2" id="museum-cat2" />
+          <Label htmlFor="museum-cat2" className="cursor-pointer">Talking Statues, Exhibition Voices (Industrial CAT 2)</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* Recording Hours Input */}
+    <div className="grid gap-4">
+      <Label htmlFor="museum-hours" className="text-base font-medium">Total Recording Hours:</Label>
+      <Input
+        id="museum-hours"
+        type="number"
+        value={museumRecordingHours}
+        // Use Math.max to prevent values less than 1, allow decimals for calculation
+        onChange={(e) => setMuseumRecordingHours(Math.max(1, Number(e.target.value) || 1))} 
+        min="1" 
+        step="0.5" // Allow half-hour increments in input
+        className="max-w-[150px]"
+      />
+    </div>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate (Union Scale Reference):</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+          {selectedMuseumCategory === 'CAT1' ? `($${museumCat1Rate.firstHour}/1st hr, $${museumCat1Rate.additionalHalfHour}/add'l 30 min)` : `($${museumCat2Rate.firstHour}/1st hr, $${museumCat2Rate.additionalHalfHour}/add'l 30 min)`}
+         </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Non-Broadcast -> Podcasts --- */}
+{selectedSubType === "Podcasts" && (
+  <div className="grid gap-4">
+    <Label className="text-base font-medium">Select Podcast Type:</Label>
+    <RadioGroup
+      value={selectedPodcastType ?? ""}
+      onValueChange={setSelectedPodcastType} // Simple update
+      className="grid gap-2"
+    >
+      {Object.keys(podcastRates).map((podcastType) => (
+        <div key={podcastType} className="flex items-center space-x-2">
+          <RadioGroupItem value={podcastType} id={`podcast-${podcastType.replace(/[^a-zA-Z0-9]/g, '')}`} /> 
+          <Label htmlFor={`podcast-${podcastType.replace(/[^a-zA-Z0-9]/g, '')}`} className="cursor-pointer">{podcastType}</Label>
+        </div>
+      ))}
+    </RadioGroup>
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+        {/* Optionally add note about hours for drama roles */}
+        {(selectedPodcastType?.includes("Audio Drama")) && 
+         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(up to 4 hours session)</p>
+        }
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Non-Broadcast -> Medical / Technical Narration --- */}
+{selectedSubType === "Medical / Technical Narration" && (
+  <div className="grid gap-6"> 
+    {/* Calculation Method Selection */}
+    <div className="grid gap-4">
+      <Label className="text-base font-medium">Select Calculation Method:</Label>
+      <RadioGroup
+        value={medTechCalcMethod ?? ""}
+        // Reset specific inputs when method changes
+        onValueChange={(value) => { 
+          setMedTechCalcMethod(value);
+          setSelectedDuration(null); // Reset duration if switching
+          setWordCount(0);           // Reset word count if switching
+        }} 
+        className="grid grid-cols-2 gap-2" // Two columns
+      >
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="minute" id="medtech-method-minute" />
+          <Label htmlFor="medtech-method-minute" className="cursor-pointer">By Finished Minute</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="word" id="medtech-method-word" />
+          <Label htmlFor="medtech-method-word" className="cursor-pointer">By Word Count</Label>
+        </div>
+      </RadioGroup>
+    </div>
+
+    {/* Conditional Inputs: Finished Minute */}
+    {medTechCalcMethod === 'minute' && (
+      <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+         <Label className="text-base font-medium">Select Finished Minute Range:</Label>
+         <RadioGroup
+           value={selectedDuration ?? ""}
+           onValueChange={setSelectedDuration} // Simple update
+           className="grid grid-cols-2 gap-2" // Use two columns
+         >
+           {Object.keys(medicalMinuteRates).map((duration) => (
+             <div key={duration} className="flex items-center space-x-2">
+               <RadioGroupItem value={duration} id={`duration-med-${duration.replace(/[^a-zA-Z0-9]/g, '')}`} /> 
+               <Label htmlFor={`duration-med-${duration.replace(/[^a-zA-Z0-9]/g, '')}`} className="cursor-pointer">{duration}</Label>
+             </div>
+           ))}
+         </RadioGroup>
+      </div>
+    )}
+
+    {/* Conditional Inputs: Word Count */}
+     {medTechCalcMethod === 'word' && (
+       <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+         <Label htmlFor="medtech-wordcount" className="text-base font-medium">Enter Word Count:</Label>
+         <Input
+           id="medtech-wordcount"
+           type="number"
+           value={wordCount > 0 ? wordCount : ''} // Show empty string if 0
+           onChange={(e) => setWordCount(Math.max(0, Number(e.target.value) || 0))} // Allow 0, ensure non-negative
+           min="0"
+           step="1" 
+           className="max-w-[150px]"
+           placeholder="e.g., 1500"
+         />
+       </div>
+     )}
+
+    {/* --- Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+           {medTechCalcMethod === 'minute' 
+             ? "(Includes editing, file splits, naming, delivery, pickups. Free re-records ≤10%.)" 
+             : `($${medicalPerWordRateLow.toFixed(2)}–$${medicalPerWordRateHigh.toFixed(2)} per word)`
+           }
+         </p>
+      </div>
+    )}
+  </div>
+)}
+
+                {/* --- Form for: Non-Broadcast -> Digital Greeting Cards --- */}
+                {selectedSubType === "Digital Greeting Cards" && (
+                  <div className="grid gap-4">
+                    {/* No inputs needed, rate is informational */}
+
+                    {/* --- Rate Display --- */}
+                    {calculatedRate && (
+                      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+                        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range (Full Buyout):</p>
+                        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+                          {calculatedRate}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+                {/* --- Form for: Non-Broadcast -> YouTube Content --- */}
+                {selectedSubType === "YouTube Content" && (
+                  <div className="grid gap-4">
+                    <Label className="text-base font-medium">Select Content Type:</Label>
+                    <RadioGroup
+                      value={selectedYouTubeType ?? ""}
+                      onValueChange={setSelectedYouTubeType}
+                      className="grid gap-2"
+                    >
+                      {Object.keys(youTubeRates).map((type) => (
+                        <div key={type} className="flex items-center space-x-2">
+                          <RadioGroupItem value={type} id={`youtube-${type.replace(/[^a-zA-Z0-9]/g, '')}`} />
+                          <Label htmlFor={`youtube-${type.replace(/[^a-zA-Z0-9]/g, '')}`} className="cursor-pointer">{type}</Label>
+                        </div>
+                      ))}
+                    </RadioGroup>
+                
+                    {/* --- Rate Display --- */}
+                    {calculatedRate && (
+                      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+                        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+                        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+                          {calculatedRate}
+                        </p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                          {selectedYouTubeType === "Narration: 3–5 min episodes"
+                            ? "(~500–1,000 words. Rate increases for high-view channels.)"
+                            : "(Rate increases with subscriber count.)"
+                          }
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+                {/* --- Form for: Non-Broadcast -> Kiosk Use (Non-Retail) --- */}
+                {selectedSubType === "Kiosk Use (Non-Retail)" && (
+                  <div className="grid gap-4">
+                    <Label htmlFor="kiosk-hours" className="text-base font-medium">Number of Recording Hours:</Label>
+                    <Input
+                      id="kiosk-hours"
+                      type="number"
+                      value={numberOfHours}
+                      onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} // Ensure at least 1 hour
+                      min="1"
+                      step="1" // Allow only whole hours
+                      className="max-w-[150px]"
+                    />
+
+                    {/* --- Rate Display --- */}
+                    {calculatedRate && (
+                      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+                        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate (Full Buyout):</p>
+                        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+                          {calculatedRate}
+                        </p>
+                         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">($525/1st hr, $262/hr after. For non-retail kiosks.)</p>
+                      </div>
+                    )}
+                  </div>
+                )}
+                {/* --- Form for: Non-Broadcast -> Lobby Viewing --- */}
+                {selectedSubType === "Lobby Viewing" && (
+                  <div className="grid gap-6">
+                    {/* Type Selection */}
+                    <div className="grid gap-4">
+                      <Label className="text-base font-medium">Select Lobby Video Type:</Label>
+                      <RadioGroup
+                        value={selectedLobbyType ?? ""}
+                        onValueChange={setSelectedLobbyType}
+                        className="grid gap-2"
+                      >
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="explainer" id="lobby-explainer" />
+                          <Label htmlFor="lobby-explainer" className="cursor-pointer">Explainer (Service Provider, Not Selling)</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="retail" id="lobby-retail" />
+                          <Label htmlFor="lobby-retail" className="cursor-pointer">Retail (Selling a Product/Service)</Label>
+                        </div>
+                      </RadioGroup>
+                    </div>
+
+                    {/* Conditional Inputs: Recording Hours for Explainer */}
+                    {selectedLobbyType === 'explainer' && (
+                      <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+                        <Label htmlFor="lobby-hours" className="text-base font-medium">Number of Recording Hours:</Label>
+                        <Input
+                          id="lobby-hours"
+                          type="number"
+                          value={numberOfHours}
+                          onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))}
+                          min="1"
+                          step="1"
+                          className="max-w-[150px]"
+                        />
+                      </div>
+                    )}
+
+                    {/* --- Rate Display --- */}
+                    {calculatedRate && (
+                      <div className={cn(
+                        "mt-6 p-4 rounded-lg text-center",
+                        selectedLobbyType === 'retail'
+                          ? "bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700"
+                          : "bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700"
+                      )}>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">
+                          {selectedLobbyType === 'retail' && (
+                            <>GVAA Guidance:</>
+                          )}
+                          {selectedLobbyType !== 'retail' && ( // Default to this if 'explainer' or null
+                            <>GVAA Rate (Full Buyout):</>
+                          )}
+                        </p>
+                        <p className={cn(
+                          "text-2xl font-semibold",
+                          selectedLobbyType === 'retail'
+                            ? "text-blue-700 dark:text-blue-300"
+                            : "text-green-700 dark:text-green-300"
+                        )}>
+                          {calculatedRate}
+                        </p>
+                        {selectedLobbyType === 'explainer' && (
+                           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">($525/1st hr, $262/hr after. Full buyout.)</p>
+                        )}
+                         {selectedLobbyType === 'retail' && (
+                           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">(Selling a product: mirrors TV rates/terms.)</p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+                                {/* --- Form for: Non-Broadcast -> Airport Announcements --- */}
+                {selectedSubType === "Airport Announcements" && (
+                  <div className="grid gap-6">
+                    {/* Number of Airports Input */}
+                    <div className="grid gap-4">
+                      <Label htmlFor="airport-count" className="text-base font-medium">Number of Airports:</Label>
+                      <Input
+                        id="airport-count"
+                        type="number"
+                        value={numberOfAirports}
+                        onChange={(e) => setNumberOfAirports(Math.max(1, Number(e.target.value) || 1))}
+                        min="1"
+                        step="1"
+                        className="max-w-[150px]"
+                      />
+                    </div>
+                
+                    {/* Number of Recording Hours Input */}
+                    <div className="grid gap-4">
+                      <Label htmlFor="airport-hours" className="text-base font-medium">Total Recording Hours (RAW):</Label>
+                      <Input
+                        id="airport-hours"
+                        type="number"
+                        value={numberOfHours}
+                        onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))}
+                        min="1"
+                        step="1" // Doc implies full hour upcharge
+                        className="max-w-[150px]"
+                      />
+                    </div>
+                
+                    {/* --- Rate Display --- */}
+                    {calculatedRate && (
+                      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+                        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range (Per Year):</p>
+                        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+                          {calculatedRate}
+                        </p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                          (Base rate covers 1 airport, up to 2 hrs raw. +$1k–$1.5k/additional airport. +$500/additional hr over 2.)
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+{/* --- Form for: E-Learning --- */}
+{selectedCategory === "elearning" && (
+  <div className="grid gap-6">
+    {/* Per Word */}
+    {selectedSubType === "Per Word" && (
+      <div className="grid gap-4">
+        <Label htmlFor="elearning-wordcount" className="text-base font-medium">Enter Word Count:</Label>
+        <Input
+          id="elearning-wordcount"
+          type="number"
+          value={wordCount > 0 ? wordCount : ''}
+          onChange={(e) => setWordCount(Math.max(0, Number(e.target.value) || 0))}
+          min="0"
+          className="max-w-[150px]"
+          placeholder="e.g., 7500"
+        />
+      </div>
+    )}
+
+    {/* Per Finished Minute */}
+    {selectedSubType === "Per Finished Minute" && (
+      <div className="grid gap-4">
+        <Label htmlFor="elearning-pfm" className="text-base font-medium">Enter Finished Minutes:</Label>
+        <Input
+          id="elearning-pfm"
+          type="number"
+          value={finishedMinutes}
+          onChange={(e) => setFinishedMinutes(e.target.value)}
+          min="0"
+          className="max-w-[150px]"
+          placeholder="e.g., 30"
+        />
+      </div>
+    )}
+
+    {/* Per Raw Hour */}
+    {selectedSubType === "Per Raw Hour" && (
+      <div className="grid gap-4">
+        <Label htmlFor="elearning-raw" className="text-base font-medium">Enter Raw Hours:</Label>
+        <Input
+          id="elearning-raw"
+          type="number"
+          value={numberOfHours}
+          onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))}
+          min="1"
+          step="0.5"
+          className="max-w-[150px]"
+        />
+      </div>
+    )}
+    
+    {/* Per Finished Hour */}
+    {selectedSubType === "Per Finished Hour" && (
+      <div className="grid gap-4">
+        <Label htmlFor="elearning-pfh" className="text-base font-medium">Enter Finished Hours:</Label>
+        <Input
+          id="elearning-pfh"
+          type="number"
+          value={finishedHours}
+          onChange={(e) => setFinishedHours(e.target.value)}
+          min="0"
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 1.5"
+        />
+      </div>
+    )}
+
+    {/* Directed Sessions */}
+    {selectedSubType === "Directed Sessions" && (
+      <div className="grid gap-6">
+        <div className="grid gap-4">
+          <Label htmlFor="elearning-directed-words" className="text-base font-medium">Enter Word Count:</Label>
+          <Input
+            id="elearning-directed-words"
+            type="number"
+            value={wordCount > 0 ? wordCount : ''}
+            onChange={(e) => setWordCount(Math.max(0, Number(e.target.value) || 0))}
+            min="0"
+            className="max-w-[150px]"
+            placeholder="e.g., 10000"
+          />
+        </div>
+        <div className="grid gap-4">
+          <Label htmlFor="elearning-directed-hours" className="text-base font-medium">Enter Session Hours (First 60 mins included):</Label>
+          <Input
+            id="elearning-directed-hours"
+            type="number"
+            value={sessionHours}
+            onChange={(e) => setSessionHours(e.target.value)}
+            min="0"
+            step="0.5"
+            className="max-w-[150px]"
+            placeholder="e.g., 2.5"
+          />
+        </div>
+      </div>
+    )}
+
+    {/* --- E-Learning Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+  {/* --- Form for: Animation / Dubbing --- */}
+{selectedCategory === "animation_dubbing" && (
+  <div className="grid gap-6">
+
+    {/* Non-Union Original Animation – 22 Minute Episode */}
+    {selectedSubType === "Non-Union Original Animation – 22 Minute Episode" && (
+      <div className="grid gap-4">
+        <Label htmlFor="anim-session-hours" className="text-base font-medium">Session Hours (Up to 4):</Label>
+        <Input
+          id="anim-session-hours"
+          type="number"
+          value={sessionLength}
+          onChange={(e) => setSessionLength(e.target.value)}
+          min="0"
+          max="4"
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 2.5"
+        />
+        <p className="text-xs text-muted-foreground -mt-2">(Rate is for a session up to 4 hours)</p>
+      </div>
+    )}
+
+    {/* Non-Union Original Animation – 11 Minute Episode or Less */}
+    {selectedSubType === "Non-Union Original Animation – 11 Minute Episode or Less" && (
+      <div className="grid gap-4">
+        <Label htmlFor="anim-11-episodes" className="text-base font-medium">Number of Episodes:</Label>
+        <Input
+          id="anim-11-episodes"
+          type="number"
+          value={numEpisodes}
+          onChange={(e) => setNumEpisodes(Math.max(1, Number(e.target.value) || 1))}
+          min="1"
+          step="1"
+          className="max-w-[150px]"
+        />
+      </div>
+    )}
+
+    {/* Dubbing (Film/TV/Animation) */}
+    {selectedSubType === "Dubbing (Film/TV/Animation)" && (
+      <div className="grid gap-4">
+        <Label htmlFor="dubbing-hours" className="text-base font-medium">Session Hours (2 hr min):</Label>
+        <Input
+          id="dubbing-hours"
+          type="number"
+          value={sessionLength}
+          onChange={(e) => setSessionLength(e.target.value)}
+          min="0" // We'll enforce the 2hr min in the calc
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 3"
+        />
+      </div>
+    )}
+
+    {/* --- Animation/Dubbing Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}  
+  {/* --- Form for: Video Games / Toys & Games --- */}
+{selectedCategory === "video_games_toys" && (
+  <div className="grid gap-6">
+
+    {/* Non-Union Video Games */}
+    {selectedSubType === "Video Games (Non-Union)" && (
+      <div className="grid gap-4">
+        <Label className="text-base font-medium">Select Calculation Method:</Label>
+        <RadioGroup
+          value={gameCalcMethod ?? ""}
+          onValueChange={setGameCalcMethod}
+          className="grid gap-2"
+        >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="hourly" id="game-hourly" />
+            <Label htmlFor="game-hourly" className="cursor-pointer">Per Hour (2 or 4 hr min)</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="flat" id="game-flat" />
+            <Label htmlFor="game-flat" className="cursor-pointer">Flat Rate (1 hr max)</Label>
+          </div>
+        </RadioGroup>
+
+        {gameCalcMethod === 'hourly' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="game-hours" className="text-base font-medium">Session Hours:</Label>
+            <Input
+              id="game-hours"
+              type="number"
+              value={sessionLength}
+              onChange={(e) => setSessionLength(e.target.value)}
+              min="0"
+              step="0.5"
+              className="max-w-[150px]"
+              placeholder="e.g., 4"
+            />
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* Union Video Games */}
+    {selectedSubType === "Video Games (Union)" && (
+      <div className="grid gap-4">
+        <Label htmlFor="game-union-hours" className="text-base font-medium">Session Hours (Up to 4):</Label>
+        <Input
+          id="game-union-hours"
+          type="number"
+          value={sessionLength}
+          onChange={(e) => setSessionLength(e.target.value)}
+          min="0"
+          max="4"
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 4"
+        />
+      </div>
+    )}
+
+    {/* Toys & Games */}
+    {selectedSubType === "Toys & Games" && (
+      <div className="grid gap-4">
+        <Label htmlFor="toys-hours" className="text-base font-medium">Session Hours (Up to 2):</Label>
+        <Input
+          id="toys-hours"
+          type="number"
+          value={sessionLength}
+          onChange={(e) => setSessionLength(e.target.value)}
+          min="0"
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 2"
+        />
+      </div>
+    )}
+
+    {/* Toys & Games (Demo/Scratch) */}
+    {selectedSubType === "Toys & Games (Demo/Scratch)" && (
+      <div className="grid gap-4">
+        <Label htmlFor="toys-demo-hours" className="text-base font-medium">Session Hours:</Label>
+        <Input
+          id="toys-demo-hours"
+          type="number"
+          value={sessionLength}
+          onChange={(e) => setSessionLength(e.target.value)}
+          min="0"
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 1.5"
+        />
+      </div>
+    )}
+
+    {/* Mobile Game Apps (Non-Union Character) */}
+    {selectedSubType === "Mobile Game Apps (Non-Union Character)" && (
+      <div className="grid gap-4">
+        <Label className="text-base font-medium">Select Calculation Method:</Label>
+        <RadioGroup
+          value={gameCalcMethod ?? ""}
+          onValueChange={setGameCalcMethod}
+          className="grid gap-2"
+        >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="per_game" id="mobile-game-per-game" />
+            <Label htmlFor="mobile-game-per-game" className="cursor-pointer">Per Game</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="hourly" id="mobile-game-hourly" />
+            <Label htmlFor="mobile-game-hourly" className="cursor-pointer">Per Hour (2 hr min)</Label>
+          </div>
+        </RadioGroup>
+
+        {gameCalcMethod === 'per_game' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="mobile-game-voices" className="text-base font-medium">Number of Voices (Up to 3-4):</Label>
+            <Input
+              id="mobile-game-voices"
+              type="number"
+              value={numVoices}
+              onChange={(e) => setNumVoices(Math.max(1, Number(e.target.value) || 1))}
+              min="1"
+              step="1"
+              className="max-w-[150px]"
+            />
+          </div>
+        )}
+
+        {gameCalcMethod === 'hourly' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="mobile-game-hours" className="text-base font-medium">Session Hours (2 hr min):</Label>
+            <Input
+              id="mobile-game-hours"
+              type="number"
+              value={sessionLength}
+              onChange={(e) => setSessionLength(e.target.value)}
+              min="0"
+              step="0.5"
+              className="max-w-[150px]"
+              placeholder="e.g., 2"
+            />
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* Mobile Game Apps (Union Character) */}
+    {selectedSubType === "Mobile Game Apps (Union Character)" && (
+      <div className="grid gap-4">
+        <Label htmlFor="mobile-union-hours" className="text-base font-medium">Session Hours (Up to 4):</Label>
+        <Input
+          id="mobile-union-hours"
+          type="number"
+          value={sessionLength}
+          onChange={(e) => setSessionLength(e.target.value)}
+          min="0"
+          max="4"
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 4"
+        />
+      </div>
+    )}
+
+    {/* Mobile Game Apps (E-Learning/Educational) */}
+    {selectedSubType === "Mobile Game Apps (E-Learning/Educational)" && (
+      <div className="grid gap-4">
+        <Label htmlFor="mobile-elearn-minutes" className="text-base font-medium">Finished Minutes:</Label>
+        <Input
+          id="mobile-elearn-minutes"
+          type="number"
+          value={finishedMinutes}
+          onChange={(e) => setFinishedMinutes(e.target.value)}
+          min="0"
+          step="1"
+          className="max-w-[150px]"
+          placeholder="e.g., 8"
+        />
+      </div>
+    )}
+
+    {/* --- Video Games Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+{/* --- Form for: Promo & Imaging --- */}
+{selectedCategory === "promo_imaging" && (
+  <div className="grid gap-6">
+
+    {/* TV */}
+    {selectedSubType === "TV" && (
+      <div className="grid gap-4">
+        <Label className="text-base font-medium">Select Market:</Label>
+        <RadioGroup
+          value={selectedPromoMarket ?? ""}
+          onValueChange={setSelectedPromoMarket}
+          className="grid gap-2"
+        >
+          {Object.keys(promoTvRates).map((market) => (
+            <div key={market} className="flex items-center space-x-2">
+              <RadioGroupItem value={market} id={`promo-tv-${market}`} />
+              <Label htmlFor={`promo-tv-${market}`} className="cursor-pointer">{market}</Label>
+            </div>
+          ))}
+        </RadioGroup>
+      </div>
+    )}
+
+    {/* Radio */}
+    {selectedSubType === "Radio" && (
+      <div className="grid gap-4">
+        <Label className="text-base font-medium">Select Market:</Label>
+        <RadioGroup
+          value={selectedPromoMarket ?? ""}
+          onValueChange={setSelectedPromoMarket}
+          className="grid gap-2"
+        >
+          {Object.keys(promoRadioRates).map((market) => (
+            <div key={market} className="flex items-center space-x-2">
+              <RadioGroupItem value={market} id={`promo-radio-${market}`} />
+              <Label htmlFor={`promo-radio-${market}`} className="cursor-pointer">{market}</Label>
+            </div>
+          ))}
+        </RadioGroup>
+      </div>
+    )}
+
+    {/* Trailers */}
+    {selectedSubType === "Trailers" && (
+      <div className="grid gap-4">
+        <Label className="text-base font-medium">Select Market:</Label>
+        <RadioGroup
+          value={selectedPromoMarket ?? ""}
+          onValueChange={setSelectedPromoMarket}
+          className="grid gap-2"
+        >
+          {Object.keys(promoTrailerRates).map((market) => (
+            <div key={market} className="flex items-center space-x-2">
+              <RadioGroupItem value={market} id={`promo-trailer-${market}`} />
+              <Label htmlFor={`promo-trailer-${market}`} className="cursor-pointer">{market}</Label> 
+            </div>
+          ))}
+        </RadioGroup>
+      </div>
+    )}
+
+    {/* --- Promo & Imaging Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Audiobooks --- */}
+{selectedCategory === "audiobooks" && (
+  <div className="grid gap-6">
+
+    {/* PFH Inputs */}
+    {(selectedSubType === "Union Scale – PFH" || selectedSubType === "Non-Union – PFH" || selectedSubType === "Hybrid Agreement") && (
+      <div className="grid gap-4">
+        <Label htmlFor="audiobook-pfh" className="text-base font-medium">Enter Per Finished Hour (PFH):</Label>
+        <Input
+          id="audiobook-pfh"
+          type="number"
+          value={finishedHours}
+          onChange={(e) => setFinishedHours(e.target.value)}
+          min="0"
+          step="0.5"
+          className="max-w-[150px]"
+          placeholder="e.g., 8.5"
+        />
+      </div>
+    )}
+
+    {/* Raw/Production Hour Inputs */}
+    {(selectedSubType === "Per RAW Hour" || selectedSubType === "Production Add-On") && (
+      <div className="grid gap-4">
+        <Label htmlFor="audiobook-raw" className="text-base font-medium">Enter Hours:</Label>
+        <Input
+          id="audiobook-raw"
+          type="number"
+          value={numberOfHours}
+          onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))}
+          min="1"
+          step="0.5"
+          className="max-w-[150px]"
+        />
+      </div>
+    )}
+
+    {/* --- Audiobooks Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: IVR / Message-on-Hold --- */}
+{selectedCategory === "ivr_message_on_hold" && (
+  <div className="grid gap-6">
+
+    {/* --- Inputs for: Direct Quote --- */}
+    {selectedSubType === "Direct Quote" && (
+      <div className="grid gap-6">
+        <div className="grid gap-4">
+          <Label className="text-base font-medium">Select Calculation Model:</Label>
+          <RadioGroup
+            value={selectedIvrModel ?? ""}
+            onValueChange={setSelectedIvrModel}
+            className="grid gap-2"
+          >
+            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_min" id="ivr-min" /><Label htmlFor="ivr-min">IVR (Suggested Minimum)</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_prompt" id="ivr-prompt" /><Label htmlFor="ivr-prompt">IVR (Per Prompt)</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_word" id="ivr-word" /><Label htmlFor="ivr-word">IVR (Per Word - RAW)</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="ivr_hour" id="ivr-hour" /><Label htmlFor="ivr-hour">IVR (Per Hour - RAW)</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="moh_min" id="moh-min" /><Label htmlFor="moh-min">Message-On-Hold (Minimum)</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="moh_min_rate" id="moh-min-rate" /><Label htmlFor="moh-min-rate">Message-On-Hold (Per Minute)</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="moh_para" id="moh-para" /><Label htmlFor="moh-para">Message-On-Hold (Per Paragraph)</Label></div>
+          </RadioGroup>
+        </div>
+
+        {/* Conditional Inputs for Direct Quote */}
+        {selectedIvrModel === 'ivr_prompt' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="ivr-prompts" className="text-base font-medium">Enter Number of Prompts:</Label>
+            <Input id="ivr-prompts" type="number" value={numPrompts > 0 ? numPrompts : ''} onChange={(e) => setNumPrompts(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 10" />
+          </div>
+        )}
+        {selectedIvrModel === 'ivr_word' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="ivr-wordcount" className="text-base font-medium">Enter Word Count:</Label>
+            <Input id="ivr-wordcount" type="number" value={wordCount > 0 ? wordCount : ''} onChange={(e) => setWordCount(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 500" />
+          </div>
+        )}
+        {selectedIvrModel === 'ivr_hour' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="ivr-hours" className="text-base font-medium">Enter Raw Hours:</Label>
+            <Input id="ivr-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" />
+          </div>
+        )}
+        {selectedIvrModel === 'moh_min_rate' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="moh-minutes" className="text-base font-medium">Enter Finished Minutes:</Label>
+            <Input id="moh-minutes" type="number" value={finishedMinutes} onChange={(e) => setFinishedMinutes(e.target.value)} min="0" step="0.5" className="max-w-[150px]" placeholder="e.g., 5" />
+          </div>
+        )}
+        {selectedIvrModel === 'moh_para' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="moh-paras" className="text-base font-medium">Enter Number of Paragraphs:</Label>
+            <Input id="moh-paras" type="number" value={numParagraphs > 0 ? numParagraphs : ''} onChange={(e) => setNumParagraphs(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 4" />
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* --- Inputs for: Roster Talent --- */}
+    {selectedSubType === "Roster Talent" && (
+      <div className="grid gap-6">
+        <div className="grid gap-4">
+          <Label className="text-base font-medium">Select Roster Model:</Label>
+          <RadioGroup
+            value={selectedRosterModel ?? ""}
+            onValueChange={setSelectedRosterModel}
+            className="grid gap-2"
+          >
+            <div className="flex items-center space-x-2"><RadioGroupItem value="prod_house" id="roster-prod" /><Label htmlFor="roster-prod">Production House (Per Paragraph)</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="other_hourly" id="roster-other" /><Label htmlFor="roster-other">Other (Per 1/2 Hour Booth Time)</Label></div>
+          </RadioGroup>
+        </div>
+
+        {/* Conditional Inputs for Roster Talent */}
+        {selectedRosterModel === 'prod_house' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="roster-paras" className="text-base font-medium">Enter Number of Paragraphs:</Label>
+            <Input id="roster-paras" type="number" value={numParagraphs > 0 ? numParagraphs : ''} onChange={(e) => setNumParagraphs(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 20" />
+          </div>
+        )}
+        {selectedRosterModel === 'other_hourly' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="roster-hours" className="text-base font-medium">Enter Total Booth Hours:</Label>
+            <Input id="roster-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(0.5, Number(e.target.value) || 0.5))} min="0.5" step="0.5" className="max-w-[150px]" placeholder="e.g., 1.5" />
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* --- IVR Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Cinema / Events --- */}
+{selectedCategory === "cinema_events" && (
+  <div className="grid gap-6">
+
+    {/* --- Inputs for: Cinema Usage (1-3 States) --- */}
+    {selectedSubType === "Cinema Usage – Term (1–3 States)" && (
+      <div className="grid gap-4">
+        <Label className="text-base font-medium">Select Term:</Label>
+        <RadioGroup
+          value={selectedTerm ?? ""}
+          onValueChange={setSelectedTerm}
+          className="grid gap-2"
+        >
+          {Object.keys(cinemaRates1to3States).map((term) => (
+            <div key={term} className="flex items-center space-x-2">
+              <RadioGroupItem value={term} id={`cinema-1-3-${term}`} />
+              <Label htmlFor={`cinema-1-3-${term}`} className="cursor-pointer">{term}</Label>
+            </div>
+          ))}
+        </RadioGroup>
+      </div>
+    )}
+
+    {/* --- Inputs for: Cinema Usage (4+ States) --- */}
+    {selectedSubType === "Cinema Usage – Term (4+ States)" && (
+      <div className="grid gap-4">
+        <Label className="text-base font-medium">Select Term:</Label>
+        <RadioGroup
+          value={selectedTerm ?? ""}
+          onValueChange={setSelectedTerm}
+          className="grid gap-2"
+        >
+          {Object.keys(cinemaRates4PlusStates).map((term) => (
+            <div key={term} className="flex items-center space-x-2">
+              <RadioGroupItem value={term} id={`cinema-4-plus-${term}`} />
+              <Label htmlFor={`cinema-4-plus-${term}`} className="cursor-pointer">{term}</Label>
+            </div>
+          ))}
+        </RadioGroup>
+      </div>
+    )}
+
+    {/* --- Inputs for: Event Video --- */}
+    {selectedSubType === "Event Video" && (
+      <div className="grid gap-6">
+        <div className="grid gap-4">
+          <Label className="text-base font-medium">Select Term:</Label>
+          <RadioGroup
+            value={selectedTerm ?? ""}
+            onValueChange={setSelectedTerm}
+            className="grid gap-2"
+          >
+            <div className="flex items-center space-x-2"><RadioGroupItem value="1 Year" id="event-1y" /><Label htmlFor="event-1y">1 Year</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="Full Buyout" id="event-buyout" /><Label htmlFor="event-buyout">Full Buyout</Label></div>
+          </RadioGroup>
+        </div>
+        <div className="grid gap-4">
+          <Label htmlFor="event-hours" className="text-base font-medium">Enter Total Hours:</Label>
+          <Input id="event-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" />
+        </div>
+      </div>
+    )}
+
+    {/* --- Inputs for: Trade Shows / Sporting Events --- */}
+    {selectedSubType === "Trade Shows / Sporting Events" && (
+      <div className="grid gap-6">
+        <div className="grid gap-4">
+          <Label className="text-base font-medium">Select Term:</Label>
+          <RadioGroup
+            value={selectedTerm ?? ""}
+            onValueChange={setSelectedTerm}
+            className="grid gap-2"
+          >
+            <div className="flex items-center space-x-2"><RadioGroupItem value="1 Year" id="trade-1y" /><Label htmlFor="trade-1y">1 Year</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="Full Buyout" id="trade-buyout" /><Label htmlFor="trade-buyout">Full Buyout</Label></div>
+          </RadioGroup>
+        </div>
+        <div className="grid gap-4">
+          <Label htmlFor="trade-hours" className="text-base font-medium">Enter Total Hours:</Label>
+          <Input id="trade-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" />
+        </div>
+      </div>
+    )}
+
+    {/* --- Cinema/Events Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+                {/* --- Form for: Fees / Pick-Ups / Editing --- */}
+{selectedCategory === "fees_pickups_editing" && (
+  <div className="grid gap-6">
+
+    {/* --- Inputs for: Studio Fees & Editing --- */}
+    {selectedSubType === "Studio Fees & Editing" && (
+      <div className="grid gap-6">
+        <div className="grid gap-4">
+          <Label className="text-base font-medium">Select Fee Type:</Label>
+          <RadioGroup
+            value={selectedFeeType ?? ""}
+            onValueChange={setSelectedFeeType}
+            className="grid gap-2"
+          >
+            {Object.keys(studioFeeRates).map((type) => (
+              <div key={type} className="flex items-center space-x-2">
+                <RadioGroupItem value={type} id={`fee-${type}`} />
+                <Label htmlFor={`fee-${type}`} className="cursor-pointer">{type}</Label>
+              </div>
+            ))}
+          </RadioGroup>
+        </div>
+        <div className="grid gap-4">
+          <Label htmlFor="fee-hours" className="text-base font-medium">Enter Total Hours:</Label>
+          <Input id="fee-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" />
+        </div>
+      </div>
+    )}
+
+    {/* --- Inputs for: Pickups --- */}
+    {selectedSubType === "Pickups" && (
+      <div className="grid gap-6">
+        <div className="grid gap-4">
+          <Label className="text-base font-medium">Select Pickup Type:</Label>
+          <RadioGroup
+            value={selectedPickupType ?? ""}
+            onValueChange={setSelectedPickupType}
+            className="grid gap-2"
+          >
+            <div className="flex items-center space-x-2"><RadioGroupItem value="Talent Error" id="pickup-error" /><Label htmlFor="pickup-error">Pickups due to Talent Error</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="Minor Pickups (≤15 mins)" id="pickup-minor" /><Label htmlFor="pickup-minor">Minor Pickups (≤15 mins)</Label></div>
+            <div className="flex items-center space-x-2"><RadioGroupItem value="Major Pickups (rewrites)" id="pickup-major" /><Label htmlFor="pickup-major">Major Pickups (rewrites/large re-records)</Label></div>
+          </RadioGroup>
+        </div>
+
+        {/* Conditional Input for Minor Pickups */}
+        {selectedPickupType === 'Minor Pickups (≤15 mins)' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="pickup-original-fee" className="text-base font-medium">Enter Original Fee ($):</Label>
+            <Input id="pickup-original-fee" type="number" value={originalFee} onChange={(e) => setOriginalFee(e.target.value)} min="0" className="max-w-[150px]" placeholder="e.g., 500" />
+          </div>
+        )}
+        
+        {/* Conditional Input for Major Pickups (by 30 min block) */}
+        {selectedPickupType === 'Major Pickups (rewrites)' && (
+          <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+            <Label htmlFor="pickup-hours" className="text-base font-medium">Enter Session Hours (in 0.5 hr increments):</Label>
+            <Input id="pickup-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(0.5, Number(e.target.value) || 0.5))} min="0.5" step="0.5" className="max-w-[150px]" placeholder="e.g., 0.5" />
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* --- Fees Rate Display --- */}
+    {calculatedRate && (
+      <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
+        <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
+        <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
+          {calculatedRate}
+        </p>
+      </div>
+    )}
+  </div>
+)}
+
 
                 {/* Rate Display with Add to Quote Button */}
                 {calculatedRate && (
