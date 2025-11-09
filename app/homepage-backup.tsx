@@ -3611,44 +3611,7 @@ export function RateCalculatorUI() {
 )}
 
 
-                {/* Rate Display with Add to Quote Button */}
-                {calculatedRate && (
-                  <div className="mt-6 space-y-4">
-                    <div className="p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-center">
-                      <p className="text-sm text-slate-600 dark:text-slate-400">GVAA Rate Range:</p>
-                      <p className="text-2xl font-semibold text-green-700 dark:text-green-300">
-                        {calculatedRate}
-                      </p>
-                    </div>
-                    
-                    {/* NEW: Add to Quote Section */}
-                    <div className="space-y-3 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg">
-                      <div>
-                        <Label htmlFor="item-description" className="text-sm font-medium">
-                          Description (Optional)
-                        </Label>
-                        <Input
-                          id="item-description"
-                          value={itemDescription}
-                          onChange={(e) => setItemDescription(e.target.value)}
-                          placeholder="e.g., '60-second hero video + 2 cutdowns' or '1-year license'"
-                          className="mt-1"
-                        />
-                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                          Add notes about deliverables, usage terms, or any other details
-                        </p>
-                      </div>
-                      <Button 
-                        onClick={handleAddToQuote}
-                        className="w-full"
-                        size="lg"
-                      >
-                        <ShoppingCart className="w-4 h-4 mr-2" />
-                        Add to Quote Builder
-                      </Button>
-                    </div>
-                  </div>
-                )}
+                
               </div>
             </CardContent>
           </Card>
