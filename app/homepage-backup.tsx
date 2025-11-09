@@ -137,13 +137,13 @@ const QuoteBuilder: React.FC<{
           </div>
           
           <Button 
-            onClick={onGenerateQuote}
-            className="w-full"
-            size="sm"
-          >
-            <FileText className="w-4 h-4 mr-2" />
-            Generate Quote
-          </Button>
+  onClick={onGenerateQuote}
+  className="w-full"
+  size="sm"
+>
+  <FileText className="w-4 h-4 mr-2" />
+  Review & Export
+</Button>
         </div>
       </CardContent>
     </Card>
