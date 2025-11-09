@@ -3615,6 +3615,40 @@ export function RateCalculatorUI() {
               </div>
             </CardContent>
           </Card>
+
+          {calculatedRate && (
+  <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700 space-y-4">
+    <h3 className="text-lg font-semibold">Add to Quote</h3>
+    
+    {/* Description Textarea */}
+    <div>
+      <Label htmlFor="item-description" className="font-medium">
+        Add Description (Optional)
+      </Label>
+      <p className="text-sm text-slate-500 dark:text-slate-400 mb-2">
+        e.g., "Spot 1: 'Holiday Sale'" or "Main narration"
+      </p>
+      <Textarea
+        id="item-description"
+        placeholder="Enter an optional description for this line item..."
+        value={itemDescription}
+        onChange={(e) => setItemDescription(e.target.value)}
+        rows={3}
+      />
+    </div>
+    
+    {/* Add to Quote Button */}
+    <Button 
+      onClick={handleAddToQuote} 
+      className="w-full"
+      size="lg"
+    >
+      <ShoppingCart className="w-5 h-5 mr-2" />
+      Add to Quote
+    </Button>
+  </div>
+)}
+          
         </div>
 
         {/* RIGHT COLUMN: Quote Builder (1/3 width on desktop) */}
