@@ -2475,7 +2475,7 @@ export function RateCalculatorUI() {
       <Label className="text-base font-medium">Select Calculation Method:</Label>
       <RadioGroup
         value={explainerCalcMethod ?? ""}
-        onValueChange={(value) => {
+        onValueChange={(value: string) => {
           setExplainerCalcMethod(value);
           setWordCount(0); // Reset word count when method changes
           setSelectedDuration(null); // Also reset duration just in case
@@ -2619,7 +2619,7 @@ export function RateCalculatorUI() {
       <RadioGroup
         value={medTechCalcMethod ?? ""}
         // Reset specific inputs when method changes
-        onValueChange={(value) => { 
+        onValueChange={(value: string) => { 
           setMedTechCalcMethod(value);
           setSelectedDuration(null); // Reset duration if switching
           setWordCount(0);           // Reset word count if switching
