@@ -3610,13 +3610,7 @@ export function RateCalculatorUI() {
   </div>
 )}
 
-
-                
-              </div>
-            </CardContent>
-          </Card>
-
-          {calculatedRate && (
+{calculatedRate && (
   <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700 space-y-4">
     <h3 className="text-lg font-semibold">Add to Quote</h3>
     
@@ -3648,7 +3642,10 @@ export function RateCalculatorUI() {
     </Button>
   </div>
 )}
-          
+                
+              </div>
+            </CardContent>
+          </Card>          
         </div>
 
         {/* RIGHT COLUMN: Quote Builder (1/3 width on desktop) */}
