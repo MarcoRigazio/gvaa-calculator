@@ -1,9 +1,10 @@
 // app/page.tsx
 
-// Import the default export from your real calculator file
-import CalculatorPage from "./homepage-backup";
+// 1. Import the NAMED export { RateCalculatorUI } using curly braces
+// 2. Point to the correct file in this folder: "./homepage-backup"
+import { RateCalculatorUI } from "./homepage-backup";
 
-// Render that default export as the page
+// 3. Render that component
 export default function HomePage() {
-  return <CalculatorPage />;
+  return <RateCalculatorUI />;
 }
