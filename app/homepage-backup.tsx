@@ -3623,12 +3623,18 @@ export function RateCalculatorUI() {
   {'e.g., "Spot 1: \'Holiday Sale\'" or "Main narration"'}
 </p>
       <Textarea
-        id="item-description"
-        placeholder="Enter an optional description for this line item..."
-        value={itemDescription}
-        onChange={(e) => setItemDescription(e.target.value)}
-        rows={3}
-      />
+  id="item-description"
+  placeholder="Enter an optional description for this line item..."
+  value={itemDescription}
+  onChange={(e) => setItemDescription(e.target.value)}
+  rows={3}
+  onKeyDown={(event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault(); // Prevents adding a new line
+      handleAddToQuote();     // Runs the add to quote function
+    }
+  }}
+/>
     </div>
     
     {/* Add to Quote Button */}
