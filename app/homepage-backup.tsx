@@ -3620,8 +3620,8 @@ export function RateCalculatorUI() {
         Add Description (Optional)
       </Label>
       <p className="text-sm text-slate-500 dark:text-slate-400 mb-2">
-        e.g., "Spot 1: 'Holiday Sale'" or "Main narration"
-      </p>
+  {'e.g., "Spot 1: \'Holiday Sale\'" or "Main narration"'}
+</p>
       <Textarea
         id="item-description"
         placeholder="Enter an optional description for this line item..."
