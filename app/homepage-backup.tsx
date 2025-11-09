@@ -1496,38 +1496,6 @@ export function RateCalculatorUI() {
                   </div>
                 )}
 
-                {/* Dynamic Input Fields - ALL THE EXISTING FORMS FROM YOUR ORIGINAL FILE */}
-                {/* I'll include a few examples, but you'll need to paste ALL your existing form sections here */}
-                
-                {/* Example: Non-Paid Web */}
-                {selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && (
-                  <div className="grid gap-4 pt-6 mt-6 border-t border-slate-200 dark:border-slate-700">
-                    <Label className="text-base font-medium">Select Term:</Label>
-                    <RadioGroup
-                      value={selectedTerm ?? ""}
-                      onValueChange={setSelectedTerm}
-                      className="grid gap-2"
-                    >
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="3 Months" id="term-3m" />
-                        <Label htmlFor="term-3m" className="cursor-pointer">3 Months</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="1 Year" id="term-1y" />
-                        <Label htmlFor="term-1y" className="cursor-pointer">1 Year</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="3 Years" id="term-3y" />
-                        <Label htmlFor="term-3y" className="cursor-pointer">3 Years</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="5 Years" id="term-5y" />
-                        <Label htmlFor="term-5y" className="cursor-pointer">5 Years</Label>
-                      </div>
-                    </RadioGroup>
-                  </div>
-                )}
-
                                 {/* --- Form for: Digital Visual -> Non-Paid Web --- */}
                 {selectedSubType === "Non-Paid Web (Owned Social or Client Site)" && (
                   <div className="grid gap-4">
