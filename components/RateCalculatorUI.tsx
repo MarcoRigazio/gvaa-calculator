@@ -252,8 +252,7 @@ const QuotePreview: React.FC<{
           </div>
         </CardHeader>
         <CardContent>
-         <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
-          <div className="space-y-4">
+         <div className="space-y-4">
             {/* Client Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -305,8 +304,7 @@ const QuotePreview: React.FC<{
               </Button>
             </div>
           </div>
-         </form>
-        </CardContent>
+         </CardContent>
       </Card>
     </div>
   );
@@ -1451,7 +1449,6 @@ export function RateCalculatorUI() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
               <div className="grid gap-6">
                 
                 {/* Category Card Selection */}
@@ -3656,8 +3653,7 @@ export function RateCalculatorUI() {
 )}
                 
               </div>
-              </form>
-            </CardContent>
+           </CardContent>
           </Card>          
         </div>
 
