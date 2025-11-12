@@ -701,6 +701,8 @@ export function RateCalculatorUI() {
   const [selectedFeeType, setSelectedFeeType] = useState<string | null>(null);
   const [selectedPickupType, setSelectedPickupType] = useState<string | null>(null);
   const [originalFee, setOriginalFee] = useState<number | string>("");
+  const [platform, setPlatform] = useState<string | undefined>(undefined);
+  const [budgetInput, setBudgetInput] = useState<string>("");
 
   // Quote Builder Functions
   const handleAddToQuote = () => {
