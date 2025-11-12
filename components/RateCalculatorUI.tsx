@@ -3668,6 +3668,7 @@ export function RateCalculatorUI() {
     />
   </div>
 </div>
+      </div>
 
       {/* Quote Preview Modal */}
       {showQuotePreview && (
