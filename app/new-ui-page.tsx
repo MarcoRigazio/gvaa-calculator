@@ -2157,10 +2157,10 @@ function UsageFieldsComponent({ fs, setFs }: { fs: typeof DEFAULT_STATE; setFs: 
 
 
 // Main export with password gate
-export default function Page() {
+export default function NewUIPage() { // We rename this to avoid conflicts
   return (
     <PasswordGate>
-      <GVAACalculator />
+      <RateCalculatorUI />
     </PasswordGate>
   );
 }
