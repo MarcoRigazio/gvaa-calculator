@@ -653,6 +653,16 @@ const studioFeeRates = {
   "Editing (breaths/clicks/sequencing)": { low: 25, high: 50 },
 };
 
+const PLATFORM_FEES = {
+  "Voices.com": { feePct: 0.2 },
+  Upwork: { feePct: 0.1, notes: "Upwork tiers exist. Defaulting to 10% for $500–$10K." },
+  Fiverr: { feePct: 0.2 },
+  Voice123: { feePct: 0, notes: "Set 5% if using Safe Payment." },
+  Bodalgo: { feePct: 0 },
+  Voquent: { feePct: 0 },
+  "Direct Client": { feePct: 0 },
+};
+
 // ========================================
 // MAIN RATE CALCULATOR COMPONENT
 // ========================================
