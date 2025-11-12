@@ -3634,6 +3634,7 @@ export function RateCalculatorUI() {
       handleAddToQuote();     // Runs the add to quote function
     }
   }}
+  autoComplete="off"
 />
     </div>
     
