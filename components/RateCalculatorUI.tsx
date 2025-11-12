@@ -8,7 +8,6 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ShoppingCart, Trash2, FileText, X } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
 // ========================================
@@ -653,15 +652,6 @@ const studioFeeRates = {
   "Editing (breaths/clicks/sequencing)": { low: 25, high: 50 },
 };
 
-const PLATFORM_FEES = {
-  "Voices.com": { feePct: 0.2 },
-  Upwork: { feePct: 0.1, notes: "Upwork tiers exist. Defaulting to 10% for $500–$10K." },
-  Fiverr: { feePct: 0.2 },
-  Voice123: { feePct: 0, notes: "Set 5% if using Safe Payment." },
-  Bodalgo: { feePct: 0 },
-  Voquent: { feePct: 0 },
-  "Direct Client": { feePct: 0 },
-};
 
 // ========================================
 // MAIN RATE CALCULATOR COMPONENT
@@ -711,8 +701,7 @@ export function RateCalculatorUI() {
   const [selectedFeeType, setSelectedFeeType] = useState<string | null>(null);
   const [selectedPickupType, setSelectedPickupType] = useState<string | null>(null);
   const [originalFee, setOriginalFee] = useState<number | string>("");
-  const [platform, setPlatform] = useState<string | undefined>(undefined);
-  const [budgetInput, setBudgetInput] = useState<string>("");
+  
 
   // Quote Builder Functions
   const handleAddToQuote = () => {
@@ -3668,11 +3657,9 @@ export function RateCalculatorUI() {
           </Card>          
         </div>
 
-        {/* RIGHT COLUMN: Quote Builder & Pro Features (1/3 width on desktop) */}
-<div className="lg:col-span-1 space-y-6">
-
-  {/* --- QUOTE BUILDER --- */}
-  <div className="sticky top-4" id="quote-builder">
+        {/* RIGHT COLUMN: Quote Builder (1/3 width on desktop) */}
+<div className="lg:col-span-1" id="quote-builder">
+  <div className="sticky top-4">
     <QuoteBuilder
       items={quoteItems}
       onRemoveItem={handleRemoveItem}
@@ -3680,48 +3667,7 @@ export function RateCalculatorUI() {
       onClearAll={handleClearAll}
     />
   </div>
-
-  {/* --- PRO FEATURES (NEW) --- */}
-  <Card className="w-full">
-    <CardHeader>
-      <CardTitle className="flex items-center gap-2 text-lg">
-        Pro Features
-      </CardTitle>
-    </CardHeader>
-    <CardContent className="space-y-4">
-
-      {/* Platform Select */}
-      <div className="space-y-2">
-        <Label htmlFor="platform">Platform</Label>
-        <Select value={platform || ""} onValueChange={setPlatform}>
-          <SelectTrigger className="w-full" id="platform">
-            <SelectValue placeholder="Select platform..." />
-          </SelectTrigger>
-          <SelectContent>
-            {Object.keys(PLATFORM_FEES).map((p) => (
-              <SelectItem key={p} value={p}>{p}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-
-      {/* Client Budget Input */}
-      <div className="space-y-2">
-        <Label htmlFor="budget">Client Budget</Label>
-        <Input 
-          id="budget" 
-          inputMode="decimal" 
-          value={budgetInput} 
-          onChange={(e) => setBudgetInput(e.target.value)} 
-          placeholder="e.g. 750 or 500-800"
-          autoComplete="off"
-        />
-      </div>
-
-    </CardContent>
-  </Card>
 </div>
-      </div>
 
       {/* Quote Preview Modal */}
       {showQuotePreview && (
