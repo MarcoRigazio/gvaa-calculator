@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Download, FileText, RefreshCw, Info } from "lucide-react";
+import { RateCalculatorUI } from "@/components/RateCalculatorUI";
 // Password Gate Component
 const BETA_PASSWORD = "beta2025";
 
