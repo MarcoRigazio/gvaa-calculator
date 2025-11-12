@@ -1449,6 +1449,7 @@ export function RateCalculatorUI() {
               </CardTitle>
             </CardHeader>
             <CardContent>
+              <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
               <div className="grid gap-6">
                 
                 {/* Category Card Selection */}
@@ -3653,6 +3654,7 @@ export function RateCalculatorUI() {
 )}
                 
               </div>
+              </form>
             </CardContent>
           </Card>          
         </div>
