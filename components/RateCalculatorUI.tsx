@@ -261,6 +261,7 @@ const QuotePreview: React.FC<{
               <div>
                 <Label htmlFor="client-name">Client Name (Optional)</Label>
                 <Input
+                  autoComplete="off"
                   id="client-name"
                   value={clientName}
                   onChange={(e) => setClientName(e.target.value)}
@@ -271,6 +272,7 @@ const QuotePreview: React.FC<{
               <div>
                 <Label htmlFor="project-name">Project Name (Optional)</Label>
                 <Input
+                  autoComplete="off"
                   id="project-name"
                   value={projectName}
                   onChange={(e) => setProjectName(e.target.value)}
@@ -1443,7 +1445,7 @@ export function RateCalculatorUI() {
   // ========================================
 
   return (
-    <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10">
+    <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10" data-1p-ignore data-lpignore="true" data-form-type="other">
       <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* LEFT COLUMN: Calculator (2/3 width on desktop) */}
@@ -1656,6 +1658,7 @@ export function RateCalculatorUI() {
   <div className="grid gap-4">
     <Label htmlFor="tags-number" className="text-base font-medium">Number of Tags:</Label>
     <Input
+      autoComplete="off"
       id="tags-number"
       type="number"
       value={numberOfTags}
@@ -1710,6 +1713,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="spots-number" className="text-base font-medium">Number of Spots:</Label>
         <Input
+          autoComplete="off"
           id="spots-number"
           type="number"
           value={numberOfSpots}
@@ -1936,6 +1940,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="spots-number-radio" className="text-base font-medium">Number of Spots:</Label> 
         <Input
+          autoComplete="off"
           id="spots-number-radio" 
           type="number"
           value={numberOfSpots}
@@ -2279,6 +2284,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="spots-number-tv" className="text-base font-medium">Number of Spots:</Label>
         <Input
+          autoComplete="off"
           id="spots-number-tv"
           type="number"
           value={numberOfSpots}
@@ -2429,6 +2435,7 @@ export function RateCalculatorUI() {
   <div className="grid gap-4">
     <Label htmlFor="corp-hours" className="text-base font-medium">Number of Recording Hours:</Label>
     <Input
+      autoComplete="off"
       id="corp-hours"
       type="number"
       value={numberOfHours}
@@ -2481,6 +2488,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
         <Label htmlFor="explainer-wordcount" className="text-base font-medium">Enter Word Count:</Label>
         <Input
+          autoComplete="off"
           id="explainer-wordcount"
           type="number"
           value={wordCount > 0 ? wordCount : ''}
@@ -2536,6 +2544,7 @@ export function RateCalculatorUI() {
     <div className="grid gap-4">
       <Label htmlFor="museum-hours" className="text-base font-medium">Total Recording Hours:</Label>
       <Input
+        autoComplete="off"
         id="museum-hours"
         type="number"
         value={museumRecordingHours}
@@ -2644,6 +2653,7 @@ export function RateCalculatorUI() {
        <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
          <Label htmlFor="medtech-wordcount" className="text-base font-medium">Enter Word Count:</Label>
          <Input
+           autoComplete="off"
            id="medtech-wordcount"
            type="number"
            value={wordCount > 0 ? wordCount : ''} // Show empty string if 0
@@ -2729,6 +2739,7 @@ export function RateCalculatorUI() {
                   <div className="grid gap-4">
                     <Label htmlFor="kiosk-hours" className="text-base font-medium">Number of Recording Hours:</Label>
                     <Input
+                      autoComplete="off"
                       id="kiosk-hours"
                       type="number"
                       value={numberOfHours}
@@ -2777,6 +2788,7 @@ export function RateCalculatorUI() {
                       <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
                         <Label htmlFor="lobby-hours" className="text-base font-medium">Number of Recording Hours:</Label>
                         <Input
+                          autoComplete="off"
                           id="lobby-hours"
                           type="number"
                           value={numberOfHours}
@@ -2829,6 +2841,7 @@ export function RateCalculatorUI() {
                     <div className="grid gap-4">
                       <Label htmlFor="airport-count" className="text-base font-medium">Number of Airports:</Label>
                       <Input
+                        autoComplete="off"
                         id="airport-count"
                         type="number"
                         value={numberOfAirports}
@@ -2843,6 +2856,7 @@ export function RateCalculatorUI() {
                     <div className="grid gap-4">
                       <Label htmlFor="airport-hours" className="text-base font-medium">Total Recording Hours (RAW):</Label>
                       <Input
+                        autoComplete="off"
                         id="airport-hours"
                         type="number"
                         value={numberOfHours}
@@ -2875,6 +2889,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="elearning-wordcount" className="text-base font-medium">Enter Word Count:</Label>
         <Input
+          autoComplete="off"
           id="elearning-wordcount"
           type="number"
           value={wordCount > 0 ? wordCount : ''}
@@ -2891,6 +2906,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="elearning-pfm" className="text-base font-medium">Enter Finished Minutes:</Label>
         <Input
+          autoComplete="off"
           id="elearning-pfm"
           type="number"
           value={finishedMinutes}
@@ -2907,6 +2923,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="elearning-raw" className="text-base font-medium">Enter Raw Hours:</Label>
         <Input
+          autoComplete="off"
           id="elearning-raw"
           type="number"
           value={numberOfHours}
@@ -2923,6 +2940,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="elearning-pfh" className="text-base font-medium">Enter Finished Hours:</Label>
         <Input
+          autoComplete="off"
           id="elearning-pfh"
           type="number"
           value={finishedHours}
@@ -2941,6 +2959,7 @@ export function RateCalculatorUI() {
         <div className="grid gap-4">
           <Label htmlFor="elearning-directed-words" className="text-base font-medium">Enter Word Count:</Label>
           <Input
+            autoComplete="off"
             id="elearning-directed-words"
             type="number"
             value={wordCount > 0 ? wordCount : ''}
@@ -2953,6 +2972,7 @@ export function RateCalculatorUI() {
         <div className="grid gap-4">
           <Label htmlFor="elearning-directed-hours" className="text-base font-medium">Enter Session Hours (First 60 mins included):</Label>
           <Input
+            autoComplete="off"
             id="elearning-directed-hours"
             type="number"
             value={sessionHours}
@@ -2986,6 +3006,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="anim-session-hours" className="text-base font-medium">Session Hours (Up to 4):</Label>
         <Input
+          autoComplete="off"
           id="anim-session-hours"
           type="number"
           value={sessionLength}
@@ -3005,6 +3026,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="anim-11-episodes" className="text-base font-medium">Number of Episodes:</Label>
         <Input
+          autoComplete="off"
           id="anim-11-episodes"
           type="number"
           value={numEpisodes}
@@ -3021,6 +3043,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="dubbing-hours" className="text-base font-medium">Session Hours (2 hr min):</Label>
         <Input
+          autoComplete="off"
           id="dubbing-hours"
           type="number"
           value={sessionLength}
@@ -3071,6 +3094,7 @@ export function RateCalculatorUI() {
           <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
             <Label htmlFor="game-hours" className="text-base font-medium">Session Hours:</Label>
             <Input
+              autoComplete="off"
               id="game-hours"
               type="number"
               value={sessionLength}
@@ -3090,6 +3114,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="game-union-hours" className="text-base font-medium">Session Hours (Up to 4):</Label>
         <Input
+          autoComplete="off"
           id="game-union-hours"
           type="number"
           value={sessionLength}
@@ -3108,6 +3133,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="toys-hours" className="text-base font-medium">Session Hours (Up to 2):</Label>
         <Input
+          autoComplete="off"
           id="toys-hours"
           type="number"
           value={sessionLength}
@@ -3125,6 +3151,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="toys-demo-hours" className="text-base font-medium">Session Hours:</Label>
         <Input
+          autoComplete="off"
           id="toys-demo-hours"
           type="number"
           value={sessionLength}
@@ -3160,6 +3187,7 @@ export function RateCalculatorUI() {
           <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
             <Label htmlFor="mobile-game-voices" className="text-base font-medium">Number of Voices (Up to 3-4):</Label>
             <Input
+              autoComplete="off"
               id="mobile-game-voices"
               type="number"
               value={numVoices}
@@ -3175,6 +3203,7 @@ export function RateCalculatorUI() {
           <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
             <Label htmlFor="mobile-game-hours" className="text-base font-medium">Session Hours (2 hr min):</Label>
             <Input
+              autoComplete="off"
               id="mobile-game-hours"
               type="number"
               value={sessionLength}
@@ -3194,6 +3223,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="mobile-union-hours" className="text-base font-medium">Session Hours (Up to 4):</Label>
         <Input
+          autoComplete="off"
           id="mobile-union-hours"
           type="number"
           value={sessionLength}
@@ -3212,6 +3242,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="mobile-elearn-minutes" className="text-base font-medium">Finished Minutes:</Label>
         <Input
+          autoComplete="off"
           id="mobile-elearn-minutes"
           type="number"
           value={finishedMinutes}
@@ -3316,6 +3347,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="audiobook-pfh" className="text-base font-medium">Enter Per Finished Hour (PFH):</Label>
         <Input
+          autoComplete="off"
           id="audiobook-pfh"
           type="number"
           value={finishedHours}
@@ -3333,6 +3365,7 @@ export function RateCalculatorUI() {
       <div className="grid gap-4">
         <Label htmlFor="audiobook-raw" className="text-base font-medium">Enter Hours:</Label>
         <Input
+          autoComplete="off"
           id="audiobook-raw"
           type="number"
           value={numberOfHours}
@@ -3383,31 +3416,31 @@ export function RateCalculatorUI() {
         {selectedIvrModel === 'ivr_prompt' && (
           <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
             <Label htmlFor="ivr-prompts" className="text-base font-medium">Enter Number of Prompts:</Label>
-            <Input id="ivr-prompts" type="number" value={numPrompts > 0 ? numPrompts : ''} onChange={(e) => setNumPrompts(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 10" />
+            <Input id="ivr-prompts" type="number" value={numPrompts > 0 ? numPrompts : ''} onChange={(e) => setNumPrompts(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 10" autoComplete="off"/>
           </div>
         )}
         {selectedIvrModel === 'ivr_word' && (
           <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
             <Label htmlFor="ivr-wordcount" className="text-base font-medium">Enter Word Count:</Label>
-            <Input id="ivr-wordcount" type="number" value={wordCount > 0 ? wordCount : ''} onChange={(e) => setWordCount(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 500" />
+            <Input id="ivr-wordcount" type="number" value={wordCount > 0 ? wordCount : ''} onChange={(e) => setWordCount(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 500" autoComplete="off"/>
           </div>
         )}
         {selectedIvrModel === 'ivr_hour' && (
           <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
             <Label htmlFor="ivr-hours" className="text-base font-medium">Enter Raw Hours:</Label>
-            <Input id="ivr-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" />
+            <Input id="ivr-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" autoComplete="off"/>
           </div>
         )}
         {selectedIvrModel === 'moh_min_rate' && (
           <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
             <Label htmlFor="moh-minutes" className="text-base font-medium">Enter Finished Minutes:</Label>
-            <Input id="moh-minutes" type="number" value={finishedMinutes} onChange={(e) => setFinishedMinutes(e.target.value)} min="0" step="0.5" className="max-w-[150px]" placeholder="e.g., 5" />
+            <Input id="moh-minutes" type="number" value={finishedMinutes} onChange={(e) => setFinishedMinutes(e.target.value)} min="0" step="0.5" className="max-w-[150px]" placeholder="e.g., 5" autoComplete="off"/>
           </div>
         )}
         {selectedIvrModel === 'moh_para' && (
           <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
             <Label htmlFor="moh-paras" className="text-base font-medium">Enter Number of Paragraphs:</Label>
-            <Input id="moh-paras" type="number" value={numParagraphs > 0 ? numParagraphs : ''} onChange={(e) => setNumParagraphs(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 4" />
+            <Input id="moh-paras" type="number" value={numParagraphs > 0 ? numParagraphs : ''} onChange={(e) => setNumParagraphs(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 4" autoComplete="off"/>
           </div>
         )}
       </div>
@@ -3432,13 +3465,13 @@ export function RateCalculatorUI() {
         {selectedRosterModel === 'prod_house' && (
           <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
             <Label htmlFor="roster-paras" className="text-base font-medium">Enter Number of Paragraphs:</Label>
-            <Input id="roster-paras" type="number" value={numParagraphs > 0 ? numParagraphs : ''} onChange={(e) => setNumParagraphs(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 20" />
+            <Input id="roster-paras" type="number" value={numParagraphs > 0 ? numParagraphs : ''} onChange={(e) => setNumParagraphs(Math.max(0, Number(e.target.value) || 0))} min="0" className="max-w-[150px]" placeholder="e.g., 20" autoComplete="off"/>
           </div>
         )}
         {selectedRosterModel === 'other_hourly' && (
           <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
             <Label htmlFor="roster-hours" className="text-base font-medium">Enter Total Booth Hours:</Label>
-            <Input id="roster-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(0.5, Number(e.target.value) || 0.5))} min="0.5" step="0.5" className="max-w-[150px]" placeholder="e.g., 1.5" />
+            <Input id="roster-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(0.5, Number(e.target.value) || 0.5))} min="0.5" step="0.5" className="max-w-[150px]" placeholder="e.g., 1.5" autoComplete="off"/>
           </div>
         )}
       </div>
@@ -3513,7 +3546,7 @@ export function RateCalculatorUI() {
         </div>
         <div className="grid gap-4">
           <Label htmlFor="event-hours" className="text-base font-medium">Enter Total Hours:</Label>
-          <Input id="event-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" />
+          <Input id="event-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" autoComplete="off"/>
         </div>
       </div>
     )}
@@ -3534,7 +3567,7 @@ export function RateCalculatorUI() {
         </div>
         <div className="grid gap-4">
           <Label htmlFor="trade-hours" className="text-base font-medium">Enter Total Hours:</Label>
-          <Input id="trade-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" />
+          <Input id="trade-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" autoComplete="off"/>
         </div>
       </div>
     )}
@@ -3574,7 +3607,7 @@ export function RateCalculatorUI() {
         </div>
         <div className="grid gap-4">
           <Label htmlFor="fee-hours" className="text-base font-medium">Enter Total Hours:</Label>
-          <Input id="fee-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" />
+          <Input id="fee-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(1, Number(e.target.value) || 1))} min="1" step="0.5" className="max-w-[150px]" autoComplete="off"/>
         </div>
       </div>
     )}
@@ -3599,7 +3632,7 @@ export function RateCalculatorUI() {
         {selectedPickupType === 'Minor Pickups (≤15 mins)' && (
           <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
             <Label htmlFor="pickup-original-fee" className="text-base font-medium">Enter Original Fee ($):</Label>
-            <Input id="pickup-original-fee" type="number" value={originalFee} onChange={(e) => setOriginalFee(e.target.value)} min="0" className="max-w-[150px]" placeholder="e.g., 500" />
+            <Input id="pickup-original-fee" type="number" value={originalFee} onChange={(e) => setOriginalFee(e.target.value)} min="0" className="max-w-[150px]" placeholder="e.g., 500" autoComplete="off"/>
           </div>
         )}
         
@@ -3607,7 +3640,7 @@ export function RateCalculatorUI() {
         {selectedPickupType === 'Major Pickups (rewrites)' && (
           <div className="grid gap-4 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
             <Label htmlFor="pickup-hours" className="text-base font-medium">Enter Session Hours (in 0.5 hr increments):</Label>
-            <Input id="pickup-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(0.5, Number(e.target.value) || 0.5))} min="0.5" step="0.5" className="max-w-[150px]" placeholder="e.g., 0.5" />
+            <Input id="pickup-hours" type="number" value={numberOfHours} onChange={(e) => setNumberOfHours(Math.max(0.5, Number(e.target.value) || 0.5))} min="0.5" step="0.5" className="max-w-[150px]" placeholder="e.g., 0.5" autoComplete="off"/>
           </div>
         )}
       </div>
@@ -3655,6 +3688,7 @@ export function RateCalculatorUI() {
     
     {/* Add to Quote Button */}
     <Button 
+      type="button"
       onClick={handleAddToQuote} 
       className="w-full"
       size="lg"
