@@ -1443,8 +1443,11 @@ export function RateCalculatorUI() {
   // ========================================
 
   return (
-    <div className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10" data-1p-ignore data-lpignore="true" data-form-type="other">
-      <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-6">
+  <div 
+    className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10"
+    data-1p-ignore
+    data-lpignore="true"
+  >
         
         {/* LEFT COLUMN: Calculator (2/3 width on desktop) */}
         <div className="lg:col-span-2">
