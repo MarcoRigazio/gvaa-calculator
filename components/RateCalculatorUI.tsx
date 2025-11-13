@@ -261,23 +261,21 @@ const QuotePreview: React.FC<{
               <div>
                 <Label htmlFor="client-name">Client Name (Optional)</Label>
                 <Input
-                  autoComplete="off"
                   id="client-name"
                   value={clientName}
                   onChange={(e) => setClientName(e.target.value)}
                   placeholder="Enter client name"
-                  autoComplete="off"
+                  autoComplete="new-password"
                 />
               </div>
               <div>
                 <Label htmlFor="project-name">Project Name (Optional)</Label>
                 <Input
-                  autoComplete="off"
                   id="project-name"
                   value={projectName}
                   onChange={(e) => setProjectName(e.target.value)}
                   placeholder="Enter project name"
-                  autoComplete="off"
+                  autoComplete="new-password"
                 />
               </div>
             </div>
@@ -298,7 +296,7 @@ const QuotePreview: React.FC<{
                 onChange={(e) => setAdditionalNotes(e.target.value)}
                 placeholder="Add any additional terms, conditions, or notes..."
                 rows={4}
-                autoComplete="off"
+                autoComplete="new-password"
               />
             </div>
 
