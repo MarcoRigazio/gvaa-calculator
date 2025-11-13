@@ -1446,8 +1446,8 @@ export function RateCalculatorUI() {
   <div 
     className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10"
     data-1p-ignore
-    data-lpignore="true"
-  >
+    data-lpignore="true">
+  
         
         {/* LEFT COLUMN: Calculator (2/3 width on desktop) */}
         <div className="lg:col-span-2">
