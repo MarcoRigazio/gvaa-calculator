@@ -1462,7 +1462,7 @@ export function RateCalculatorUI() {
               <div className="grid gap-6">
                 
                 {/* Category Card Selection */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4" data-1p-ignore>
                   {categories.map((category) => (
                     <div
                       key={category.id}
