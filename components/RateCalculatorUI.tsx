@@ -84,6 +84,7 @@ const QuoteBuilder: React.FC<{
             Quote ({items.length})
           </CardTitle>
           <Button 
+            type="button"
             variant="ghost" 
             size="sm" 
             onClick={onClearAll}
@@ -116,6 +117,7 @@ const QuoteBuilder: React.FC<{
                   </div>
                 </div>
                 <Button
+                  type="button"
                   variant="ghost"
                   size="sm"
                   onClick={() => onRemoveItem(item.id)}
@@ -137,6 +139,7 @@ const QuoteBuilder: React.FC<{
           </div>
           
           <Button 
+  type="button"
   onClick={onGenerateQuote}
   className="w-full"
   size="sm"
@@ -246,7 +249,7 @@ const QuotePreview: React.FC<{
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle>Professional Quote</CardTitle>
-            <Button variant="ghost" size="sm" onClick={onClose}>
+            <Button type="button" variant="ghost" size="sm" onClick={onClose}>
               <X className="w-5 h-5" />
             </Button>
           </div>
@@ -262,6 +265,7 @@ const QuotePreview: React.FC<{
                   value={clientName}
                   onChange={(e) => setClientName(e.target.value)}
                   placeholder="Enter client name"
+                  autoComplete="off"
                 />
               </div>
               <div>
@@ -271,6 +275,7 @@ const QuotePreview: React.FC<{
                   value={projectName}
                   onChange={(e) => setProjectName(e.target.value)}
                   placeholder="Enter project name"
+                  autoComplete="off"
                 />
               </div>
             </div>
@@ -291,15 +296,16 @@ const QuotePreview: React.FC<{
                 onChange={(e) => setAdditionalNotes(e.target.value)}
                 placeholder="Add any additional terms, conditions, or notes..."
                 rows={4}
+                autoComplete="off"
               />
             </div>
 
             {/* Action Buttons */}
             <div className="flex gap-3">
-              <Button onClick={handleCopyToClipboard} className="flex-1">
+              <Button type="button" onClick={handleCopyToClipboard} className="flex-1">
                 Copy to Clipboard
               </Button>
-              <Button onClick={handleDownload} variant="outline" className="flex-1">
+              <Button type="button" onClick={handleDownload} variant="outline" className="flex-1">
                 Download as TXT
               </Button>
             </div>
@@ -1454,9 +1460,16 @@ export function RateCalculatorUI() {
                 {/* Category Card Selection */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   {categories.map((category) => (
-                    <button
+                    <div
                       key={category.id}
                       onClick={() => handleCategorySelect(category.id)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          handleCategorySelect(category.id);
+                        }
+                      }}
                       className={cn(
                         "p-4 border rounded-lg text-center cursor-pointer transition-all duration-150 ease-in-out",
                         "hover:border-blue-500 hover:shadow-md",
@@ -1468,7 +1481,7 @@ export function RateCalculatorUI() {
                       <span className="font-medium text-slate-800 dark:text-slate-100">
                         {category.name}
                       </span>
-                    </button>
+                    </div>
                   ))}
                 </div>
 
