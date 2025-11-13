@@ -1466,16 +1466,16 @@ export function RateCalculatorUI() {
                   {categories.map((category) => (
                     <div
                       key={category.id}
-                      onClick={() => handleCategorySelect(category.id)}
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          handleCategorySelect(category.id);
-                        }
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleCategorySelect(category.id);
+                      }}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
                       }}
                       className={cn(
-                        "p-4 border rounded-lg text-center cursor-pointer transition-all duration-150 ease-in-out",
+                        "p-4 border rounded-lg text-center cursor-pointer transition-all duration-150 ease-in-out select-none",
                         "hover:border-blue-500 hover:shadow-md",
                         selectedCategory === category.id
                           ? "border-blue-600 bg-blue-50 dark:bg-blue-900/30 ring-2 ring-blue-500"
