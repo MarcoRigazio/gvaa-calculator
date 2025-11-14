@@ -12,11 +12,13 @@ import { Download, FileText, RefreshCw, Info } from "lucide-react";
 import { RateCalculatorUI } from "@/components/RateCalculatorUI";
 // Password Gate Component
 const BETA_PASSWORD = "beta2025";
+const STORAGE_KEY = "gvaa_beta_access";
 
 function PasswordGate({ children }: { children: React.ReactNode }) {
   const [password, setPassword] = useState('');
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [error, setError] = useState('');
+  const [isChecking, setIsChecking] = useState(true);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
