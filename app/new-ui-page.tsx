@@ -20,16 +20,46 @@ function PasswordGate({ children }: { children: React.ReactNode }) {
   const [error, setError] = useState('');
   const [isChecking, setIsChecking] = useState(true);
 
+  // Check localStorage on mount
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem(STORAGE_KEY);
+      console.log('Checking stored access:', stored);
+      if (stored === 'true') {
+        setIsUnlocked(true);
+      }
+    } catch (e) {
+      console.error('Error reading localStorage:', e);
+    }
+    setIsChecking(false);
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === BETA_PASSWORD) {
-      setIsUnlocked(true);
-      setError('');
+      try {
+        window.localStorage.setItem(STORAGE_KEY, 'true');
+        console.log('Saved to localStorage');
+        setIsUnlocked(true);
+        setError('');
+      } catch (e) {
+        console.error('Error saving to localStorage:', e);
+        setError('Error saving session. Please try again.');
+      }
     } else {
       setError('Invalid password. Please try again.');
       setPassword('');
     }
   };
+
+  // Show loading while checking
+  if (isChecking) {
+    return (
+      <div className="min-h-screen w-full bg-white flex items-center justify-center">
+        <div className="text-slate-600">Loading...</div>
+      </div>
+    );
+  }
 
   if (isUnlocked) {
     return <>{children}</>;
