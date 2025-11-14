@@ -1,28 +1,44 @@
 'use client';
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
-const BETA_PASSWORD = "beta2025"; // Change this to whatever you want
+const BETA_PASSWORD = "beta2025";
+const STORAGE_KEY = "gvaa_beta_access";
 
 export default function PasswordGate({ children }: { children: React.ReactNode }) {
   const [password, setPassword] = useState('');
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Check localStorage on mount
+  useEffect(() => {
+    const storedAccess = localStorage.getItem(STORAGE_KEY);
+    if (storedAccess === 'true') {
+      setIsUnlocked(true);
+    }
+    setIsLoading(false);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === BETA_PASSWORD) {
       setIsUnlocked(true);
+      localStorage.setItem(STORAGE_KEY, 'true');
       setError('');
     } else {
       setError('Invalid password. Please try again.');
       setPassword('');
     }
   };
+
+  // Show loading state briefly to prevent flash
+  if (isLoading) {
+    return null;
+  }
 
   // If unlocked, show the calculator
   if (isUnlocked) {
