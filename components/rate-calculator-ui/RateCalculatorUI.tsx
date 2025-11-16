@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
-import { useCalculatorState } from "./hooks/useCalculatorState";
+import { useCalculatorState, OpenSection } from "./hooks/useCalculatorState";
 import { RateDisplay } from "./RateDisplay";
 
 export function RateCalculatorUI() {
@@ -33,7 +33,10 @@ export function RateCalculatorUI() {
         type="single"
         collapsible
         value={openSection}
-        onValueChange={(v) => setOpenSection((v || "") as any)}
+        onValueChange={(v: string | undefined) =>
+          setOpenSection((v as OpenSection) ?? "")
+        }
+
         className="border rounded-lg bg-card"
       >
         {/* CATEGORY */}
