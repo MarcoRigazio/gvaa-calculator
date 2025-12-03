@@ -1,5 +1,5 @@
-import NewUIPage from "./new-ui-page";
+import { RateCalculatorAccordionUI } from "@/components/RateCalculatorAccordionUI";
 
 export default function HomePage() {
-  return <NewUIPage />;
+  return <RateCalculatorAccordionUI />;
 }
