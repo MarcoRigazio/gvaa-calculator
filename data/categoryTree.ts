@@ -365,7 +365,6 @@ export const categoryTree: CategoryTreeNode[] = [
         helperText: "Placeholder for promo/trailer categories.",
         calculatorArgs: {
           category: "promo",
-          usageType: "promo",
         },
       },
     ],
