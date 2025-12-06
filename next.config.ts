@@ -4,8 +4,8 @@ const nextConfig: NextConfig = {
   experimental: {
     serverActions: {
       allowedOrigins: [
-        "http://localhost:3000",
-        "https://jubilant-waddle-7vj79w57p99r2xpgr-3000.app.github.dev",
+        "localhost:3000",
+        "jubilant-waddle-7vj79w57p99r2xpgr-3000.app.github.dev",
       ],
     },
   },
