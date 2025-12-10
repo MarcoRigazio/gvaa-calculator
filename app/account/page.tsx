@@ -1,5 +1,6 @@
 // app/account/page.tsx
 import { currentUser } from "@clerk/nextjs/server";
+import { UpgradeButtons } from "@/components/upgrade-buttons";
 
 export default async function AccountPage() {
   const user = await currentUser();
@@ -22,6 +23,12 @@ export default async function AccountPage() {
     (user.publicMetadata?.plan as string | undefined) ||
     (user.privateMetadata?.plan as string | undefined) ||
     "Free";
+
+  // Read price IDs from env so we don’t hardcode them in the bundle.
+  const proMonthlyPriceId =
+    process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_PRO_MONTHLY || undefined;
+  const proAnnualPriceId =
+    process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_PRO_ANNUAL || undefined;
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-10 space-y-6">
@@ -60,8 +67,14 @@ export default async function AccountPage() {
         </h2>
         <p className="text-sm text-[var(--muted-foreground,#64748b)]">
           Stripe-powered subscription management is coming in Phase 2B. For now,
-          all accounts are treated as <strong>Free</strong>.
+          all accounts are treated as <strong>Free</strong> until a Pro
+          subscription is active.
         </p>
+
+        <UpgradeButtons
+          monthlyPriceId={proMonthlyPriceId}
+          annualPriceId={proAnnualPriceId}
+        />
       </section>
     </main>
   );
