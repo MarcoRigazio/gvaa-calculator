@@ -11,9 +11,13 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 export const metadata: Metadata = {
   title: "MyVOBiz Calculator",
   description: "GVAA-aware quoting with Stripe billing.",
-  icons: { icon: "/icon.svg" }, // app/icon.svg -> favicon
+  icons: { icon: "/icon.svg" },
+};
+
+export const viewport = {
   themeColor: "#0EA5E9",
 };
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
