@@ -1,8 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@config "../../tailwind.config.js";
-
 /* ==========================================================================
    Global design tokens (single source of truth)
    ========================================================================== */
