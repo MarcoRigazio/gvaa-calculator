@@ -4,6 +4,13 @@ module.exports = {
     "stylelint-config-standard",
     "stylelint-config-tailwindcss"
   ],
+
+  // Ignore legacy / archived code
+  ignoreFiles: [
+    "**/app/_archive/**",
+    "**/components/_archive/**"
+  ],
+
   rules: {
     // Allow Tailwind / PostCSS at-rules
     "at-rule-no-unknown": [
