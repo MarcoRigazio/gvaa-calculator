@@ -19,11 +19,12 @@ import {
 
 function EnterHint() {
   return (
-    <p className="mt-1 text-xs text-slate-400">
+    <p className="mt-1 text-xs text-muted-foreground">
       Press Enter to apply and collapse this section.
     </p>
   );
 }
+
 
 
 // ========================================
@@ -51,15 +52,16 @@ const QuoteBuilder: React.FC<{
 }> = ({ items, onRemoveItem, onGenerateQuote, onClearAll }) => {
   if (items.length === 0) {
     return (
-      <Card className="w-full rounded-2xl border border-slate-800 bg-slate-900/80 text-slate-100 shadow-lg shadow-slate-900/40">
+      <Card className="w-full rounded-2xl border border-border bg-card text-foreground shadow-sm">
         <CardHeader className="pb-3">
-          <CardTitle className="flex items-center gap-2 text-sm font-semibold text-slate-100">
-            <ShoppingCart className="w-4 h-4 text-slate-300" />
+          <CardTitle className="flex items-center gap-2 text-sm font-semibold text-foreground">
+            <ShoppingCart className="w-4 h-4 text-muted-foreground" />
             Quote Builder
           </CardTitle>
         </CardHeader>
+
         <CardContent>
-          <p className="text-sm text-slate-300">
+          <p className="text-sm text-muted-foreground">
             Calculate rates and add them here to build your quote.
           </p>
         </CardContent>
@@ -93,11 +95,11 @@ const QuoteBuilder: React.FC<{
   const { lowTotal, highTotal } = calculateTotal();
 
   return (
-    <Card className="w-full rounded-2xl border border-slate-800 bg-slate-900/80 text-slate-100 shadow-lg shadow-slate-900/40">
+    <Card className="w-full rounded-2xl border border-border bg-card text-foreground shadow-sm">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
-          <CardTitle className="flex items-center gap-2 text-sm font-semibold text-slate-100">
-            <ShoppingCart className="w-4 h-4 text-slate-300" />
+          <CardTitle className="flex items-center gap-2 text-sm font-semibold text-foreground">
+            <ShoppingCart className="w-4 h-4 text-muted-foreground" />
             Quote ({items.length})
           </CardTitle>
 
@@ -123,17 +125,20 @@ const QuoteBuilder: React.FC<{
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold text-slate-100">
+                  <div className="text-sm font-semibold text-foreground">
                     {item.category}
                   </div>
-                  <div className="mt-1 text-xs text-slate-400 truncate">
+
+                  <div className="mt-1 text-xs text-muted-foreground truncate">
                     {item.subType}
                   </div>
+
                   {item.description && (
-                    <div className="mt-1 text-xs text-slate-300 italic line-clamp-2">
+                    <div className="mt-1 text-xs text-muted-foreground italic line-clamp-2">
                       {item.description}
                     </div>
                   )}
+
                   <div className="mt-2 text-sm font-semibold text-emerald-300">
                     {item.rate}
                   </div>
@@ -156,10 +161,10 @@ const QuoteBuilder: React.FC<{
         {/* Totals + export */}
         <div className="mt-6 pt-4 border-t border-slate-700">
           <div className="mb-4 flex items-center justify-between">
-            <span className="text-sm font-semibold text-slate-100">
+            <span className="text-sm font-semibold text-foreground">
               Estimated Total:
             </span>
-            <span className="text-lg font-bold text-slate-50">
+            <span className="text-lg font-bold text-foreground">
               ${lowTotal.toLocaleString()}—${highTotal.toLocaleString()}
             </span>
           </div>
@@ -1737,7 +1742,7 @@ export function RateCalculatorAccordionUI() {
 
   return (
     <div
-      className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10"
+      className="flex justify-center items-start w-full p-4 pt-10"
       data-1p-ignore
       data-lpignore="true"
     >
@@ -1776,12 +1781,12 @@ export function RateCalculatorAccordionUI() {
                           // uniform sizing & layout
                           "w-full h-[60px] rounded-2xl cursor-pointer select-none",
                           "flex items-center justify-center px-3 text-center",
-                          "border shadow-sm transition-colors duration-150",
+                          "border shadow-sm transition-all duration-150",
 
-                          // active vs inactive
+                          // active vs inactive using TOKENS (no slate colors)
                           isActive
-                            ? "bg-brand-strong text-white border-brand-strong shadow-[0_12px_25px_rgba(58,111,234,0.4)]"
-                            : "bg-slate-800 text-slate-200 border-slate-700 hover:bg-slate-700 hover:border-slate-500"
+                            ? "bg-accent text-accent-foreground border-accent shadow-[0_12px_25px_rgba(14,165,233,0.35)]"
+                            : "bg-secondary text-muted-foreground border-border hover:bg-muted hover:text-foreground"
                         )}
                       >
                         <span className="font-medium text-sm leading-tight">
@@ -1805,20 +1810,17 @@ export function RateCalculatorAccordionUI() {
                       className="w-full space-y-4"
                     >
                       <AccordionItem value="subtype">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-white">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-fullpx-4 py-3 rounded-xl bg-card border border-border text-foreground  ">
+                          <span className="text-base font-medium">
                             Sub-Type
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedSubType
                                 ? selectedSubType
                                 : `Select sub-type for ${currentCategory.name}`}
                             </span>
-
-                            {/* Chevron icon with brand accent when open */}
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -1832,7 +1834,7 @@ export function RateCalculatorAccordionUI() {
                               {currentCategory.subTypes.map((subType) => (
                                 <div
                                   key={subType}
-                                  className="flex items-center space-x-2 p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-700"
+                                  className="flex items-center space-x-2 p-2 rounded hover:bg-muted"
                                 >
                                   <RadioGroupItem
                                     value={subType}
@@ -1867,19 +1869,16 @@ export function RateCalculatorAccordionUI() {
                       className="w-full space-y-4"
                     >
                       <AccordionItem value="term">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
-                            Term
-                          </span>
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">Term</span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedTerm ? selectedTerm : "Select term"}
                             </span>
-
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
+
                         <AccordionContent>
                           {/* Digital Visual -> Non-Paid Web */}
                           {selectedSubType ===
@@ -2126,12 +2125,13 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="tags">
-                        <AccordionTrigger className="cursor-pointer flex justify-between items-center">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-fullpx-4 py-3 rounded-xl bg-card border border-border text-foreground  ">
                           <span className="text-base font-medium">Tags</span>
-                          <span className="text-sm text-slate-600 dark:text-slate-300">
+
+                          <span className="text-sm text-muted-foreground">
                             {numberOfTags === 1
-                              ? "1 Tag"
-                              : `${numberOfTags} Tags`}
+                              ? "1 tag"
+                              : `${numberOfTags} tags`}
                           </span>
                         </AccordionTrigger>
 
@@ -2190,19 +2190,17 @@ export function RateCalculatorAccordionUI() {
                       className="w-full space-y-4"
                     >
                       <AccordionItem value="digital-automotive">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
-                            Tags
-                          </span>
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">Tags</span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm">
                               {numberOfTags === 1
                                 ? "1 Tag"
                                 : `${numberOfTags} Tags`}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -2346,17 +2344,15 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="radio-local-regional">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
-                            Term
-                          </span>
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">Term</span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedTerm || "Select term"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -2430,17 +2426,15 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="radio-national">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
-                            Term
-                          </span>
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">Term</span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedTerm || "Select term"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -2514,17 +2508,15 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="radio-digital">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
-                            Term
-                          </span>
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">Term</span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedTerm || "Select term"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -2602,17 +2594,15 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="radio-value-local">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
-                            Term
-                          </span>
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">Term</span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedTerm || "Select term"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -2687,17 +2677,15 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="radio-value-national">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
-                            Term
-                          </span>
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">Term</span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedTerm || "Select term"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -2771,13 +2759,13 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="radio-automotive">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Automotive Details
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedTier
                                 ? selectedTier === "Tier 1"
                                   ? "Tier 1 — National Brand Spots"
@@ -2787,7 +2775,7 @@ export function RateCalculatorAccordionUI() {
                                 : "Select tier (and spots)"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -2931,17 +2919,15 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="radio-dramas">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
-                            Role
-                          </span>
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">Role</span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedRole || "Select role"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -3011,7 +2997,7 @@ export function RateCalculatorAccordionUI() {
                       <AccordionItem value="tv-local-regional">
                         <AccordionTrigger className="cursor-pointer flex justify-between items-center">
                           <span className="text-base font-medium">Term</span>
-                          <span className="text-sm text-slate-600 dark:text-slate-300">
+                          <span className="text-sm text-muted-foreground">
                             {selectedTerm || "Select term"}
                           </span>
                         </AccordionTrigger>
@@ -3086,17 +3072,15 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="tv-national">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
-                            Term
-                          </span>
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">Term</span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedTerm || "Select term"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -3170,19 +3154,17 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="tv-paid-social">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Term &amp; Market
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedTerm && selectedMarket
                                 ? `${selectedTerm} — ${selectedMarket}`
                                 : "Select term & market"}
                             </span>
-
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -3302,19 +3284,19 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="tv-online-pre-roll">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Term &amp; Market
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedTerm && selectedMarket
                                 ? `${selectedTerm} — ${selectedMarket}`
                                 : "Select term & market"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -3434,19 +3416,19 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="tv-ott-ctv">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Term &amp; Market
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedTerm && selectedMarket
                                 ? `${selectedTerm} — ${selectedMarket}`
                                 : "Select term & market"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -3565,13 +3547,13 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="tv-automotive">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Automotive Details
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedTier
                                 ? selectedTier === "Tier 1"
                                   ? "Tier 1 — National Brand Spots"
@@ -3581,7 +3563,7 @@ export function RateCalculatorAccordionUI() {
                                 : "Select tier (and spots)"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -3725,17 +3707,17 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="tv-inshow-doc">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Program Length
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedProgramLength || "Select program length"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -3798,18 +3780,18 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="tv-infomercial-drtv">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Market / Term
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedInfomercialMarket ||
                                 "Select market / term"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -3860,7 +3842,7 @@ export function RateCalculatorAccordionUI() {
 
                 {/* --- Info for: TV -> Mnemonics (Informational) --- */}
                 {selectedSubType === "Mnemonics" && calculatedRate && (
-                  <div className="mt-4 text-sm text-slate-600 dark:text-slate-300 space-y-2">
+                  <div className="mt-4 text-sm text-muted-foreground space-y-2">
                     <p>
                       Mnemonics are short branded tags attached to campaigns.
                       Rates vary widely based on brand, media mix, and term, so
@@ -3879,7 +3861,7 @@ export function RateCalculatorAccordionUI() {
                 {/* --- Info for: TV -> Point of Sale (POS) (Informational) --- */}
                 {selectedSubType === "Point of Sale (POS)" &&
                   calculatedRate && (
-                    <div className="mt-4 text-sm text-slate-600 dark:text-slate-300 space-y-2">
+                    <div className="mt-4 text-sm text-muted-foreground space-y-2">
                       <p>
                         Point of Sale (POS) covers in-store screens at grocery,
                         gas, or retail locations. GVAA’s guidance is to align
@@ -3911,18 +3893,18 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="nb-corp-finished">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Finished Minute Range
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedDuration ||
                                 "Select finished-minute range"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -3986,13 +3968,13 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="nb-corp-recording">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Recording Time (Hours)
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {numberOfHours
                                 ? `${numberOfHours} hour${
                                     numberOfHours === 1 ? "" : "s"
@@ -4000,7 +3982,7 @@ export function RateCalculatorAccordionUI() {
                                 : "Enter hours"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -4050,13 +4032,13 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="nb-explainer">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Explainer Settings
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {explainerCalcMethod === "single"
                                 ? "Single Video (≤ 90s)"
                                 : explainerCalcMethod === "bulk"
@@ -4068,7 +4050,7 @@ export function RateCalculatorAccordionUI() {
                                 : "Select method"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -4166,13 +4148,13 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="nb-museum">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Museum Tour Settings
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedMuseumCategory
                                 ? museumRecordingHours
                                   ? `${selectedMuseumCategory} — ${museumRecordingHours} hr${
@@ -4182,7 +4164,7 @@ export function RateCalculatorAccordionUI() {
                                 : "Select category & hours"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -4281,17 +4263,17 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="nb-podcasts">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Podcast Type
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedPodcastType || "Select podcast type"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -4352,13 +4334,13 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="nb-medtech">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Med/Technical Settings
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {medTechCalcMethod === "minute"
                                 ? selectedDuration
                                   ? `By Minute — ${selectedDuration}`
@@ -4372,7 +4354,7 @@ export function RateCalculatorAccordionUI() {
                                 : "Select method"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -4514,14 +4496,14 @@ export function RateCalculatorAccordionUI() {
                 {/* --- Info for: Non-Broadcast -> Digital Greeting Cards (Informational Only) --- */}
                 {selectedSubType === "Digital Greeting Cards" &&
                   calculatedRate && (
-                    <div className="mt-4 text-sm text-slate-600 dark:text-slate-300 space-y-2">
+                    <div className="mt-4 text-sm text-muted-foreground space-y-2">
                       <p>
                         Digital Greeting Cards are typically short, personalized
                         messages used in apps or online platforms. Rates vary
                         depending on complexity and usage, so the range above is
                         provided as general guidance.
                       </p>
-                      <p className="font-medium text-slate-700 dark:text-slate-200">
+                      <p className="font-medium text-foreground">
                         This is an informational-only category. It will{" "}
                         <strong>NOT</strong> add to the quote on the right.
                       </p>
@@ -4541,17 +4523,17 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="nb-youtube">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             YouTube Content Type
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {selectedYouTubeType || "Select content type"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -4612,13 +4594,13 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="nb-kiosk">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Recording Hours
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {numberOfHours
                                 ? `${numberOfHours} hour${
                                     numberOfHours === 1 ? "" : "s"
@@ -4626,7 +4608,7 @@ export function RateCalculatorAccordionUI() {
                                 : "Enter hours"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -4685,13 +4667,13 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="nb-lobby">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Lobby Viewing Settings
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {!selectedLobbyType
                                 ? "Select lobby video type"
                                 : selectedLobbyType === "explainer"
@@ -4703,7 +4685,7 @@ export function RateCalculatorAccordionUI() {
                                 : "Retail (Selling a Product/Service)"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -4818,13 +4800,13 @@ export function RateCalculatorAccordionUI() {
                       className="w-full"
                     >
                       <AccordionItem value="nb-airport">
-                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                          <span className="text-base font-medium text-slate-200">
+                        <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                          <span className="text-base font-medium">
                             Airport Announcement Settings
                           </span>
 
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-300">
+                            <span className="text-sm text-muted-foreground">
                               {numberOfAirports && numberOfHours
                                 ? `${numberOfAirports} airport${
                                     numberOfAirports === 1 ? "" : "s"
@@ -4842,7 +4824,7 @@ export function RateCalculatorAccordionUI() {
                                 : "Set airports and hours"}
                             </span>
 
-                            <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                           </div>
                         </AccordionTrigger>
 
@@ -4958,13 +4940,13 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="el-per-word">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 E-Learning — Per Word
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {wordCount > 0
                                     ? `${wordCount} word${
                                         wordCount === 1 ? "" : "s"
@@ -4972,7 +4954,7 @@ export function RateCalculatorAccordionUI() {
                                     : "Enter word count"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -5034,20 +5016,20 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="el-per-finished-minute">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 E-Learning — Per Finished Minute
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {finishedMinutes &&
                                   Number(finishedMinutes) > 0
                                     ? `${finishedMinutes} min`
                                     : "Enter finished minutes"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -5108,13 +5090,13 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="el-per-raw-hour">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 E-Learning — Per Raw Hour
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {numberOfHours
                                     ? `${numberOfHours} hour${
                                         numberOfHours === 1 ? "" : "s"
@@ -5122,7 +5104,7 @@ export function RateCalculatorAccordionUI() {
                                     : "Enter raw hours"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -5187,19 +5169,19 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="el-per-finished-hour">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 E-Learning — Per Finished Hour
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {finishedHours && Number(finishedHours) > 0
                                     ? `${finishedHours} hr`
                                     : "Enter finished hours"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -5265,13 +5247,13 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="el-directed-sessions">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 E-Learning — Directed Sessions
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {wordCount > 0 ||
                                   (sessionHours && Number(sessionHours) > 0)
                                     ? `${
@@ -5292,7 +5274,7 @@ export function RateCalculatorAccordionUI() {
                                     : "Enter words & session hours"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -5409,19 +5391,19 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="anim-22-episode">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 22-Minute Episode Session
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {sessionLength && Number(sessionLength) > 0
                                     ? `${sessionLength} hr session`
                                     : "Enter session hours (up to 4)"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -5489,13 +5471,13 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="anim-11-episode">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 11-Minute Episode or Less
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {numEpisodes
                                     ? `${numEpisodes} episode${
                                         numEpisodes === 1 ? "" : "s"
@@ -5503,7 +5485,7 @@ export function RateCalculatorAccordionUI() {
                                     : "Enter number of episodes"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -5562,19 +5544,19 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="anim-dubbing">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Dubbing Session (Film/TV/Animation)
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {sessionLength && Number(sessionLength) > 0
                                     ? `${sessionLength} hr session`
                                     : "Enter session hours (2 hr min in rate)"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -5643,13 +5625,13 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="vg-nonunion">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Non-Union Video Games
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {gameCalcMethod === "hourly"
                                     ? sessionLength && Number(sessionLength) > 0
                                       ? `Hourly — ${sessionLength} hr`
@@ -5659,7 +5641,7 @@ export function RateCalculatorAccordionUI() {
                                     : "Select method"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -5768,19 +5750,19 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="vg-union">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Union Video Games
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {sessionLength && Number(sessionLength) > 0
                                     ? `${sessionLength} hr session`
                                     : "Enter session hours (up to 4)"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -5844,19 +5826,19 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="toys-main">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Toys &amp; Games
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {sessionLength && Number(sessionLength) > 0
                                     ? `${sessionLength} hr session`
                                     : "Enter session hours (up to 2)"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -5919,19 +5901,19 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="toys-demo">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Toys &amp; Games (Demo/Scratch)
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {sessionLength && Number(sessionLength) > 0
                                     ? `${sessionLength} hr session`
                                     : "Enter session hours"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -5995,13 +5977,13 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="mobile-nonunion">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Mobile Game Apps (Non-Union Character)
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {gameCalcMethod === "per_game"
                                     ? numVoices
                                       ? `Per Game — ${numVoices} voice${
@@ -6015,7 +5997,7 @@ export function RateCalculatorAccordionUI() {
                                     : "Select method"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -6163,19 +6145,19 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="mobile-union">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Mobile Game Apps (Union Character)
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {sessionLength && Number(sessionLength) > 0
                                     ? `${sessionLength} hr session`
                                     : "Enter session hours (up to 4)"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -6240,20 +6222,20 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="mobile-elearn">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Mobile Game Apps (E-Learning / Educational)
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {finishedMinutes &&
                                   Number(finishedMinutes) > 0
                                     ? `${finishedMinutes} finished min`
                                     : "Enter finished minutes"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -6321,17 +6303,17 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="promo-tv">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 TV Promo Market
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {selectedPromoMarket || "Select market"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -6392,17 +6374,17 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="promo-radio">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Radio Promo Market
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {selectedPromoMarket || "Select market"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -6465,17 +6447,17 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="promo-trailers">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Trailer Market
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {selectedPromoMarket || "Select market"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -6543,19 +6525,17 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="ab-union-pfh">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Union Scale — PFH
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {finishedHours && Number(finishedHours) > 0
                                     ? `${finishedHours} finished hr`
                                     : "Enter PFH amount"}
                                 </span>
-
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -6618,19 +6598,17 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="ab-nonunion-pfh">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Non-Union — PFH
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {finishedHours && Number(finishedHours) > 0
                                     ? `${finishedHours} finished hr`
                                     : "Enter PFH amount"}
                                 </span>
-
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -6693,19 +6671,17 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="ab-hybrid-pfh">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Hybrid Agreement
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm text-muted-foreground">
                                   {finishedHours && Number(finishedHours) > 0
                                     ? `${finishedHours} finished hr`
                                     : "Enter PFH amount"}
                                 </span>
-
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -6768,13 +6744,13 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="ab-raw-hour">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Per RAW Hour
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm">
                                   {numberOfHours
                                     ? `${numberOfHours} hour${
                                         numberOfHours === 1 ? "" : "s"
@@ -6782,7 +6758,7 @@ export function RateCalculatorAccordionUI() {
                                     : "Enter hours"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -6848,13 +6824,13 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="ab-production-addon">
-                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-[#1E293B] border border-[#1F2937]">
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Production Add-On
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm">
                                   {numberOfHours
                                     ? `${numberOfHours} hour${
                                         numberOfHours === 1 ? "" : "s"
@@ -6862,7 +6838,7 @@ export function RateCalculatorAccordionUI() {
                                     : "Enter hours"}
                                 </span>
 
-                                <ChevronDown className="h-4 w-4 text-slate-300 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                               </div>
                             </AccordionTrigger>
 
@@ -6929,16 +6905,13 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="ivr-direct-quote">
-                            <AccordionTrigger
-                              className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl
-             bg-[#1E293B] border border-[#1F2937]"
-                            >
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Direct Quote Calculation Model
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm">
                                   {selectedIvrModel === "ivr_min"
                                     ? "IVR (Suggested Minimum)"
                                     : selectedIvrModel === "ivr_prompt"
@@ -6970,11 +6943,6 @@ export function RateCalculatorAccordionUI() {
                                       : "MOH Per Paragraph — set count"
                                     : "Select calculation model"}
                                 </span>
-
-                                <ChevronDown
-                                  className="h-4 w-4 text-slate-300 transition-transform duration-200
-                 group-data-[state=open]:rotate-180"
-                                />
                               </div>
                             </AccordionTrigger>
 
@@ -7324,16 +7292,13 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="ivr-roster">
-                            <AccordionTrigger
-                              className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl
-             bg-[#1E293B] border border-[#1F2937]"
-                            >
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Roster Talent Model
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm">
                                   {selectedRosterModel === "prod_house"
                                     ? numParagraphs > 0
                                       ? `Prod House — ${numParagraphs} paragraph${
@@ -7346,11 +7311,6 @@ export function RateCalculatorAccordionUI() {
                                       : "Other — set booth hours"
                                     : "Select roster model"}
                                 </span>
-
-                                <ChevronDown
-                                  className="h-4 w-4 text-slate-300 transition-transform duration-200
-                 group-data-[state=open]:rotate-180"
-                                />
                               </div>
                             </AccordionTrigger>
 
@@ -7508,23 +7468,15 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="cinema-1-3">
-                            <AccordionTrigger
-                              className="group cursor-pointer flex justify-between items-center w-full px-4 py-3
-             rounded-xl bg-[#1E293B] border border-[#1F2937]"
-                            >
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Cinema Usage — Term (1–3 States)
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm">
                                   {selectedTerm || "Select term"}
                                 </span>
-
-                                <ChevronDown
-                                  className="h-4 w-4 text-slate-300 transition-transform duration-200
-                 group-data-[state=open]:rotate-180"
-                                />
                               </div>
                             </AccordionTrigger>
 
@@ -7587,23 +7539,15 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="cinema-4-plus">
-                            <AccordionTrigger
-                              className="group cursor-pointer flex justify-between items-center w-full px-4 py-3
-             rounded-xl bg-[#1E293B] border border-[#1F2937]"
-                            >
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Cinema Usage — Term (4+ States)
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm">
                                   {selectedTerm || "Select term"}
                                 </span>
-
-                                <ChevronDown
-                                  className="h-4 w-4 text-slate-300 transition-transform duration-200
-                 group-data-[state=open]:rotate-180"
-                                />
                               </div>
                             </AccordionTrigger>
 
@@ -7666,16 +7610,13 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="event-video">
-                            <AccordionTrigger
-                              className="group cursor-pointer flex justify-between items-center w-full px-4 py-3
-             rounded-xl bg-[#1E293B] border border-[#1F2937]"
-                            >
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Event Video
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm">
                                   {selectedTerm
                                     ? numberOfHours
                                       ? `${selectedTerm} — ${numberOfHours} hr${
@@ -7684,11 +7625,6 @@ export function RateCalculatorAccordionUI() {
                                       : `${selectedTerm} — set hours`
                                     : "Select term and hours"}
                                 </span>
-
-                                <ChevronDown
-                                  className="h-4 w-4 text-slate-300 transition-transform duration-200
-                 group-data-[state=open]:rotate-180"
-                                />
                               </div>
                             </AccordionTrigger>
 
@@ -7782,16 +7718,13 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="trade-events">
-                            <AccordionTrigger
-                              className="group cursor-pointer flex justify-between items-center w-full px-4 py-3
-             rounded-xl bg-[#1E293B] border border-[#1F2937]"
-                            >
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Trade Shows / Sporting Events
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm">
                                   {selectedTerm
                                     ? numberOfHours
                                       ? `${selectedTerm} — ${numberOfHours} hr${
@@ -7800,11 +7733,6 @@ export function RateCalculatorAccordionUI() {
                                       : `${selectedTerm} — set hours`
                                     : "Select term and hours"}
                                 </span>
-
-                                <ChevronDown
-                                  className="h-4 w-4 text-slate-300 transition-transform duration-200
-                 group-data-[state=open]:rotate-180"
-                                />
                               </div>
                             </AccordionTrigger>
 
@@ -7902,16 +7830,13 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="fees-studio">
-                            <AccordionTrigger
-                              className="group cursor-pointer flex justify-between items-center w-full px-4 py-3
-             rounded-xl bg-[#1E293B] border border-[#1F2937]"
-                            >
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Studio Fees & Editing
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm">
                                   {selectedFeeType
                                     ? numberOfHours
                                       ? `${selectedFeeType} — ${numberOfHours} hour${
@@ -7920,11 +7845,6 @@ export function RateCalculatorAccordionUI() {
                                       : `${selectedFeeType} — set hours`
                                     : "Select fee type and hours"}
                                 </span>
-
-                                <ChevronDown
-                                  className="h-4 w-4 text-slate-300 transition-transform duration-200
-                 group-data-[state=open]:rotate-180"
-                                />
                               </div>
                             </AccordionTrigger>
 
@@ -8028,16 +7948,13 @@ export function RateCalculatorAccordionUI() {
                           className="w-full"
                         >
                           <AccordionItem value="fees-pickups">
-                            <AccordionTrigger
-                              className="group cursor-pointer flex justify-between items-center w-full px-4 py-3
-             rounded-xl bg-[#1E293B] border border-[#1F2937]"
-                            >
-                              <span className="text-base font-medium text-slate-200">
+                            <AccordionTrigger className="group cursor-pointer flex justify-between items-center w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground">
+                              <span className="text-base font-medium">
                                 Pickups
                               </span>
 
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-300">
+                                <span className="text-sm">
                                   {selectedPickupType === "Talent Error"
                                     ? "Talent Error (no charge to client)"
                                     : selectedPickupType ===
@@ -8054,11 +7971,6 @@ export function RateCalculatorAccordionUI() {
                                       : "Major — set session hours"
                                     : "Select pickup type"}
                                 </span>
-
-                                <ChevronDown
-                                  className="h-4 w-4 text-slate-300 transition-transform duration-200
-                 group-data-[state=open]:rotate-180"
-                                />
                               </div>
                             </AccordionTrigger>
 
@@ -8223,35 +8135,35 @@ export function RateCalculatorAccordionUI() {
                 {calculatedRate && (
                   <section className="mt-8 space-y-6">
                     {/* RATE OUTPUT BOX */}
-                    <div className="rounded-2xl border border-slate-700 bg-slate-900/90 px-5 py-4 shadow-lg shadow-slate-900/40">
+                    <div className="rounded-2xl border border-border bg-muted px-5 py-4 shadow-sm">
                       <div className="flex items-start justify-between gap-4">
                         <div className="space-y-1">
-                          <p className="text-xs font-semibold tracking-wide text-slate-400 uppercase">
+                          <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
                             GVAA-Aligned Rate
                           </p>
-                          <p className="text-sm text-slate-400">
+                          <p className="text-sm text-muted-foreground">
                             Based on your selections above
                           </p>
                         </div>
                       </div>
 
                       <div className="mt-4 flex items-baseline justify-between gap-4">
-                        <p className="text-3xl font-semibold tracking-tight text-slate-50">
+                        <p className="text-3xl font-semibold tracking-tight text-foreground">
                           {calculatedRate}
                         </p>
-                        <p className="text-xs text-slate-400 text-right">
+                        <p className="text-xs text-muted-foreground text-right">
                           Preview only — final terms are set in your quote.
                         </p>
                       </div>
                     </div>
 
                     {/* ADD TO QUOTE AREA */}
-                    <div className="rounded-2xl border border-slate-700 bg-slate-900 px-5 py-3 space-y-3">
+                    <div className="rounded-2xl border border-border bg-card px-5 py-3 space-y-3">
                       <div className="flex items-center justify-between gap-3">
-                        <h3 className="text-sm font-semibold text-slate-50">
+                        <h3 className="text-sm font-semibold text-foreground">
                           Add to Quote
                         </h3>
-                        <p className="text-xs text-slate-300">
+                        <p className="text-xs text-muted-foreground">
                           Optional description helps future-you remember what
                           this line is.
                         </p>
@@ -8261,12 +8173,12 @@ export function RateCalculatorAccordionUI() {
                       <div className="space-y-2">
                         <Label
                           htmlFor="item-description"
-                          className="text-sm font-medium text-slate-50"
+                          className="text-sm font-medium text-foreground"
                         >
                           Line Item Description (Optional)
                         </Label>
-                        <p className="text-xs text-slate-300">
-                          e.g.,{" "}
+                        <p className="text-xs text-muted-foreground">
+                          e.g.{" "}
                           <span className="italic">
                             “Spot 1 – Holiday Sale”
                           </span>{" "}
@@ -8274,7 +8186,7 @@ export function RateCalculatorAccordionUI() {
                         </p>
                         <Textarea
                           id="item-description"
-                          placeholder="Enter an optional description for this line item..."
+                          placeholder="Enter an optional description for this line item."
                           value={itemDescription}
                           onChange={(e) => setItemDescription(e.target.value)}
                           rows={3}
@@ -8285,7 +8197,7 @@ export function RateCalculatorAccordionUI() {
                             }
                           }}
                           autoComplete="off"
-                          className="bg-slate-950/80 border-slate-700 focus-visible:ring-slate-400 text-slate-100 placeholder:text-slate-500"
+                          className="bg-background/60 border-border focus-visible:ring-ring text-foreground placeholder:text-muted-foreground"
                         />
                       </div>
 
@@ -8295,7 +8207,7 @@ export function RateCalculatorAccordionUI() {
                         onClick={handleAddToQuote}
                         disabled={isInfoOnlySubtype}
                         size="lg"
-                        className="w-full justify-center cursor-pointer disabled:cursor-not-allowed border border-slate-700"
+                        className="w-full justify-center cursor-pointer disabled:cursor-not-allowed border border-border"
                       >
                         <ShoppingCart className="w-5 h-5 mr-2" />
                         Add to Quote

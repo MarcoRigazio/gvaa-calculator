@@ -1,4 +1,7 @@
+// components/upgrade-buttons.tsx
 "use client";
+
+import { useState } from "react";
 
 type UpgradeButtonsProps = {
   monthlyPriceId?: string;
@@ -9,61 +12,65 @@ export function UpgradeButtons({
   monthlyPriceId,
   annualPriceId,
 }: UpgradeButtonsProps) {
-  async function startCheckout(priceId: string) {
+  const [loading, setLoading] = useState<"monthly" | "annual" | null>(null);
+
+  async function startCheckout(kind: "monthly" | "annual") {
+    const priceId = kind === "monthly" ? monthlyPriceId : annualPriceId;
+    if (!priceId) {
+      console.error("Missing Stripe price ID for", kind);
+      return;
+    }
+
     try {
+      setLoading(kind);
+
       const res = await fetch("/api/checkout_v3", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ priceId }),
+        body: JSON.stringify({
+          priceId,
+          success_url: `${window.location.origin}/account?status=success`,
+          cancel_url: `${window.location.origin}/account?status=cancel`,
+        }),
       });
 
       const data = await res.json();
 
-      if (!res.ok || !data?.url) {
-        console.error("Checkout error:", data);
-        alert("Unable to start checkout. Please try again or contact support.");
-        return;
+      if (data?.url) {
+        window.location.href = data.url as string;
+      } else {
+        console.error("Stripe checkout did not return a URL", data);
       }
-
-      window.location.href = data.url as string;
     } catch (err) {
-      console.error("Checkout exception:", err);
-      alert("Unexpected error starting checkout.");
+      console.error("Error starting checkout:", err);
+    } finally {
+      setLoading(null);
     }
   }
 
-  const hasMonthly = !!monthlyPriceId;
-  const hasAnnual = !!annualPriceId;
-
-  if (!hasMonthly && !hasAnnual) {
-    return (
-      <p className="text-xs text-[var(--muted-foreground,#64748b)]">
-        Pro upgrade via Stripe is almost ready. Please check back soon.
-      </p>
-    );
-  }
-
   return (
-    <div className="flex flex-wrap items-center gap-3">
-      {hasMonthly && (
-        <button
-          type="button"
-          onClick={() => startCheckout(monthlyPriceId!)}
-          className="rounded-full bg-sky-500 px-4 py-1.5 text-xs font-medium text-slate-950 hover:bg-sky-400"
-        >
-          Upgrade to Pro – Monthly
-        </button>
-      )}
+    <div className="flex flex-wrap gap-3">
+      <button
+        type="button"
+        onClick={() => startCheckout("monthly")}
+        disabled={!monthlyPriceId || loading !== null}
+        className="inline-flex items-center rounded-md border border-sky-500 bg-sky-500/10 px-4 py-2 text-sm font-medium text-sky-100 hover:bg-sky-500/20 disabled:opacity-50"
+      >
+        {loading === "monthly"
+          ? "Starting monthly checkout..."
+          : "Upgrade to Pro – $10/mo"}
+      </button>
 
-      {hasAnnual && (
-        <button
-          type="button"
-          onClick={() => startCheckout(annualPriceId!)}
-          className="rounded-full border border-sky-500 px-4 py-1.5 text-xs font-medium text-sky-300 hover:bg-sky-500/10"
-        >
-          Pro – Annual (save)
-        </button>
-      )}
+      <button
+        type="button"
+        onClick={() => startCheckout("annual")}
+        disabled={!annualPriceId || loading !== null}
+        className="inline-flex items-center rounded-md border border-sky-700 bg-sky-700/10 px-4 py-2 text-sm font-medium text-sky-100 hover:bg-sky-700/20 disabled:opacity-50"
+      >
+        {loading === "annual"
+          ? "Starting annual checkout..."
+          : "Upgrade to Pro – $100/yr"}
+      </button>
     </div>
   );
 }
