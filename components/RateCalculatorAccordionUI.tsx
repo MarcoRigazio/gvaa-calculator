@@ -852,6 +852,7 @@ export function RateCalculatorAccordionUI() {
   };
 
   const handleGenerateQuote = () => {
+    console.log("Review & Export clicked");
     setShowQuotePreview(true);
   };
 
