@@ -286,12 +286,12 @@ const QuotePreview: React.FC<{
     >
       <div
         className="absolute inset-0 z-0 bg-black/30 dark:bg-black/60 backdrop-blur-sm"
-        onClick={onClose}
+        onPointerDown={onClose}
       />
 
       <Card
         className="relative z-10 w-full max-w-3xl max-h-[90vh] overflow-auto bg-card text-card-foreground border-border shadow-xl"
-        onClick={(e) => e.stopPropagation()}
+        onPointerDown={(e) => e.stopPropagation()}
       >
         <CardHeader className="border-b border-border">
           <div className="flex items-center justify-between">
