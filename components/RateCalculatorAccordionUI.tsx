@@ -1,21 +1,24 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+
+import { ShoppingCart, Trash2, FileText, X, ChevronDown } from "lucide-react";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { ShoppingCart, Trash2, FileText, X, ChevronDown } from "lucide-react";
-
-import { cn } from "@/lib/utils";
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
+
+import { cn } from "@/lib/utils";
 
 function EnterHint() {
   return (
@@ -186,6 +189,14 @@ const QuotePreview: React.FC<{
   const [projectName, setProjectName] = useState("");
   const [additionalNotes, setAdditionalNotes] = useState("");
 
+  // ✅ mounted guard for createPortal (avoids SSR / hydration issues)
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   const calculateTotal = () => {
     let lowTotal = 0;
     let highTotal = 0;
@@ -267,7 +278,7 @@ const QuotePreview: React.FC<{
     URL.revokeObjectURL(url);
   };
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 relative isolate"
       role="dialog"
@@ -359,7 +370,8 @@ const QuotePreview: React.FC<{
           </div>
         </CardContent>
       </Card>
-    </div>
+    </div>,
+    document.body
   );
 };
 
