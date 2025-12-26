@@ -159,7 +159,7 @@ const QuoteBuilder: React.FC<{
             <span className="text-sm font-semibold text-slate-100">
               Estimated Total:
             </span>
-            <span className="text-lg font-bold text-slate-50">
+            <span className="text-lg font-bold text-foreground">
               ${lowTotal.toLocaleString()}—${highTotal.toLocaleString()}
             </span>
           </div>
@@ -8236,7 +8236,7 @@ export function RateCalculatorAccordionUI() {
                       </div>
 
                       <div className="mt-4 flex items-baseline justify-between gap-4">
-                        <p className="text-3xl font-semibold tracking-tight text-slate-50">
+                        <p className="text-3xl font-semibold tracking-tight text-foreground">
                           {calculatedRate}
                         </p>
                         <p className="text-xs text-slate-400 text-right">
@@ -8246,12 +8246,12 @@ export function RateCalculatorAccordionUI() {
                     </div>
 
                     {/* ADD TO QUOTE AREA */}
-                    <div className="rounded-2xl border border-slate-700 bg-slate-900 px-5 py-3 space-y-3">
+                    <div className="rounded-2xl border border-border bg-card px-5 py-3 space-y-3">
                       <div className="flex items-center justify-between gap-3">
-                        <h3 className="text-sm font-semibold text-slate-50">
+                        <h3 className="text-sm font-semibold text-foreground">
                           Add to Quote
                         </h3>
-                        <p className="text-xs text-slate-300">
+                        <p className="text-xs text-muted-foreground">
                           Optional description helps future-you remember what
                           this line is.
                         </p>
@@ -8261,11 +8261,11 @@ export function RateCalculatorAccordionUI() {
                       <div className="space-y-2">
                         <Label
                           htmlFor="item-description"
-                          className="text-sm font-medium text-slate-50"
+                          className="text-sm font-medium text-foreground"
                         >
                           Line Item Description (Optional)
                         </Label>
-                        <p className="text-xs text-slate-300">
+                        <p className="text-xs text-muted-foreground">
                           e.g.,{" "}
                           <span className="italic">
                             “Spot 1 – Holiday Sale”
@@ -8286,7 +8286,6 @@ export function RateCalculatorAccordionUI() {
                           }}
                           autoComplete="off"
                           className="bg-background text-foreground border-border placeholder:text-muted-foreground focus-visible:ring-ring"
-
                         />
                       </div>
 
