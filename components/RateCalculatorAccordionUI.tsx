@@ -8291,12 +8291,14 @@ export function RateCalculatorAccordionUI() {
 
                       {/* Add to Quote Button */}
                       <Button
-                        type="button"
-                        onClick={handleAddToQuote}
-                        disabled={isInfoOnlySubtype}
-                        size="lg"
-                        className="w-full justify-center cursor-pointer disabled:cursor-not-allowed bg-primary text-primary-foreground hover:bg-primary/90 border border-border"
-                      >
+                      type="button"
+                      variant="default"
+                      onClick={handleAddToQuote}
+                      disabled={isInfoOnlySubtype}
+                      size="lg"
+                      className="w-full justify-center cursor-pointer disabled:cursor-not-allowed"
+                    >
+
                         <ShoppingCart className="w-5 h-5 mr-2" />
                         Add to Quote
                       </Button>
