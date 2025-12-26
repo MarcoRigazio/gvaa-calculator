@@ -8285,7 +8285,8 @@ export function RateCalculatorAccordionUI() {
                             }
                           }}
                           autoComplete="off"
-                          className="bg-slate-950/80 border-slate-700 focus-visible:ring-slate-400 text-slate-100 placeholder:text-slate-500"
+                          className="bg-background text-foreground border-border placeholder:text-muted-foreground focus-visible:ring-ring"
+
                         />
                       </div>
 
