@@ -25,7 +25,6 @@ function EnterHint() {
   );
 }
 
-
 // ========================================
 // QUOTE BUILDER TYPES
 // ========================================
@@ -66,7 +65,6 @@ const QuoteBuilder: React.FC<{
       </Card>
     );
   }
-
 
   const calculateTotal = () => {
     let lowTotal = 0;
@@ -270,17 +268,27 @@ const QuotePreview: React.FC<{
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-      <Card className="w-full max-w-3xl max-h-[90vh] overflow-auto">
-        <CardHeader>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm dark:bg-black/60"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+    >
+      <Card
+        className="w-full max-w-3xl max-h-[90vh] overflow-auto bg-card text-card-foreground border-border shadow-lg"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <CardHeader className="border-b border-border">
           <div className="flex items-center justify-between">
-            <CardTitle>Professional Quote</CardTitle>
+            <CardTitle className="text-foreground">
+              Professional Quote
+            </CardTitle>
             <Button type="button" variant="ghost" size="sm" onClick={onClose}>
               <X className="w-5 h-5" />
             </Button>
           </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pt-6">
           <div className="space-y-4">
             {/* Client Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -307,8 +315,8 @@ const QuotePreview: React.FC<{
             </div>
 
             {/* Quote Preview */}
-            <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-4 bg-slate-50 dark:bg-slate-900 max-h-[400px] overflow-y-auto">
-              <pre className="text-sm whitespace-pre-wrap font-mono">
+            <div className="rounded-lg border border-border bg-muted p-4 max-h-[400px] overflow-y-auto">
+              <pre className="text-sm whitespace-pre-wrap font-mono text-foreground">
                 {generateQuoteText()}
               </pre>
             </div>
@@ -795,7 +803,6 @@ export function RateCalculatorAccordionUI() {
     if (selectedSubType && INFO_ONLY_SUBTYPES.has(selectedSubType)) {
       return;
     }
-
 
     const currentCategory = categories.find(
       (cat) => cat.id === selectedCategory
@@ -1780,8 +1787,8 @@ export function RateCalculatorAccordionUI() {
 
                           // active vs inactive
                           isActive
-                           ? "bg-primary text-primary-foreground border-border shadow-sm"
-                           : "bg-card text-foreground border-border hover:bg-accent hover:text-accent-foreground"
+                            ? "bg-primary text-primary-foreground border-border shadow-sm"
+                            : "bg-card text-foreground border-border hover:bg-accent hover:text-accent-foreground"
                         )}
                       >
                         <span className="font-medium text-sm leading-tight">
@@ -8221,90 +8228,96 @@ export function RateCalculatorAccordionUI() {
                 )}
 
                 {calculatedRate && (
-  <section className="mt-8 space-y-6">
-    {/* RATE OUTPUT BOX */}
-    <div className="rounded-2xl border border-border bg-card px-5 py-4 shadow-lg">
-      <div className="flex items-start justify-between gap-4">
-        <div className="space-y-1">
-          <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-            GVAA-Aligned Rate
-          </p>
-          <p className="text-sm text-muted-foreground">
-            Based on your selections above
-          </p>
-        </div>
-      </div>
+                  <section className="mt-8 space-y-6">
+                    {/* RATE OUTPUT BOX */}
+                    <div className="rounded-2xl border border-border bg-card px-5 py-4 shadow-lg">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="space-y-1">
+                          <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+                            GVAA-Aligned Rate
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            Based on your selections above
+                          </p>
+                        </div>
+                      </div>
 
-      <div className="mt-4 flex items-baseline justify-between gap-4">
-        <p className="text-3xl font-semibold tracking-tight text-foreground">
-          {calculatedRate}
-        </p>
-        <p className="text-xs text-muted-foreground text-right">
-          Preview only — final terms are set in your quote.
-        </p>
-      </div>
-    </div>
+                      <div className="mt-4 flex items-baseline justify-between gap-4">
+                        <p className="text-3xl font-semibold tracking-tight text-foreground">
+                          {calculatedRate}
+                        </p>
+                        <p className="text-xs text-muted-foreground text-right">
+                          Preview only — final terms are set in your quote.
+                        </p>
+                      </div>
+                    </div>
 
-    {/* ADD TO QUOTE AREA */}
-    <div className="rounded-2xl border border-border bg-card px-5 py-3 space-y-3">
-      <div className="flex items-center justify-between gap-3">
-        <h3 className="text-sm font-semibold text-foreground">Add to Quote</h3>
-        <p className="text-xs text-muted-foreground">
-          Optional description helps future-you remember what this line is.
-        </p>
-      </div>
+                    {/* ADD TO QUOTE AREA */}
+                    <div className="rounded-2xl border border-border bg-card px-5 py-3 space-y-3">
+                      <div className="flex items-center justify-between gap-3">
+                        <h3 className="text-sm font-semibold text-foreground">
+                          Add to Quote
+                        </h3>
+                        <p className="text-xs text-muted-foreground">
+                          Optional description helps future-you remember what
+                          this line is.
+                        </p>
+                      </div>
 
-      {/* Description Textarea */}
-      <div className="space-y-2">
-        <Label
-          htmlFor="item-description"
-          className="text-sm font-medium text-foreground"
-        >
-          Line Item Description (Optional)
-        </Label>
-        <p className="text-xs text-muted-foreground">
-          e.g., <span className="italic">“Spot 1 – Holiday Sale”</span> or{" "}
-          <span className="italic">“Main narration”</span>
-        </p>
-        <Textarea
-          id="item-description"
-          placeholder="Enter an optional description for this line item..."
-          value={itemDescription}
-          onChange={(e) => setItemDescription(e.target.value)}
-          rows={3}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" && !event.shiftKey) {
-              event.preventDefault();
-              handleAddToQuote();
-            }
-          }}
-          autoComplete="off"
-          className="bg-background text-foreground border-border placeholder:text-muted-foreground focus-visible:ring-ring"
-        />
-      </div>
+                      {/* Description Textarea */}
+                      <div className="space-y-2">
+                        <Label
+                          htmlFor="item-description"
+                          className="text-sm font-medium text-foreground"
+                        >
+                          Line Item Description (Optional)
+                        </Label>
+                        <p className="text-xs text-muted-foreground">
+                          e.g.,{" "}
+                          <span className="italic">
+                            “Spot 1 – Holiday Sale”
+                          </span>{" "}
+                          or <span className="italic">“Main narration”</span>
+                        </p>
+                        <Textarea
+                          id="item-description"
+                          placeholder="Enter an optional description for this line item..."
+                          value={itemDescription}
+                          onChange={(e) => setItemDescription(e.target.value)}
+                          rows={3}
+                          onKeyDown={(event) => {
+                            if (event.key === "Enter" && !event.shiftKey) {
+                              event.preventDefault();
+                              handleAddToQuote();
+                            }
+                          }}
+                          autoComplete="off"
+                          className="bg-background text-foreground border-border placeholder:text-muted-foreground focus-visible:ring-ring"
+                        />
+                      </div>
 
-      {/* Add to Quote Button */}
-      <Button
-        type="button"
-        variant="default"
-        onClick={handleAddToQuote}
-        disabled={isInfoOnlySubtype}
-        size="lg"
-        className="w-full justify-center cursor-pointer disabled:cursor-not-allowed"
-      >
-        <ShoppingCart className="w-5 h-5 mr-2" />
-        Add to Quote
-      </Button>
+                      {/* Add to Quote Button */}
+                      <Button
+                        type="button"
+                        variant="default"
+                        onClick={handleAddToQuote}
+                        disabled={isInfoOnlySubtype}
+                        size="lg"
+                        className="w-full justify-center cursor-pointer disabled:cursor-not-allowed"
+                      >
+                        <ShoppingCart className="w-5 h-5 mr-2" />
+                        Add to Quote
+                      </Button>
 
-      {isInfoOnlySubtype && (
-        <p className="mt-1 text-xs text-amber-300 text-center">
-          This selection is information-only and can’t be added as a billable line item.
-        </p>
-      )}
-    </div>
-  </section>
-)}
-
+                      {isInfoOnlySubtype && (
+                        <p className="mt-1 text-xs text-amber-300 text-center">
+                          This selection is information-only and can’t be added
+                          as a billable line item.
+                        </p>
+                      )}
+                    </div>
+                  </section>
+                )}
               </div>
             </CardContent>
           </Card>
