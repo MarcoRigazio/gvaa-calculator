@@ -167,7 +167,10 @@ const QuoteBuilder: React.FC<{
 
           <Button
             type="button"
-            onClick={onGenerateQuote}
+            onClick={() => {
+              console.log("QuoteBuilder button clicked");
+              onGenerateQuote();
+            }}
             size="sm"
             className="w-full justify-center cursor-pointer border border-slate-700"
           >
