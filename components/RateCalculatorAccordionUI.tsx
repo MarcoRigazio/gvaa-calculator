@@ -1780,8 +1780,8 @@ export function RateCalculatorAccordionUI() {
 
                           // active vs inactive
                           isActive
-                            ? "bg-brand-strong text-white border-brand-strong shadow-[0_12px_25px_rgba(58,111,234,0.4)]"
-                            : "bg-slate-800 text-slate-200 border-slate-700 hover:bg-slate-700 hover:border-slate-500"
+                           ? "bg-primary text-primary-foreground border-border shadow-sm"
+                           : "bg-card text-foreground border-border hover:bg-accent hover:text-accent-foreground"
                         )}
                       >
                         <span className="font-medium text-sm leading-tight">
