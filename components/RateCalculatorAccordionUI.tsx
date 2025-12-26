@@ -269,19 +269,17 @@ const QuotePreview: React.FC<{
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 relative isolate"
       role="dialog"
       aria-modal="true"
     >
-      {/* Backdrop layer */}
       <div
-        className="absolute inset-0 bg-black/30 dark:bg-black/60 backdrop-blur-sm"
+        className="absolute inset-0 z-0 bg-black/30 dark:bg-black/60 backdrop-blur-sm"
         onClick={onClose}
       />
 
-      {/* Modal layer */}
       <Card
-        className="relative w-full max-w-3xl max-h-[90vh] overflow-auto bg-card text-card-foreground border-border shadow-xl"
+        className="relative z-10 w-full max-w-3xl max-h-[90vh] overflow-auto bg-card text-card-foreground border-border shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
         <CardHeader className="border-b border-border">
