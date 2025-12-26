@@ -8221,97 +8221,90 @@ export function RateCalculatorAccordionUI() {
                 )}
 
                 {calculatedRate && (
-                  <section className="mt-8 space-y-6">
-                    {/* RATE OUTPUT BOX */}
-                    <div className="rounded-2xl border border-slate-700 bg-slate-900/90 px-5 py-4 shadow-lg shadow-slate-900/40">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="space-y-1">
-                          <p className="text-xs font-semibold tracking-wide text-slate-400 uppercase">
-                            GVAA-Aligned Rate
-                          </p>
-                          <p className="text-sm text-slate-400">
-                            Based on your selections above
-                          </p>
-                        </div>
-                      </div>
+  <section className="mt-8 space-y-6">
+    {/* RATE OUTPUT BOX */}
+    <div className="rounded-2xl border border-border bg-card px-5 py-4 shadow-lg">
+      <div className="flex items-start justify-between gap-4">
+        <div className="space-y-1">
+          <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+            GVAA-Aligned Rate
+          </p>
+          <p className="text-sm text-muted-foreground">
+            Based on your selections above
+          </p>
+        </div>
+      </div>
 
-                      <div className="mt-4 flex items-baseline justify-between gap-4">
-                        <p className="text-3xl font-semibold tracking-tight text-foreground">
-                          {calculatedRate}
-                        </p>
-                        <p className="text-xs text-slate-400 text-right">
-                          Preview only — final terms are set in your quote.
-                        </p>
-                      </div>
-                    </div>
+      <div className="mt-4 flex items-baseline justify-between gap-4">
+        <p className="text-3xl font-semibold tracking-tight text-foreground">
+          {calculatedRate}
+        </p>
+        <p className="text-xs text-muted-foreground text-right">
+          Preview only — final terms are set in your quote.
+        </p>
+      </div>
+    </div>
 
-                    {/* ADD TO QUOTE AREA */}
-                    <div className="rounded-2xl border border-border bg-card px-5 py-3 space-y-3">
-                      <div className="flex items-center justify-between gap-3">
-                        <h3 className="text-sm font-semibold text-foreground">
-                          Add to Quote
-                        </h3>
-                        <p className="text-xs text-muted-foreground">
-                          Optional description helps future-you remember what
-                          this line is.
-                        </p>
-                      </div>
+    {/* ADD TO QUOTE AREA */}
+    <div className="rounded-2xl border border-border bg-card px-5 py-3 space-y-3">
+      <div className="flex items-center justify-between gap-3">
+        <h3 className="text-sm font-semibold text-foreground">Add to Quote</h3>
+        <p className="text-xs text-muted-foreground">
+          Optional description helps future-you remember what this line is.
+        </p>
+      </div>
 
-                      {/* Description Textarea */}
-                      <div className="space-y-2">
-                        <Label
-                          htmlFor="item-description"
-                          className="text-sm font-medium text-foreground"
-                        >
-                          Line Item Description (Optional)
-                        </Label>
-                        <p className="text-xs text-muted-foreground">
-                          e.g.,{" "}
-                          <span className="italic">
-                            “Spot 1 – Holiday Sale”
-                          </span>{" "}
-                          or <span className="italic">“Main narration”</span>
-                        </p>
-                        <Textarea
-                          id="item-description"
-                          placeholder="Enter an optional description for this line item..."
-                          value={itemDescription}
-                          onChange={(e) => setItemDescription(e.target.value)}
-                          rows={3}
-                          onKeyDown={(event) => {
-                            if (event.key === "Enter" && !event.shiftKey) {
-                              event.preventDefault();
-                              handleAddToQuote();
-                            }
-                          }}
-                          autoComplete="off"
-                          className="bg-background text-foreground border-border placeholder:text-muted-foreground focus-visible:ring-ring"
-                        />
-                      </div>
+      {/* Description Textarea */}
+      <div className="space-y-2">
+        <Label
+          htmlFor="item-description"
+          className="text-sm font-medium text-foreground"
+        >
+          Line Item Description (Optional)
+        </Label>
+        <p className="text-xs text-muted-foreground">
+          e.g., <span className="italic">“Spot 1 – Holiday Sale”</span> or{" "}
+          <span className="italic">“Main narration”</span>
+        </p>
+        <Textarea
+          id="item-description"
+          placeholder="Enter an optional description for this line item..."
+          value={itemDescription}
+          onChange={(e) => setItemDescription(e.target.value)}
+          rows={3}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" && !event.shiftKey) {
+              event.preventDefault();
+              handleAddToQuote();
+            }
+          }}
+          autoComplete="off"
+          className="bg-background text-foreground border-border placeholder:text-muted-foreground focus-visible:ring-ring"
+        />
+      </div>
 
-                      {/* Add to Quote Button */}
-                      <Button
-                      type="button"
-                      variant="default"
-                      onClick={handleAddToQuote}
-                      disabled={isInfoOnlySubtype}
-                      size="lg"
-                      className="w-full justify-center cursor-pointer disabled:cursor-not-allowed"
-                    >
+      {/* Add to Quote Button */}
+      <Button
+        type="button"
+        variant="default"
+        onClick={handleAddToQuote}
+        disabled={isInfoOnlySubtype}
+        size="lg"
+        className="w-full justify-center cursor-pointer disabled:cursor-not-allowed"
+      >
+        <ShoppingCart className="w-5 h-5 mr-2" />
+        Add to Quote
+      </Button>
 
-                        <ShoppingCart className="w-5 h-5 mr-2" />
-                        Add to Quote
-                      </Button>
+      {isInfoOnlySubtype && (
+        <p className="mt-1 text-xs text-amber-300 text-center">
+          This selection is information-only and can’t be added as a billable line item.
+        </p>
+      )}
+    </div>
+  </section>
+)}
 
-                      {isInfoOnlySubtype && (
-                        <p className="mt-1 text-xs text-amber-300 text-center">
-                          This selection is information-only and can’t be added
-                          as a billable line item.
-                        </p>
-                      )}
-                    </div>
-                  </section>
-                )}
               </div>
             </CardContent>
           </Card>
