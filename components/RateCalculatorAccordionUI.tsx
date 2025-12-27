@@ -283,7 +283,7 @@ const QuotePreview: React.FC<{
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 relative isolate"
+      className="fixed inset-0 z-50 grid place-items-center p-4 overflow-y-auto isolate"
       role="dialog"
       aria-modal="true"
     >
@@ -293,7 +293,7 @@ const QuotePreview: React.FC<{
       />
 
       <Card
-        className="relative z-10 w-full max-w-3xl max-h-[90vh] overflow-auto bg-card text-card-foreground border-border shadow-xl"
+        className="relative z-10 w-full max-w-3xl max-h-[90vh] overflow-auto bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50 border border-border shadow-xl"
         onPointerDown={(e) => e.stopPropagation()}
       >
         <CardHeader className="border-b border-border">
@@ -301,7 +301,13 @@ const QuotePreview: React.FC<{
             <CardTitle className="text-foreground">
               Professional Quote
             </CardTitle>
-            <Button type="button" variant="ghost" size="sm" onClick={onClose}>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={onClose}
+              className="cursor-pointer"
+            >
               <X className="w-5 h-5" />
             </Button>
           </div>
@@ -1764,7 +1770,7 @@ export function RateCalculatorAccordionUI() {
 
   return (
     <div
-      className="flex justify-center items-start min-h-screen bg-slate-50 dark:bg-slate-900 p-4 pt-10"
+      className="flex justify-center items-start min-h-[100dvh] bg-slate-50 dark:bg-slate-900 p-4 pt-10"
       data-1p-ignore
       data-lpignore="true"
     >
